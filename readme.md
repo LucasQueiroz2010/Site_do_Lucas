@@ -7,3 +7,17 @@ Site do Lucas V1.1: Pequenas adições.
 Foi adicionado: uma nova fonte personalizada.
 Foi substituido: três imagens.
 Foi excluido: 2 "documentos".
+
+Site do Lucas V1.2: grandes adições.
+Foi adicionado a sessão "que dia você nasceu?" na aba de informações na "Página Principal".
+Foi adicionado um copyright (© 2025 - Lucas Oliveira de Queiroz) em todas as páginas.
+Foi adicionado duas novas imagens no "Site do Lucas!"
+Os títulos na "Página do Lucas!" agora crescem quando o cursor está por cima das palavras para melhor visibilidade.
+A sessão "Veja o Lucas!" sofreu mudanças severas.
+As páginas "Página Principal" e "Site do Lucas!" agora tem fontes personalizadas.
+A "Página Principal" teve algumas mudanças em seus textos.
+As imagens na parallax no "Site do Lucas!" estão com qualidade melhorada.
+Quando vc acessa alguma página (exemplo: você esta na "Página do Lucas!" e coloca o cursor no botão de "Site Principal"), o botão cresce e fica branco para melhor visibilidade.
+Três estrelas foram adicionadas na parte de baixo na "Página Principal".
+Pequenas mudanças de colocamento de texto/código adicionados para melhorar a qualidade de vida.
+Conserto de erros/bugs.

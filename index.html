@@ -6,101 +6,118 @@
 	<title>Site Principal</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="estilo.css">
+	<link rel="stylesheet" href="normalize.css">
 
 	<style type="text/css" class="menu">
-
-		        body {
-            background-image: url(imagens/banner.png), url(imagens/Fundo2.jpeg);
-            background-repeat: no-repeat, no-repeat;
-            background-position: left top, center center;
-            background-size: auto, cover;
+		body {
+			background-image: url(imagens/banner.png), url(imagens/Fundo2.jpeg);
+			background-repeat: no-repeat, no-repeat;
+			background-position: left top, center center;
+			background-size: auto, cover;
 		}
 
+		@font-face {
+			font-family: "Isaac";
+			src: url("fontes/Isaac.woff");
+		}
+
+		body {
+			font-family: Isaac;
+		}
 	</style>
 
 </head>
 
-<body class="t20px centralizar menu isaac">
+<body class="t20px centralizar menu">
 	<!-- <> -->
 
 	<ul>
-		<li><a href="contato.html">Contatos!</a></li>
-		<li><a href="Site do Lucas.html">Site do Lucas!</a></li>
-		<li><a href="foto.html">Veja o Lucas!</a></li>
+		<li><a href="contato.html" id="sombraB transicaolink">Contatos!</a></li>
+		<li><a href="Site do Lucas.html" id="sombraB transicaolink">Site do Lucas!</a></li>
+		<li><a href="foto.html" id="sombraB transicaolink">Veja o Lucas!</a></li>
 	</ul>
-	<h2 class="inline" >Página principal</h2>
+	<h2 class="inline preto" id="sombraB">Página principal</h2>
 
 	<p>Seja bem-vindo a página inicial do site do Lucas!</p>
 	<p>Fique a vontade!</p>
 	<p>Feedbacks sempre são bem vindos!</p>
 
-	<h2>Sua opinião! (WIP)</h2>
+	<h2 id="sombraP">Sua opinião! (WIP)</h2>
 
 	<form class="branco borda-texto">
 
-<fieldset>
-            <legend class="esquerda">Informações:</legend>
-
-            <div>
-                <label for="nome" class="esquerda">Nome:</label>
-                <input type="text" name="nome" id="nome" placeholder="Insira seu nome!" class="this nome">
-            </div>
+		<fieldset>
+			<legend class="esquerda">Informações:</legend>
 
 			<div>
-                <label for="Email" class="esquerda">E-mail:</label>
-                <input type="text" name="nome" id="Email" placeholder="Insira seu email!" class="this email">
-            </div>
+				<label for="nome" class="esquerda">Nome:</label>
+				<input type="text" name="nome" id="nome" placeholder="Insira seu nome!" class="this nome" required autofocus>
+			</div>
 
 			<div>
-                <label for="senha" class="esquerda">Senha:</label>
-                <input type="password" name="nome" id="senha" placeholder="Insira sua senha!" class="this senha">
-            </div>
+				<label for="Email" class="esquerda">E-mail:</label>
+				<input type="email" name="nome" id="Email" placeholder="Insira seu email!" class="this email" required>
+			</div>
 
-        </fieldset>
-<br>
+			<div>
+				<label for="senha" class="esquerda">Senha:</label>
+				<input type="password" name="nome" id="senha" placeholder="Insira sua senha!" class="this senha" min="6" max="10" required>
+			</div>
+				<label for="data" class="esquerda"><Data></Data>Que dia você nasceu?</label>
+				<input type="date" name="Data" id="Data" placeholder="Que dia é hoje?!" class="this cadeado" required>
+			</div>
+
+		</fieldset>
+		<br>
 		<fieldset>
 			<legend class="esquerda">Comentários</legend>
-				<div>
-					<input type="text" name="Comente aqui!" id="Comente aqui!" placeholder="Comente aqui!" class="this comentario">
-				</div>
+			<div>
+				<input type="search" name="Comente aqui!" id="Comente aqui!" placeholder="Comente aqui!"
+					class="this comentario">
+			</div>
 		</fieldset>
 
 		<fieldset>
 			<legend>Lembrar de mim?</legend>
-				<div>
-					<label for="Sim!">
-						<input type="radio" name="lembrar" id="Sim!">Sim!
-					</label>
-				</div>
-								<div>
-					<label for="Não...">
-						<input type="radio" name="lembrar" id="Não...">Não...
-					</label>
-				</div>
+			<div>
+				<label for="Sim!">
+					<input type="radio" name="lembrar" id="Sim!">Sim!
+				</label>
+			</div>
+			<div>
+				<label for="Não...">
+					<input type="radio" name="lembrar" id="Não...">Não...
+				</label>
+			</div>
 		</fieldset>
 
 		<br>
 		Esse site é bem feito? <br>
 		<div class="esquerda">
-						<div>
-					<label for="Sim">
-						<input type="radio" name="bom?" id="Sim">Sim
-					</label>
-				</div>
-						<div>
-					<label for="Não">
-						<input type="radio" name="bom?" id="Não">Não
-					</label>
-				</div>
-						<div>
-					<label for="S/N">
-						<input type="radio" name="bom?" id="S/N">+/-
-					</label>
-				</div>
+			<div>
+				<label for="Sim">
+					<input type="radio" name="bom?" id="Sim" required>Sim
+				</label>
+			</div>
+			<div>
+				<label for="Não">
+					<input type="radio" name="bom?" id="Não">Não
+				</label>
+			</div>
+			<div>
+				<label for="S/N">
+					<input type="radio" name="bom?" id="S/N">+/-
+				</label>
+			</div>
 		</div>
-		<input class="submit BIGSHOT isaac" type="submit" value="Enviar">		
+		<input class="submit BIGSHOT" type="submit" value="Enviar" id="transicaolink">	
 	</form>
+	<br>
+	<div id="estrela1" class="esquerda line"></div>
+	<div id="estrela2" class="centralizar line"></div>
+	<div id="estrela3" class="direita line"></div>
 
+	<footer class="branco">&copy; <time>2025</time> - Lucas Oliveira de Queiroz</footer>
 </body>
 
 </html>
