@@ -29,4 +29,10 @@ Site do Lucas V1.0: O primeiro site que eu fiz em toda a minha vida, e eu estou 
 1) Foi adicionado uma interação com a estrela amarela na "Página Inicial".
 2) Foi adicionado uma interação específica na página "Foto do Lucas!"
 3) Foi inplementado algumas mudanças de qualidade de vida/detalhes.
-?) fatal_error.
+?fatal_error?
+
+4- Site do Lucas V1.4: adição de desenvolvedor.
+1) Foi adicionado o Bootstrap V4.1.3.
+2) Junto com o Bootstrap, todos os sites ficaram compatíveis com o Bootstrap.
+3) Algumas mudanças pequenas de design foram adicionadas/alteradas.
+!_try.remove "fatal_error" failed_!
