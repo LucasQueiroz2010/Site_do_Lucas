@@ -7,8 +7,12 @@
 		}
 
 		.Borda {
-			border: 5px groove #54260d;
+			border: 5px solid #54260d;
 			padding: 3px;
+		}
+
+		.Bordalink{
+			border: 5px  groove #54260d;
 		}
 
 		.borda-texto {
@@ -24,7 +28,11 @@
 		.centralizar {
 			text-align: center;
 			background-position: center;
+			justify-content: center;
 			margin: auto;
+			align-items: center;
+			align-self: center;
+			align-content: center;
 		}
 
 		.listas {
@@ -108,21 +116,31 @@
 			}
 
 			ul a {
-				width: 190px;
+				width: 195spx;
 				height: 40px;
 				display: block;
 				color: black;
 				text-decoration: none;
 				text-indent: 40px;
-				line-height: 40px;
+				text-align: center;
+				line-height: 35px;
 				border: 3px solid black;
 				background: url(imagens/menu.png) no-repeat left bottom;
 			}
 
-			a:hover {
-				background-position: right bottom;
+			.menu1:hover {
+				background-position: right -50px bottom;
+			}
+
+			.menu2:hover {
+				background-position: right -1px bottom;
+			}
+
+			.menu3:hover {
+				background-position: right -12px bottom;
 			}
 		}
+				
 
 		fieldset {
 			padding: 1em;
@@ -208,6 +226,8 @@
 			background-position: 10px;
 		}
 
+
+
 		input.nome {
 			background-image: url(imagens/icone-usuario.png);
 		}
@@ -276,6 +296,7 @@
 			right: 0px;
 			text-align: right;
 			color: red;
+			text-decoration: none;
 
 			a {
 				color: red;
@@ -284,7 +305,21 @@
 		}
 
 		.fatal_error:hover{
-			cursor: default;
+			cursor: help;
+
+
+			a{
+			color: red;
+			text-decoration: none;				
+			}
+		}
+
+		.fatal_error:active{
+			color: darkred;
+
+			a{
+				color: darkred;
+			}
 		}
 
 		.overflow {
@@ -299,10 +334,12 @@
 
 		#sombraB {
 			text-shadow: 15px 15px white;
+			color: black;
 		}
 
 		#sombraP {
 			text-shadow: 20px 20px black;
+			color: white;
 		}
 
 		.line {
@@ -310,8 +347,8 @@
 		}
 
 		#transicao1:hover {
-			width: 500px;
-			height: 65px;
+			width: 525px;
+			height: 80px;
 			background: black;
 			color: white;
 			transition: all 1.5s;
@@ -327,8 +364,8 @@
 		}
 
 		#transicao2:hover {
-			width: 300px;
-			height: 110px;
+			width: 315px;
+			height: 125px;
 			background: black;
 			color: white;
 			transition: all 1.5s;
@@ -337,13 +374,14 @@
 		}
 
 		#transicao3:hover {
-			width: 500px;
-			height: 100px;
+			width: 666px;
+			height: 75px;
+			text-align: center;
 			background: black;
 			color: white;
 			transition: all 1.5s;
 			font-size: 46px;
-			text-align: center;
+			background-position: center;
 		}
 
 		#transicaolink:hover {
@@ -351,6 +389,7 @@
 			font-size: 40px;
 			background: white;
 			color: black;
+			text-decoration: none;
 		}
 
 		.nodots{
@@ -403,10 +442,6 @@ padding: 3px;
 			src: url("fontes/PzzTwr.woff");
 		}
 
-		.imagem_star {
-			cursor: pointer;
-		}
-
 .estrela_frente, .estrela_fundo, #estrela1, .estrela2, #estrela3{
     display: inline-block;
     vertical-align: top;
@@ -423,7 +458,7 @@ padding: 3px;
     background-image: url('imagens/estrela_basica.png');
     background-size: cover;
     transition: background-image 1s ease-in;
-	cursor: pointer;
+	cursor: none;
   }
 
   .estrela2:hover {
@@ -438,3 +473,35 @@ padding: 3px;
 .textnoselect{
 	user-select: none;
 }
+
+.foto{
+	width: 600px;
+	height: 700px;
+	background-image: url(imagens/Foto.jpeg);
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	}
+
+.justify{
+	justify-content: center;
+}
+
+.Pizza_Link:hover{
+	text-decoration: none;
+	color: yellow;
+}
+
+.Pizza_Link:active {
+	color: darkorange;
+}
+
+.AUTISMO:hover{
+	border: 3px solid #EBB866;
+	color: red;
+	width: 25px;
+	height: 8px;
+	transition: all 1.5s;
+	font-size: 30px;
+}
+

@@ -1,14 +1,12 @@
 <!doctype html>
-
-<html>
-
+<html lang="pt-br">
 <head>
 	<title>Site Principal</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="estilo.css">
 	<link rel="stylesheet" href="normalize.css">
-
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 	<style type="text/css" class="menu">
 		body {
 			background-image: url(imagens/banner.png), url(imagens/Fundo2.jpeg);
@@ -20,16 +18,15 @@
 		
 	</style>
 
-</head>
-
+  </head>
 <body class="t20px centralizar menu">
 	<!-- <> -->
 
 	<ul>
-		<li><a href="contato.html" id="sombraB transicaolink">Contatos!</a></li>
-		<li><a href="Site do Lucas.html" id="sombraB transicaolink">Site do Lucas!</a></li>
-		<li><a href="foto.html" id="sombraB transicaolink">Veja o Lucas!</a></li>
-	</ul>
+		<li><a href="contato.html" class="line menu1">Contatos!</a></li>
+		<li><a href="Site do Lucas.html" class="line menu2">Site do Lucas!</a></li>
+		<li><a href="foto.html" class="line menu3">Veja o Lucas!</a></li>
+	</ul><br>
 	<h2 class="Borda line preto" id="sombraB">Página principal</h2>
 
 	<p>Seja bem-vindo a página inicial do site do Lucas!</p>
@@ -44,17 +41,17 @@
 			<legend class="esquerda">Informações:</legend>
 
 			<div>
-				<label for="nome" class="esquerda">Nome:</label>
+				<label for="nome" class="esquerda">Nome:ﾠ</label>
 				<input type="text" name="nome" id="nome" placeholder="Insira seu nome!" class="this nome" required autofocus>
 			</div>
 
 			<div>
-				<label for="Email" class="esquerda">E-mail:</label>
+				<label for="Email" class="esquerda align">Email:</label>
 				<input type="email" name="nome" id="Email" placeholder="Insira seu email!" class="this email" required>
 			</div>
 
 			<div>
-				<label for="senha" class="esquerda">Senha:</label>
+				<label for="senha" class="esquerda align">Senha:</label>
 				<input type="password" name="nome" id="senha" placeholder="Insira sua senha!" class="this senha" min="6" max="10" required>
 			</div>
 				<label for="data" class="esquerda"><Data></Data>Que dia você nasceu?</label>
@@ -62,7 +59,7 @@
 			</div>
 
 		</fieldset>
-		<br>
+		
 		<fieldset>
 			<legend class="esquerda">Comentários</legend>
 			<div>
@@ -85,9 +82,9 @@
 			</div>
 		</fieldset>
 
-		<br>
+		
 		Esse site é bem feito? <br>
-		<div class="esquerda">
+		<div class="centralizar">
 			<div>
 				<label for="Sim">
 					<input type="radio" name="bom?" id="Sim" required>Sim
@@ -104,7 +101,7 @@
 				</label>
 			</div>
 		</div>
-		<input class="submit BIGSHOT" type="submit" value="Enviar" id="transicaolink">	
+		<input style="cursor: help;" class="submit BIGSHOT" type="submit" value="Enviar" id="transicaolink">	
 	</form>
 	<br>
 
@@ -114,11 +111,10 @@
 
 		<div id="estrela3"><img src="imagens/estrela_basica_marrom.png"></div>
 
-
-
 	<footer class="branco">&copy; <time>2025</time> - Lucas Oliveira de Queiroz</footer>
 
-
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js""></script>
+  </body>
 </html>
