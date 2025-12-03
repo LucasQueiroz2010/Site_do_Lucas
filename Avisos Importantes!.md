@@ -44,7 +44,8 @@ Site do Lucas V1.0: O primeiro site que eu fiz em toda a minha vida, e eu estou 
 4) Foi removida a interação que ante existia na página "Foto do Lucas!".
 !-try.remove "fatal_error" ... task_failed-!
 
-5.1- Site do Lucas V1.5.1 / 1.5.2 / 1.5.3
+5.1- Site do Lucas V1.5.1 / 1.5.2 / 1.5.3 / 1.5.4
 1) A versão 1.5.1 foi uma versão sem atualizações, sendo exatamente igual a versão 1.4. Essa versão foi enviada por acidente.
 2) Acidentalmente, na versão 1.5.2, foi enviado nada, além do arquivo de fotos, oque já foi corrigido.
 3) A versão 1.5.3 é a versão onde tudo da versão 1.5 foi implementado, além da mudança do README.
+4) Na versão 1.5.4, foi adicionado uma imagem que estava faltando, além da edição do README.
