@@ -22,10 +22,10 @@ Site do Lucas V1.0: O primeiro site que eu fiz em toda a minha vida, e eu estou 
 11) Pequenas mudanças de colocamento de texto/código adicionados para melhorar a qualidade de vida.
 12) Conserto de erros/bugs.
 
-3- Site do Lucas V1.2.1/V1.2.2
+2.1- Site do Lucas V1.2.1 / V1.2.2
 1) O arquivo "Avisos Importantes!" sofreu algumas melhoras de design.
 
-4- Site do Lucas V1.3
+3- Site do Lucas V1.3
 1) Foi adicionado uma interação com a estrela amarela na "Página Inicial".
 2) Foi adicionado uma interação específica na página "Foto do Lucas!"
 3) Foi inplementado algumas mudanças de qualidade de vida/detalhes.
@@ -43,3 +43,8 @@ Site do Lucas V1.0: O primeiro site que eu fiz em toda a minha vida, e eu estou 
 3) Foi adicionado uma interação com as duas estrelas marrom na página "Página Inicial".
 4) Foi removida a interação que ante existia na página "Foto do Lucas!".
 !-try.remove "fatal_error" ... task_failed-!
+
+5.1- Site do Lucas V1.5.1 / 1.5.2 / 1.5.3
+1) A versão 1.5.1 foi uma versão sem atualizações, sendo exatamente igual a versão 1.4. Essa versão foi enviada por acidente.
+2) Acidentalmente, na versão 1.5.2, foi enviado nada, além do arquivo de fotos, oque já foi corrigido.
+3) A versão 1.5.3 é a versão onde tudo da versão 1.5 foi implementado, além da mudança do README.
