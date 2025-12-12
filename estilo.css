@@ -447,7 +447,8 @@ padding: 3px;
     width: 350px;
     height: 350px;
     background-image: url('imagens/estrela_basica_marrom.png');
-    background-size: cover;
+    background-size: contain;
+	background-repeat: no-repeat;
     transition: background-image 1s ease-in;
 	cursor: none;
 }
@@ -460,7 +461,8 @@ padding: 3px;
     width: 350px;
     height: 350px;
     background-image: url('imagens/estrela_basica.png');
-    background-size: cover;
+    background-size: contain;
+	background-repeat: no-repeat;
     transition: background-image 1s ease-in;
 	cursor: none;
   }
@@ -473,14 +475,13 @@ padding: 3px;
     width: 350px;
     height: 350px;
     background-image: url('imagens/estrela_basica_marrom.png');
-    background-size: cover;
-    transition: background-image 0.3s ease-in;
-	cursor: none;
+    background-size: contain;
+	background-repeat: no-repeat;
+    transition: background-image 20s ease-in;
 }
 
 .estrela3:hover{
 	background-image: url(imagens/Foto.jpeg);
-	border: 5px solid white;
 }
 
 .textnoselect{
@@ -559,3 +560,25 @@ padding: 3px;
 				color: orange;
 				cursor: crosshair;
 			}
+
+			.Pizza_Game_Link{
+				text-decoration: none;
+				color: white;
+			}
+
+			.Pizza_Game_Link:hover{
+				text-decoration: none;
+				color: gray;
+			}
+
+			.depression{
+				bottom: 300px;
+			}
+
+			.Pizza_text{
+				background-color: white;
+				border: 3px solid black;
+				color: darkgoldenrod	;
+			}
+
+			
