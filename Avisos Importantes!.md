@@ -1,3 +1,6 @@
+Dicionário:
+WIP: Work In Progress, ou seja, trabalho em progresso. Algo quenão está 100% pronto e pode sofrer atualizações.
+PTWE: Pizza Tower Web Edition. 
 Atualizações abaixo:
 
 0- Site do Lucas V1.0: o começo de tudo.
@@ -68,3 +71,10 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 7.1- Site do Lucas V1.7.1
 1) Mudanças no README.
 2) Mudanças pequenas no "jogo.html"
+
+8- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas)
+1) Foi adicionado um dicionário no começo do README.
+2) Foi adicionado o modo mobile no PTWE (Pizza Tower Web Edition, vou me referir ao jogo assim de agora em diante). O modo mobile faz o jogo ficar em tela cheia e faz aparecer quatro botões: botão de andar para esquerda e direita, botão de pular e de correr, mas tirando isso, é a mesma coisa (isso é um WIP, ou). 
+3) Foi mudado algumas interações entre as estrelas da "Página Inicial".
+4) Foi mudado um botão da sessão "Sua Opinião!" na "Página Inicial".
+5) Foi adicionado backgrounds variados dependendo do tamanho da sua tela na "Página Inicial", dando certo suporte para mobile e telas maiores.

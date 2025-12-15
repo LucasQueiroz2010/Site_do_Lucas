@@ -443,7 +443,7 @@ padding: 3px;
     vertical-align: top;
 	align-items: baseline;
 }
-.estrela1{
+.estrela3{
     width: 350px;
     height: 350px;
     background-image: url('imagens/estrela_basica_marrom.png');
@@ -453,8 +453,8 @@ padding: 3px;
 	cursor: none;
 }
 
-.estrela1:hover{
-	background-image: url(imagens/leaf.png);
+.estrela3:hover{
+	background-image: url('imagens/taunt.gif');
 }
 
   .estrela2 {
@@ -468,19 +468,19 @@ padding: 3px;
   }
 
   .estrela2:hover {
-    background-image: url('imagens/estrela.png');
+    background-image: url('imagens/estrela.gif');
   }
 
-.estrela3{
+.estrela1{
     width: 350px;
     height: 350px;
     background-image: url('imagens/estrela_basica_marrom.png');
     background-size: contain;
 	background-repeat: no-repeat;
-    transition: background-image 20s ease-in;
+    transition: background-image 30s ease-in;
 }
 
-.estrela3:hover{
+.estrela1:hover{
 	background-image: url(imagens/Foto.jpeg);
 }
 
@@ -581,4 +581,6 @@ padding: 3px;
 				color: darkgoldenrod	;
 			}
 
-			
+			.🕈︎✋︎🏱︎{
+				font-size: 10px;
+			}

@@ -16,6 +16,31 @@
 			font-family: Isaac;
 		}
 		
+		/* Small */
+		@media (max-width: 576px)  { 
+			body{
+				background-image: url(imagens/Fundo1celular.jpg);
+			}
+		}
+		/* Medium */
+		@media (max-width: 768px) {
+			body{
+				background-image: url(imagens/Fundo1tablet.jpg);
+			}
+		}
+				/* Large */
+		@media (max-width: 992px) {
+			body{
+				background-image: url(imagens/Fundo1.jfif);
+			}
+		}
+				/* X-Large */
+		@media (max-width: 1200px) {
+			body{
+				background-image: url(imagens/Fundo1XL.jpg);
+			}
+		}
+
 	</style>
 
   </head>
@@ -71,37 +96,35 @@
 		<fieldset>
 			<legend class="text-info">Lembrar de mim?</legend>
 			<div>
-				<label class="text-success" for="Sim!">
-					<input type="radio" name="lembrar" id="Sim!">Sim!
-				</label>
-			</div>
-			<div>
-				<label class="text-danger" for="Não...">
-					<input type="radio" name="lembrar" id="Não...">Não...
-				</label>
-			</div>
-		</fieldset>
-
-		
-		<div class="text-info">Esse site é bem feito?</div><br>
-		<div class="centralizar">
-			<div>
 				<label class="text-success" for="Sim">
-					<input type="radio" name="bom?" id="Sim" required>Sim
+					<input type="radio" name="Lembrar?" id="Sim">Sim
 				</label>
 			</div>
 			<div>
 				<label class="text-danger" for="Não">
-					<input type="radio" name="bom?" id="Não">Não
+					<input type="radio" name="Lembrar?" id="Não">Não
 				</label>
 			</div>
-			<div>
-				<label class="text-warning" for="S/N">
-					<input type="radio" name="bom?" id="S/N">+/-
-				</label>
+		</fieldset>
+
+			<div class="text-info">Esse site é bem feito?</div>
+			<div class="dropdown">
+				<button class="btn btn-dark dropdown-togle" data-toggle="dropdown" type="button">
+					Selecione...
+				</button>
+				<div class="dropdown-menu">
+					<label class="text-success dropdown-item" for="Sim!">
+						<input type="radio" name="Será?" id="Sim!">Sim!
+					</label>
+					<label class="text-danger dropdown-item" for="Não...">
+						<input type="radio" name="Será?" id="Não...">Não...
+					</label>
+					<label class="text-warning dropdown-item" for="+/-">
+						<input type="radio" name="Será?" id="+/-">+/-
+					</label>
+				</div>
 			</div>
-		</div>
-		<input style="cursor: help;" class="submit BIGSHOT" type="submit" value="Enviar" id="transicaolink">	
+		<input style="cursor: help;" class="submit BIGSHOT btn btn-lg" type="submit" value="Enviar" id="transicaolink">	
 	</form>
 	<br>
 

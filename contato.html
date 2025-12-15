@@ -10,7 +10,7 @@
 	<style>
 
 	body {
-			background-image: url(imagens/BIG_FIT.png), url(imagens/Fundocontato.jpg);
+			background-image: url(imagens/FIT.png), url(imagens/Fundocontato.jpg);
 			background-repeat:no-repeat, no-repeat;
 			background-size:auto, cover;
 			background-position: top right;
@@ -50,7 +50,7 @@
 	<p class="centralizar preto">Emprego: FIT Gestão Empresarial.</p>
 <br>
 <h2 class="centralizar branco">Redes Sociais:</h2>
-	<p class="centralizar"><a class="instagram" href="https://www.instagram.com/lucasoliveiradequeiroz/">Instagram</a></p>
+	<p class="centralizar"><a class="instagram btn btn-sm btn-outline" href="https://www.instagram.com/lucasoliveiradequeiroz/"><img src="imagens/instagram.png"></a></p>
 
 	<h2 class="centralizar branco">Horários de atendimento: </h2>
 	<p class="centralizar branco">Segunda a Sexta: 9h - 18h</p>
@@ -58,18 +58,14 @@
     <script>
         function copiarTexto() {
             const elementoTexto = document.getElementById('meuTexto');
-            
             const areaDeTextoTemp = document.createElement('textarea');
             areaDeTextoTemp.value = elementoTexto.textContent || elementoTexto.innerText;
-            
             areaDeTextoTemp.style.position = 'fixed';
             areaDeTextoTemp.style.top = '0';
             areaDeTextoTemp.style.left = '0';
             areaDeTextoTemp.style.opacity = '0';
             document.body.appendChild(areaDeTextoTemp);
-            
             areaDeTextoTemp.select();
-            
             try {
                 const sucesso = document.execCommand('copy');
                 if (sucesso) {
@@ -87,7 +83,6 @@
                 document.body.removeChild(areaDeTextoTemp);
             }
         }
-
         document.getElementById('meuTexto').addEventListener('click', copiarTexto);
     </script>
 <br><br>

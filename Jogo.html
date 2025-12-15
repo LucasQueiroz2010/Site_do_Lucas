@@ -27,6 +27,18 @@ border-radius: 10px;
 border: 5px solid black;
 overflow: hidden;
 }
+.fullscreen-mode #main-container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+}
+.fullscreen-mode #game-area {
+    width: 100%;
+    height: 100%;
+}
 #start-screen {
 position: absolute;
 top: 0;
@@ -363,16 +375,92 @@ z-index: 1000;
 color: white;
 text-shadow: 1px 1px black;
 }
+#fullscreen-button {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 1000;
+    color: white;
+    text-shadow: 1px 1px black;
+}
 #reset-button {
 margin-top: 20px;
+}
+
+/* --- ESTILOS PARA CONTROLES MÓVEIS --- */
+#mobile-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 100;
+    pointer-events: none;
+    display: none;
+}
+.fullscreen-mode #mobile-controls {
+    display: block;
+}
+
+.mobile-button {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+    touch-action: manipulation;
+    transition: background-color 0.1s;
+}
+.mobile-button:active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#mobile-left {
+    left: 20px;
+    bottom: 20px;
+    background-image: url(imagens_jogo/Arrow_left.gif);
+}
+#mobile-right {
+    left: 110px;
+    bottom: 20px;
+    background-image: url(imagens_jogo/Arrow_right.gif);
+}
+#mobile-jump {
+    right: 20px;
+    bottom: 20px;
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    background-color: rgba(255, 165, 0, 0.4);
+    background-image: url(imagens_jogo/Arrow_up.gif);
+}
+#mobile-run {
+    right: 130px;
+    bottom: 40px;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 0, 0, 0.4);
+    background-image: url(imagens_jogo/Run_button.gif);
 }
 </style>
 </head>
 <body>
 <div class="line"><a class="Bordalink branco Pizza_Game_Link" href="index.html">ﾠSite Princialﾠ</a>
 </div>
-<button id="mute-button" onclick="toggleMute()" title="Mute/Unmute Áudio">🔊</button>
-<h2 class="Pizza_text">Pizza Tower - Web Edition (WIP)</h2>
+<button id="mute-button" onclick="toggleMute()" title="Ligar/Desligar Áudio">🔊</button>
+<button id="fullscreen-button" onclick="toggleFullscreen()" title="Modo PC/Mobile">📱  </button>
+<h2 class="Pizza_text">Pizza Tower - Web Edition</h2>
 <div style="display:none;">
 <audio id="bgm-audio" loop src="soundtrack_jogo/Background_Music.mp3"></audio>
 <audio id="start-bgm-audio" loop src="soundtrack_jogo/Start_Screen_Music.mp3"></audio>
@@ -398,6 +486,12 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
 <div id="the-noise">Noise</div>
 </div>
 </div>
+<div id="mobile-controls">
+    <div id="mobile-left" class="mobile-button" data-key="a" title="Esquerda"></div>
+    <div id="mobile-right" class="mobile-button" data-key="d" title="Direita"></div>
+    <div id="mobile-jump" class="mobile-button" data-key="w" title="Pular"></div>
+    <div id="mobile-run" class="mobile-button" data-key="shift" title="Correr"></div>
+</div>
 <div id="status" class="message2"> Controls: [A/D] to move, [W] to jump and [SHIFT] to run.
 </div>
 <button id="reset-button" onclick="startGame()" style="margin-top: 20px; display:none;">Restart?</button>
@@ -417,6 +511,11 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
         const RANK_IMAGE_CONTAINER = document.getElementById('rank-image-container');
         const MUTE_BUTTON = document.getElementById('mute-button');
         const RESET_BUTTON = document.getElementById('reset-button');
+
+        //CONTROLES MOBILE
+        const FULLSCREEN_BUTTON = document.getElementById('fullscreen-button');
+        const MOBILE_CONTROLS = document.getElementById('mobile-controls');
+        let mobileKeys = {};
 
         // --- ELEMENTOS DE ÁUDIO ---
         const BGM_AUDIO = document.getElementById('bgm-audio');
@@ -507,6 +606,77 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
             STATUS_DISPLAY.style.color = 'black';
         }
 
+        // LÓGICA DE TELA CHEIA E CONTROLES MÓVEIS
+        function toggleFullscreen() {
+            const docEl = document.documentElement;
+            const body = document.body;
+
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                body.classList.remove('fullscreen-mode');
+                FULLSCREEN_BUTTON.textContent = '📱';
+            } else {
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen();
+                } else if (docEl.mozRequestFullScreen) {
+                    docEl.mozRequestFullScreen();
+                } else if (docEl.webkitRequestFullscreen) {
+                    docEl.webkitRequestFullscreen();
+                } else if (docEl.msRequestFullscreen) {
+                    docEl.msRequestFullscreen();
+                }
+                body.classList.add('fullscreen-mode');
+                FULLSCREEN_BUTTON.textContent = '💻';
+            }
+        }
+        function triggerKeyEvent(type, keyString) {
+            const event = new KeyboardEvent(type, {
+                key: keyString,
+                code: keyString,
+                bubbles: true,
+                cancelable: true,
+            });
+            document.dispatchEvent(event);
+        }
+        document.querySelectorAll('.mobile-button').forEach(button => {
+            const key = button.getAttribute('data-key');
+            const startEvent = () => {
+                if (!mobileKeys[key]) {
+                    mobileKeys[key] = true;
+                    triggerKeyEvent('keydown', key);
+                }
+            };
+            const endEvent = () => {
+                if (mobileKeys[key]) {
+                    mobileKeys[key] = false;
+                    triggerKeyEvent('keyup', key);
+                }
+            };
+            button.addEventListener('mousedown', startEvent);
+            button.addEventListener('mouseup', endEvent);
+            button.addEventListener('mouseleave', () => {
+                if (mobileKeys[key]) {
+                    endEvent();
+                }
+            });
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                startEvent();
+            });
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                endEvent();
+            });
+        });
+
         // --- SPRITES E CONFIGURAÇÕES ---
         const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_stopped.png)";
         const PLAYER_WALK_SPRITE = "url(imagens_jogo/Peppino_walk.gif)";
@@ -529,7 +699,6 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
         const NOISE_HIT_BY_PEPPER_SPRITE = "url(imagens_jogo/Noise_fireass.png)";
         const NOISE_POWERUP_PARRY_SPRITE = "url(imagens_jogo/Noise_parry.gif)";
         const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.png)";
-
         const GAME_WIDTH = 900;
         const GAME_HEIGHT = 500;
         const PLAYER_WIDTH = 75;
@@ -778,7 +947,6 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
                         noiseY = platform.y + platform.h;
                         noiseVY = 0;
                         noiseJumpsUsed = 0;
-                        onPlatform = true;
                     }
                 }
             });
@@ -1065,13 +1233,7 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
                 lifeTopping.classList.add('topping', 'topping-life');
                 const dropX = x + (NOISE_WIDTH / 2) - (TOPPING_SIZE / 2);
                 let dropY = 0;
-                platformData.forEach(platform => {
-                    const horizontalOverlap = dropX < platform.x + platform.w && dropX + TOPPING_SIZE > platform.x;
-                    if (horizontalOverlap && y >= platform.y + platform.h - 5) {
-                        dropY = Math.max(dropY, platform.y + platform.h);
-                    }
-                });
-                dropY = y + NOISE_HEIGHT;
+                dropY = y + NOISE_HEIGHT;
                 lifeTopping.style.left = dropX + 'px';
                 lifeTopping.style.bottom = dropY + 'px';
                 GAME_AREA.appendChild(lifeTopping);
@@ -1149,7 +1311,6 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
                 updateNoiseSprite();
             }, 500);
         }
-
         // --- FUNÇÕES DE ITENS E JOGO ---
         function collectTopping(toppingElement) {
             if (isGameOver) return;
@@ -1433,8 +1594,8 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
         // --- CONTROLES DO TECLADO ---
         document.addEventListener('keydown', (e) => {
             if (isGameOver || isPeppinoStunned) return;
-            keys[e.key.toLowerCase()] = true;
             const key = e.key.toLowerCase();
+            keys[key] = true;
             if (key === ' ' || key === 'w') {
                 playerJump();
             }
@@ -1463,6 +1624,7 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
             hitsTaken = 0;
             isGameOver = false;
             keys = {};
+            mobileKeys = {}; 
             currentSpeed = WALK_SPEED;
             isInvincible = false;
             isPowerupInvincible = false;
