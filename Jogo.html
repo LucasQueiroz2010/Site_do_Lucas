@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,37 +8,41 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <title>Pizza Tower - Web Edition</title>
 <style>
-body {
-font-family: 'PzzTwr';
+:root {
+--game-base-width: 900px;
+--game-base-height: 500px;
+}body {
+font-family: 'PzzTwr', Arial, sans-serif;
 background-color: #54260d;
 display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0;
 padding: 20px;
-}
-#main-container {
+user-select: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+}#main-container {
 position: relative;
-width: 900px;
-height: 500px;
+width: 100%;
+max-width: var(--game-base-width);
+aspect-ratio: 9 / 5;
 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 border-radius: 10px;
 border: 5px solid black;
 overflow: hidden;
-}
-.fullscreen-mode #main-container {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    max-width: none;
-    max-height: none;
-    margin: 0;
-}
-.fullscreen-mode #game-area {
-    width: 100%;
-    height: 100%;
-}
-#start-screen {
+margin: auto;
+height: auto;
+min-height: 200px;
+}.fullscreen-mode #main-container {
+width: 100vw;
+height: 100vh;
+border-radius: 0;
+max-width: none;
+max-height: none;
+margin: 0;
+}#start-screen {
 position: absolute;
 top: 0;
 left: 0;
@@ -50,35 +53,11 @@ background-size: cover;
 background-position: center;
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
+justify-content: flex-end;
 align-items: center;
 z-index: 20;
 color: white;
-}
-#start-screen button {
-margin-top: 300px;
-padding: 15px 30px;
-font-size: 2em;
-font-weight: bold;
-cursor: pointer;
-background-color: orange;
-border: 3px solid red;
-border-radius: 10px;
-box-shadow: 0 5px yellow;
-}
-#start-screen button:hover {
-background-color: darkorange;
-}
-#credits {
-position: absolute;
-bottom: 10px;
-right: 10px;
-font-size: 0.8em;
-color: black;
-background-color: white;
-border: 3px solid black;
-}
-#game-area {
+}#game-area {
 width: 100%;
 height: 100%;
 background-color: black;
@@ -87,64 +66,46 @@ background-size: cover;
 background-repeat: no-repeat;
 position: relative;
 display: none;
-}
-
-/* --- SPRITES DE PERSONAGENS--- */
-#player {
-width: 75px;
-height: 100px;
+transform-origin: top left;
+}#player,
+#the-noise,
+.platform,
+.topping,
+.power-up {
 position: absolute;
-bottom: 0;
-left: 50px;
-background-image: url(imagens_jogo/Peppino_stopped.png);
 background-size: contain;
 background-repeat: no-repeat;
-text-indent: -9999px;
-border-radius: 5px;
 z-index: 10;
-transition: opacity 0.1s;
-}
-.facing-left {
+}.facing-left {
 transform: scaleX(-1);
-}
-.moving-sprite {
+}.moving-sprite {
 background-image: url(imagens_jogo/Peppino_walk.gif);
-}
-.running-sprite {
+}.running-sprite {
 background-image: url(imagens_jogo/Peppino_run.png);
-}
-.jumping-sprite {
+}.jumping-sprite {
 background-image: url(imagens_jogo/Peppino_jump.png);
-}
-.wall-slide-sprite {
+}.wall-slide-sprite {
 background-image: url(imagens_jogo/Peppino_wall.png);
-}
-.peppino-hurt-sprite {
+}.peppino-hurt-sprite {
 background-image: url(imagens_jogo/Peppino_hurt.png);
-}
-.peppino-stun-sprite {
+}.peppino-stun-sprite {
 background-image: url(imagens_jogo/Peppino_fireass.png);
-}
-.stomp-mode {
+}.stomp-mode {
 background-image: url(imagens_jogo/Peppino_jump.png);
-}
-.peppino-win-sprite {
+}.peppino-win-sprite {
 background-image: url(imagens_jogo/Peppino_win.png);
-}
-.peppino-lose-sprite {
+}.peppino-lose-sprite {
 background-image: url(imagens_jogo/Peppino_lose.png);
-}
-.invincible {
+}.invincible {
 opacity: 0.7;
 animation: flicker 0.1s infinite alternate;
 }
+
 .is-stunned {
 pointer-events: none;
-}
-.peppino-tired-sprite {
+}.peppino-tired-sprite {
 background-image: url(imagens_jogo/Peppino_milk.gif);
-}
-#the-noise {
+}#the-noise {
 width: 75px;
 height: 100px;
 position: absolute;
@@ -157,34 +118,28 @@ text-indent: -9999px;
 border-radius: 5px;
 z-index: 9;
 transition: opacity 0.1s;
-}
-.noise-idle-sprite {
+}.noise-idle-sprite {
 background-image: url(imagens_jogo/Noise_stopped.png);
-}
-.noise-jumping {
+}.noise-jumping {
 background-image: url(imagens_jogo/Noise_jump.png);
-}
-.noise-double-jump {
+}.noise-double-jump {
 background-image: url(imagens_jogo/Noise_doublejump.png);
-}
-.noise-win-sprite {
+}.noise-win-sprite {
 background-image: url(imagens_jogo/Noise_win.png);
-}
-.noise-disabled {
+}.noise-disabled {
 opacity: 0.7;
 transform: translateY(10px);
-background-image: url(imagens_jogo/Noise_hurt.png);
-}
+background-image: url(imagens_jogo/Noise_hurt.png);}
+.noise-joke-mode {
+opacity: 1;
+pointer-events: none;}
 .noise-happy {
 background-image: url(imagens_jogo/Noise_Happy.png);
-}
-.noise-scared {
+}.noise-scared {
 background-image: url(imagens_jogo/Noise_Scary.png);
-}
-.noise-powered-up {
+}.noise-powered-up {
 background-image: url(imagens_jogo/Pepper_Pizza_Noise.gif);
-}
-.noise-tired-sprite {
+}.noise-tired-sprite {
 background-image: url(imagens_jogo/Noise_milk.gif)
 }
 .power-up {
@@ -195,26 +150,19 @@ background-size: contain;
 background-repeat: no-repeat;
 animation: glow 1s infinite alternate;
 z-index: 12;
-}
-.invincibility-powerup {
+}.invincibility-powerup {
 background-image: url(imagens_jogo/Pepper_Pizza.webp);
-}
-@keyframes flicker {
+}@keyframes flicker {
 from {
 opacity: 1;
-}
-to {
+}to {
 opacity: 0.7;
-}
-}
-@keyframes glow {
+}}@keyframes glow {
 from {
 box-shadow: 0 0 5px orange, 0 0 10px yellow;
-}
-to {
+}to {
 box-shadow: 0 0 10px orange, 0 0 20px yellow;
-}
-}
+}}
 
 /* --- PLATAFORMAS E ITENS --- */
 .platform {
@@ -222,8 +170,7 @@ position: absolute;
 background-color: #d98918;
 border: 3px solid black;
 border-radius: 5px;
-}
-.topping {
+}.topping {
 width: 25px;
 height: 25px;
 position: absolute;
@@ -233,51 +180,37 @@ text-indent: -9999px;
 border-radius: 50%;
 animation: bounce 0.5s infinite alternate;
 z-index: 8;
-}
-
-/* Sprites de Toppings Normais */
-.topping-1 {
+}.topping-1 {
 background-image: url(imagens_jogo/Mushroom.webp);
-}
-.topping-2 {
+}.topping-2 {
 background-image: url(imagens_jogo/Cheese.webp);
-}
-.topping-3 {
+}.topping-3 {
 background-image: url(imagens_jogo/Tomato.webp);
-}
-.topping-4 {
+}.topping-4 {
 background-image: url(imagens_jogo/Weiner.webp);
-}
-.topping-5 {
+}.topping-5 {
 background-image: url(imagens_jogo/Pineapple.webp);
-}
-.topping-gerome {
+}.topping-gerome {
 background-image: url(imagens_jogo/Gerome.webp);
-}
-.topping-life {
+}.topping-life {
 background-image: url(imagens_jogo/Peppino_hat.png);
 border-radius: 5px;
-}
-@keyframes bounce {
+}@keyframes bounce {
 from {
 transform: translateY(0px);
-}
-to {
-transform: translateY(-5px);
-}
-}
+}to {transform: translateY(-5px);}}
 
 /* --- UI E RANKS --- */
 #ui-bar {
-width: 900px;
+width: 100%;
+max-width: 900px;
 margin-bottom: 15px;
 display: none;
 justify-content: space-between;
 font-size: 1.5em;
 font-weight: bold;
 color: yellow;
-}
-#score,
+}#score,
 #timer,
 #health {
 background-color: #54260d;
@@ -290,13 +223,11 @@ flex-direction: column;
 align-items: center;
 min-width: 150px;
 text-align: center;
-}
-#health {
+}#health {
 min-width: 250px;
 justify-content: space-around;
 flex-direction: row;
-}
-#heart-icon,
+}#heart-icon,
 #empty-heart-icon {
 width: 25px;
 height: 25px;
@@ -304,16 +235,11 @@ background-size: contain;
 background-repeat: no-repeat;
 margin-right: 5px;
 display: inline-block;
-}
-#heart-icon {
+}#heart-icon {
 background-image: url(imagens_jogo/Peppino_hat.png);
-}
-#empty-heart-icon {
+}#empty-heart-icon {
 background-image: url(imagens_jogo/Peppino_hat_damaged.png);
-}
-
-/* RANKS */
-.final-rank-image {
+}.final-rank-image {
 width: 350px;
 height: 200px;
 background-size: contain;
@@ -321,52 +247,68 @@ background-repeat: no-repeat;
 background-position: center;
 margin: 20px auto 0;
 background-color: transparent;
-}
-.rank-P-image {
+}.rank-P-image {
 background-image: url(imagens_jogo/P-Rank.png);
 border: 3px solid #570faf;
-}
-.rank-S-image {
+}.rank-S-image {
 background-image: url(imagens_jogo/S-Rank.png);
 border: 3px solid #e28f01;
-}
-.rank-A-image {
+}.rank-A-image {
 background-image: url(imagens_jogo/A-Rank.png);
 border: 3px solid #fe1800;
-}
-.rank-B-image {
+}.rank-B-image {
 background-image: url(imagens_jogo/B-Rank.jpg);
 border: 3px solid #78a5ff;
-}
-.rank-C-image {
+}.rank-C-image {
 background-image: url(imagens_jogo/C-Rank.png);
 border: 3px solid #00b00d;
-}
-.rank-D-image {
+}.rank-D-image {
 background-image: url(imagens_jogo/D-Rank.png);
 border: 3px solid #464646;
-}
-.rank-F-image {
-background-image: url(imagens_jogo/F-Rank.webp);
+}.rank-F-image {
+background-image: url(imagens_jogo/F-Rank.png);
 border: 3px solid gray;
-}
-.message {
+}.rank-IDK-image {
+background-image: url(imagens_jogo/IDK-Rank.png);
+border: 3px solid #d0b8b8;
+}.message {
 margin-top: 20px;
 font-size: 2em;
 font-weight: bold;
 min-height: 50px;
-}
-.message2 {
+}.message2 {
 margin-top: 20px;
 font-size: 2em;
 font-weight: bold;
 color: black;
 min-height: 50px;
-}
-#mute-button {
+}.depression {
+position: absolute;
+bottom: 50px;
+left: 50%;
+transform: translateX(-50%);
+padding: 15px 30px;
+font-size: 2em;
+font-weight: bold;
+cursor: pointer;
+background-color: #f1c40f;
+color: #54260d;
+border: 5px solid black;
+border-radius: 10px;
+box-shadow: 0 8px #d35400;
+transition: transform 0.1s, box-shadow 0.1s;
+z-index: 30;
+}.depression:hover {
+background-color: #f39c12;
+}.depression:active {
+transform: translateX(-50%) translateY(4px);
+box-shadow: 0 4px #d35400;}
+
+/* --- POSICIONAMENTO DOS BOTÕES DE UI --- */
+#mute-button,
+#fullscreen-button {
 position: fixed;
 top: 20px;
-right: 20px;
 background: none;
 border: none;
 font-size: 2em;
@@ -374,98 +316,106 @@ cursor: pointer;
 z-index: 1000;
 color: white;
 text-shadow: 1px 1px black;
-}
-#fullscreen-button {
-    position: fixed;
-    top: 20px;
-    right: 80px;
-    background: none;
-    border: none;
-    font-size: 2em;
-    cursor: pointer;
-    z-index: 1000;
-    color: white;
-    text-shadow: 1px 1px black;
-}
-#reset-button {
+}#mute-button {
+right: 20px;
+}#fullscreen-button {
+right: 80px;
+}#reset-button {
 margin-top: 20px;
-}
+padding: 10px 20px;
+font-size: 1.2em;
+font-weight: bold;
+cursor: pointer;
+background-color: #8B4513;
+color: white;
+border: 3px solid black;
+border-radius: 5px;
+box-shadow: 0 3px #54260d;
+display: none;
+}#reset-button:hover {
+background-color: #A0522D;}
 
 /* --- ESTILOS PARA CONTROLES MÓVEIS --- */
 #mobile-controls {
-    position: fixed;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 100;
-    pointer-events: none;
-    display: none;
-}
-.fullscreen-mode #mobile-controls {
-    display: block;
-}
-
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 120px;
+z-index: 100;
+pointer-events: none;
+display: none;
+}.fullscreen-mode #mobile-controls {
+display: block;
+position: fixed;
+bottom: 10px;
+height: 120px;
+}@media (max-width: 950px) {
+#mobile-controls {
+display: block;
+position: fixed;
+bottom: 10px;
+left: 0;
+width: 100%;
+height: 120px;
+}.fullscreen-mode #mobile-controls {
+display: block;}}
 .mobile-button {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    background-size: 80%;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    pointer-events: auto;
-    user-select: none;
-    touch-action: manipulation;
-    transition: background-color 0.1s;
-}
-.mobile-button:active {
-    background-color: rgba(255, 255, 255, 0.4);
-}
-
-#mobile-left {
-    left: 20px;
-    bottom: 20px;
-    background-image: url(imagens_jogo/Arrow_left.gif);
-}
-#mobile-right {
-    left: 110px;
-    bottom: 20px;
-    background-image: url(imagens_jogo/Arrow_right.gif);
-}
-#mobile-jump {
-    right: 20px;
-    bottom: 20px;
-    width: 90px;
-    height: 90px;
-    border-radius: 15px;
-    background-color: rgba(255, 165, 0, 0.4);
-    background-image: url(imagens_jogo/Arrow_up.gif);
-}
-#mobile-run {
-    right: 130px;
-    bottom: 40px;
-    width: 70px;
-    height: 70px;
-    background-color: rgba(255, 0, 0, 0.4);
-    background-image: url(imagens_jogo/Run_button.gif);
-}
-</style>
+position: absolute;
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.2);
+background-size: 80%;
+background-repeat: no-repeat;
+background-position: center;
+border: 2px solid rgba(255, 255, 255, 0.5);
+cursor: pointer;
+pointer-events: auto;
+user-select: none;
+touch-action: manipulation;
+transition: background-color 0.1s;
+}.mobile-button:active,
+.mobile-button.active {
+background-color: rgba(255, 255, 255, 0.4);
+}#mobile-run.active {
+background-color: rgba(255, 0, 0, 0.8);
+box-shadow: 0 0 10px yellow;
+}#mobile-left {
+left: 20px;
+bottom: 20px;
+background-image: url(imagens_jogo/Arrow_left.gif);
+}#mobile-right {
+left: 110px;
+bottom: 20px;
+background-image: url(imagens_jogo/Arrow_right.gif);
+}#mobile-jump {
+right: 20px;
+bottom: 20px;
+width: 90px;
+height: 90px;
+border-radius: 15px;
+background-color: rgba(255, 165, 0, 0.4);
+background-image: url(imagens_jogo/Arrow_up.gif);
+}#mobile-run {
+right: 130px;
+bottom: 40px;
+width: 70px;
+height: 70px;
+background-color: rgba(255, 0, 0, 0.4);
+background-image: url(imagens_jogo/Run_button.gif);
+}</style>
 </head>
 <body>
-<div class="line"><a class="Bordalink branco Pizza_Game_Link" href="index.html">ﾠSite Princialﾠ</a>
+<div class="line"><a class="Bordalink branco Pizza_Game_Link" href="index.html"> Site Principal </a>
 </div>
 <button id="mute-button" onclick="toggleMute()" title="Ligar/Desligar Áudio">🔊</button>
-<button id="fullscreen-button" onclick="toggleFullscreen()" title="Modo PC/Mobile">📱  </button>
+<button id="fullscreen-button" onclick="toggleFullscreen()" title="Modo PC/Mobile">📱 </button>
 <h2 class="Pizza_text">Pizza Tower - Web Edition</h2>
 <div style="display:none;">
 <audio id="bgm-audio" loop src="soundtrack_jogo/Background_Music.mp3"></audio>
 <audio id="start-bgm-audio" loop src="soundtrack_jogo/Start_Screen_Music.mp3"></audio>
-<audio id="pepper-peppino-audio" loop                                                          
-src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
+<audio id="pepper-peppino-audio" loop src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
 <audio id="pepper-noise-audio" loop src="soundtrack_jogo/Pepper_Pizza_Noise.mp3"></audio>
 <audio id="sfx-audio" src=""></audio>
 <audio id="walk-audio" loop src="soundtrack_jogo/Peppino_step.wav"></audio>
@@ -479,1216 +429,1288 @@ src="soundtrack_jogo/Pepper_Pizza_Peppino_Music.mp3"></audio>
 <div id="main-container">
 <div id="start-screen" class="text-center">
 <button class="depression" onclick="hideStartScreen(); startGame();">Start Game!</button>
-<div id="credits">Créditos: Lucas Oliveira de Queiroz.</div>
 </div>
 <div id="game-area">
-<div id="player">Peppino</div>
-<div id="the-noise">Noise</div>
-</div>
-</div>
+<div id="player"></div> 
+<div id="the-noise"></div>
 <div id="mobile-controls">
-    <div id="mobile-left" class="mobile-button" data-key="a" title="Esquerda"></div>
-    <div id="mobile-right" class="mobile-button" data-key="d" title="Direita"></div>
-    <div id="mobile-jump" class="mobile-button" data-key="w" title="Pular"></div>
-    <div id="mobile-run" class="mobile-button" data-key="shift" title="Correr"></div>
+<div id="mobile-left" class="mobile-button" data-key="a" title="Esquerda"></div>
+<div id="mobile-right" class="mobile-button" data-key="d" title="Direita"></div>
+<div id="mobile-jump" class="mobile-button" data-key="w" title="Pular"></div>
+<div id="mobile-run" class="mobile-button" data-key="shift" title="Correr"></div>
+</div>
+</div>
 </div>
 <div id="status" class="message2"> Controls: [A/D] to move, [W] to jump and [SHIFT] to run.
 </div>
-<button id="reset-button" onclick="startGame()" style="margin-top: 20px; display:none;">Restart?</button>
+<button id="reset-button" onclick="startGame()">Restart?</button>
 <div id="rank-image-container" class="final-rank-image" style="display:none;"></div>
 <script>
 
-        // LÓGICA DO JOGO
-        const MAIN_CONTAINER = document.getElementById('main-container');
-        const START_SCREEN = document.getElementById('start-screen');
-        const GAME_AREA = document.getElementById('game-area');
-        const PLAYER = document.getElementById('player');
-        const NOISE = document.getElementById('the-noise');
-        const SCORE_DISPLAY = document.getElementById('score');
-        const HEALTH_DISPLAY = document.getElementById('health');
-        const TIMER_DISPLAY = document.getElementById('timer');
-        const STATUS_DISPLAY = document.getElementById('status');
-        const RANK_IMAGE_CONTAINER = document.getElementById('rank-image-container');
-        const MUTE_BUTTON = document.getElementById('mute-button');
-        const RESET_BUTTON = document.getElementById('reset-button');
+// LÓGICA DO JOGO
+const MAIN_CONTAINER = document.getElementById('main-container');
+const START_SCREEN = document.getElementById('start-screen');
+const GAME_AREA = document.getElementById('game-area');
+const PLAYER = document.getElementById('player');
+const NOISE = document.getElementById('the-noise');
+const SCORE_DISPLAY = document.getElementById('score');
+const HEALTH_DISPLAY = document.getElementById('health');
+const TIMER_DISPLAY = document.getElementById('timer');
+const STATUS_DISPLAY = document.getElementById('status');
+const RANK_IMAGE_CONTAINER = document.getElementById('rank-image-container');
+const MUTE_BUTTON = document.getElementById('mute-button');
+const RESET_BUTTON = document.getElementById('reset-button');
 
-        //CONTROLES MOBILE
-        const FULLSCREEN_BUTTON = document.getElementById('fullscreen-button');
-        const MOBILE_CONTROLS = document.getElementById('mobile-controls');
-        let mobileKeys = {};
+// CONTROLES MOBILE
+const FULLSCREEN_BUTTON = document.getElementById('fullscreen-button');
+const MOBILE_CONTROLS = document.getElementById('mobile-controls');
+const MOBILE_RUN_BUTTON = document.getElementById('mobile-run');
+let mobileKeys = {};
+let isRunningLocked = false;
 
-        // --- ELEMENTOS DE ÁUDIO ---
-        const BGM_AUDIO = document.getElementById('bgm-audio');
-        const START_BGM_AUDIO = document.getElementById('start-bgm-audio');
-        const PEPPER_PEPPINO_AUDIO = document.getElementById('pepper-peppino-audio');
-        const PEPPER_NOISE_AUDIO = document.getElementById('pepper-noise-audio');
-        const WALK_AUDIO = document.getElementById('walk-audio');
-        const CONFLICT_AUDIO_ELEMENT = document.getElementById('conflict-audio');
-        const ALL_AUDIO_ELEMENTS = [BGM_AUDIO, START_BGM_AUDIO, PEPPER_PEPPINO_AUDIO, PEPPER_NOISE_AUDIO, WALK_AUDIO];
-        let isMuted = false;
-        let sfxVolume = 0.8;
-        let bgmVolume = 0.5;
+// ELEMENTOS DE ÁUDIO
+const BGM_AUDIO = document.getElementById('bgm-audio');
+const START_BGM_AUDIO = document.getElementById('start-bgm-audio');
+const PEPPER_PEPPINO_AUDIO = document.getElementById('pepper-peppino-audio');
+const PEPPER_NOISE_AUDIO = document.getElementById('pepper-noise-audio');
+const WALK_AUDIO = document.getElementById('walk-audio');
+const CONFLICT_AUDIO_ELEMENT = document.getElementById('conflict-audio');
+const ALL_AUDIO_ELEMENTS = [BGM_AUDIO, START_BGM_AUDIO, PEPPER_PEPPINO_AUDIO, PEPPER_NOISE_AUDIO, WALK_AUDIO];
+let isMuted = false;
+let sfxVolume = 0.8;
+let bgmVolume = 0.5;
 
-        // --- CAMINHOS DOS SONS ---
-        const SOUNDS = {
-            HurtPeppino: "soundtrack_jogo/Peppino_hurt.wav",
-            ScreamPeppino: "soundtrack_jogo/Peppino_scream.wav",
-            HurtNoise: "soundtrack_jogo/Noise_hurt.wav",
-            JumpPeppino: "soundtrack_jogo/Peppino_jump.wav",
-            JumpNoise: "soundtrack_jogo/Noise_jump.wav",
-            DoubleJumpNoise: "soundtrack_jogo/Double_jump.wav",
-            RunPeppino: "soundtrack_jogo/Peppino_run.wav",
-            WinPeppino: "soundtrack_jogo/Peppino_win.mp3",
-            WinNoise: "soundtrack_jogo/Noise_win.mp3",
-            PepperSpawn: "soundtrack_jogo/Pepper_spawn.wav",
-            ToppingCollect: "soundtrack_jogo/Topping_collect.wav",
-            PepperCollect: "soundtrack_jogo/Pepper_collect.wav",
-            BackgroundMusic: "soundtrack_jogo/Background_Music.mp3",
-            StartScreenMusic: "soundtrack_jogo/Start_Music.mp3",
-            PowerupConflict: "soundtrack_jogo/Parry.wav",
-            GeromeSpawn: "soundtrack_jogo/Gerome_spawn.wav",
-            GeromeCollect: "soundtrack_jogo/Gerome_collect.wav",
-            LifeCollect: "soundtrack_jogo/Hat_collect.wav",
-        };
+// SOUNDTRACK
+const SOUNDS = {
+HurtPeppino: "soundtrack_jogo/Peppino_hurt.wav",
+ScreamPeppino: "soundtrack_jogo/Peppino_scream.wav",
+HurtNoise: "soundtrack_jogo/Noise_hurt.wav",
+JumpPeppino: "soundtrack_jogo/Peppino_jump.wav",
+JumpNoise: "soundtrack_jogo/Noise_jump.wav",
+DoubleJumpNoise: "soundtrack_jogo/Double_jump.wav",
+RunPeppino: "soundtrack_jogo/Peppino_run.wav",
+WinPeppino: "soundtrack_jogo/Peppino_win.mp3",
+WinNoise: "soundtrack_jogo/Noise_win.mp3",
+PepperSpawn: "soundtrack_jogo/Pepper_spawn.wav",
+ToppingCollect: "soundtrack_jogo/Topping_collect.wav",
+PepperCollect: "soundtrack_jogo/Pepper_collect.wav",
+BackgroundMusic: "soundtrack_jogo/Background_Music.mp3",
+StartScreenMusic: "soundtrack_jogo/Start_Music.mp3",
+PowerupConflict: "soundtrack_jogo/Parry.wav",
+GeromeSpawn: "soundtrack_jogo/Gerome_spawn.wav",
+GeromeCollect: "soundtrack_jogo/Gerome_collect.wav",
+LifeCollect: "soundtrack_jogo/Hat_collect.wav",};
 
-        // --- FUNÇÕES DE ÁUDIO---
-        function toggleMute() {
-            isMuted = !isMuted;
-            MUTE_BUTTON.textContent = isMuted ? '🔇' : '🔊';
-            ALL_AUDIO_ELEMENTS.forEach(audio => {
-                audio.muted = isMuted;
-            });
-        }
-        function playSFX(soundPath, volume = sfxVolume) {
-            if (isMuted) return;
-            const sfx = new Audio(soundPath);
-            sfx.volume = volume;
-            sfx.play().catch(e => console.log("SFX Play Error: ", e));
-        }
-        function playBGM(musicElement) {
-            [BGM_AUDIO, START_BGM_AUDIO, PEPPER_PEPPINO_AUDIO, PEPPER_NOISE_AUDIO].forEach(audio => {
-                if (audio !== musicElement) {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-            });
-            musicElement.muted = isMuted;
-            musicElement.volume = bgmVolume;
-            musicElement.play().catch(e => console.log("BGM Play Error (Blocked by browser, user interaction needed): ", e));
-        }
-        function stopBGM() {
-            ALL_AUDIO_ELEMENTS.forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
-        }
+// FUNÇÕES DE ÁUDIO
+function toggleMute() {
+isMuted = !isMuted;
+MUTE_BUTTON.textContent = isMuted ? '🔇' : '🔊';
+ALL_AUDIO_ELEMENTS.forEach(audio => {
+audio.muted = isMuted;});}
+function playSFX(soundPath, volume = sfxVolume) {
+if (isMuted) return;
+const sfx = new Audio(soundPath);
+sfx.volume = volume;
+sfx.play().catch(e => console.log("SFX Play Error: ", e));
+}function playBGM(musicElement) {
+[BGM_AUDIO, START_BGM_AUDIO, PEPPER_PEPPINO_AUDIO, PEPPER_NOISE_AUDIO].forEach(audio => {
+if (audio !== musicElement) {
+audio.pause();
+audio.currentTime = 0;}});
+musicElement.muted = isMuted;
+musicElement.volume = bgmVolume;
+musicElement.play().catch(e => console.log("BGM Play Error (Blocked by browser, user interaction needed): ", e));
+}function stopBGM() {
+ALL_AUDIO_ELEMENTS.forEach(audio => {
+audio.pause();
+audio.currentTime = 0;});}
 
-        // --- FUNÇÕES DE CONTROLE DE TELA ---
-        function hideStartScreen() {
-            START_BGM_AUDIO.pause();
-            START_SCREEN.style.display = 'none';
-            GAME_AREA.style.display = 'block';
-            RESET_BUTTON.style.display = 'block';
-            document.getElementById('ui-bar').style.display = 'flex';
-            STATUS_DISPLAY.className = 'message';
-            STATUS_DISPLAY.style.color = 'white';
-        }
-        function showStartScreen() {
-            if (!isMuted) {
-                playBGM(START_BGM_AUDIO);
-            }
-            START_SCREEN.style.display = 'flex';
-            GAME_AREA.style.display = 'none';
-            RESET_BUTTON.style.display = 'none';
-            document.getElementById('ui-bar').style.display = 'none';
-            STATUS_DISPLAY.textContent = 'Controls: [A/D] to move, [W] to jump and [SHIFT] to run.';
-            STATUS_DISPLAY.className = 'message2';
-            STATUS_DISPLAY.style.color = 'black';
-        }
+// FUNÇÕES DE CONTROLE DE TELA
+function hideStartScreen() {
+START_BGM_AUDIO.pause();
+START_SCREEN.style.display = 'none';
+GAME_AREA.style.display = 'block';
+RESET_BUTTON.style.display = 'block';
+document.getElementById('ui-bar').style.display = 'flex';
+STATUS_DISPLAY.className = 'message';
+STATUS_DISPLAY.style.color = 'white';}
+function showStartScreen() {
+if (!isMuted) {
+playBGM(START_BGM_AUDIO);}
+START_SCREEN.style.display = 'flex';
+GAME_AREA.style.display = 'none';
+RESET_BUTTON.style.display = 'none';
+document.getElementById('ui-bar').style.display = 'none';
+STATUS_DISPLAY.textContent = 'Controls: [A/D] to move, [W] to jump and [SHIFT] to run.';
+STATUS_DISPLAY.className = 'message2';
+STATUS_DISPLAY.style.color = 'black';}
+function toggleFullscreen() {
+const docEl = document.documentElement;
+const body = document.body;
+if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+if (document.exitFullscreen) {
+document.exitFullscreen();
+} else if (document.mozCancelFullScreen) {
+document.mozCancelFullScreen();
+} else if (document.webkitExitFullscreen) {
+document.webkitExitFullscreen();
+} else if (document.msExitFullscreen) {
+document.msExitFullscreen();}
+body.classList.remove('fullscreen-mode');
+FULLSCREEN_BUTTON.textContent = '📱';
+} else {
+if (MAIN_CONTAINER.requestFullscreen) {
+MAIN_CONTAINER.requestFullscreen();
+} else if (MAIN_CONTAINER.mozRequestFullScreen) {
+MAIN_CONTAINER.mozRequestFullScreen();
+} else if (MAIN_CONTAINER.webkitRequestFullscreen) {
+MAIN_CONTAINER.webkitRequestFullscreen();
+} else if (MAIN_CONTAINER.msRequestFullscreen) {
+MAIN_CONTAINER.msRequestFullscreen();}
+body.classList.add('fullscreen-mode');
+FULLSCREEN_BUTTON.textContent = '💻';}}
+function triggerKeyEvent(type, keyString) {
+const event = new KeyboardEvent(type, {
+key: keyString,
+code: keyString,
+bubbles: true,
+cancelable: true,});
+document.dispatchEvent(event);}
+let activeTouches = {};
+function toggleRun() {
+if (isRunningLocked) {
+MOBILE_RUN_BUTTON.classList.remove('active');
+isRunningLocked = false;
+triggerKeyEvent('keyup', 'shift');
+keys['shift'] = false;
+currentSpeed = WALK_SPEED;
+} else {
+MOBILE_RUN_BUTTON.classList.add('active');
+isRunningLocked = true;
+triggerKeyEvent('keydown', 'shift');
+keys['shift'] = true;
+currentSpeed = RUN_SPEED;}}
+document.querySelectorAll('.mobile-button').forEach(button => {
+const key = button.getAttribute('data-key');
+const startMouseEvent = (e) => {
+if (key === 'shift') {
+e.stopPropagation();
+toggleRun();
+return;}
+if (!mobileKeys[key]) {
+mobileKeys[key] = true;
+button.classList.add('active');
+triggerKeyEvent('keydown', key);}};
+const endMouseEvent = () => {
+if (key === 'shift') {
+return;}
+if (mobileKeys[key]) {
+mobileKeys[key] = false;
+button.classList.remove('active');
+triggerKeyEvent('keyup', key);}};
+button.addEventListener('mousedown', startMouseEvent);
+button.addEventListener('mouseup', endMouseEvent);
+button.addEventListener('mouseleave', () => {
+if (mobileKeys[key] && key !== 'shift') {
+endMouseEvent();}});
+button.addEventListener('touchstart', (e) => {
+e.preventDefault();
+e.stopPropagation();
+if (key === 'shift') {
+toggleRun();
+Array.from(e.changedTouches).forEach(touch => {
+activeTouches[touch.identifier] = key;});
+return;}
+if (!mobileKeys[key]) {
+mobileKeys[key] = true;
+button.classList.add('active');
+triggerKeyEvent('keydown', key);
+Array.from(e.changedTouches).forEach(touch => {
+activeTouches[touch.identifier] = key;});}});
+button.addEventListener('touchend', (e) => {
+e.preventDefault();
+e.stopPropagation();
+Array.from(e.changedTouches).forEach(touch => {
+const endedKey = activeTouches[touch.identifier];
+if (endedKey && endedKey !== 'shift' && mobileKeys[endedKey]) {
+const endedButton = document.querySelector(`[data-key="${endedKey}"]`);
+mobileKeys[endedKey] = false;
+endedButton.classList.remove('active');
+triggerKeyEvent('keyup', endedKey);}
+delete activeTouches[touch.identifier];});});
+document.addEventListener('touchmove', (e) => {
+Array.from(e.changedTouches).forEach(touch => {
+const touchId = touch.identifier;
+const touchElement = document.elementFromPoint(touch.clientX, touch.clientY);
+const touchKey = touchElement ? touchElement.getAttribute('data-key') : null;
+const currentKey = activeTouches[touchId];
+if (currentKey && currentKey !== touchKey && currentKey !== 'shift' && touchKey !== 'shift') {
+if (mobileKeys[currentKey]) {
+const oldButton = document.querySelector(`[data-key="${currentKey}"]`);
+mobileKeys[currentKey] = false;
+oldButton.classList.remove('active');
+triggerKeyEvent('keyup', currentKey);}
+if (touchKey && (touchKey === 'a' || touchKey === 'd')) {
+mobileKeys[touchKey] = true;
+touchElement.classList.add('active');
+triggerKeyEvent('keydown', touchKey);
+activeTouches[touchId] = touchKey;
+} else {
+delete activeTouches[touchId];}}});});
+document.addEventListener('touchend', (e) => {
+Array.from(e.changedTouches).forEach(touch => {
+const endedKey = activeTouches[touch.identifier];
+if (endedKey && endedKey !== 'shift' && mobileKeys[endedKey]) {
+const endedButton = document.querySelector(`[data-key="${endedKey}"]`);
+mobileKeys[endedKey] = false;
+endedButton.classList.remove('active');
+triggerKeyEvent('keyup', endedKey);}
+delete activeTouches[touch.identifier];});});});
 
-        // LÓGICA DE TELA CHEIA E CONTROLES MÓVEIS
-        function toggleFullscreen() {
-            const docEl = document.documentElement;
-            const body = document.body;
+// SPRITES E CONFIGURAÇÕES
+const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_stopped.png)";
+const PLAYER_WALK_SPRITE = "url(imagens_jogo/Peppino_walk.gif)";
+const PLAYER_RUN_SPRITE = "url(imagens_jogo/Peppino_run.png)";
+const PLAYER_JUMP_SPRITE = "url(imagens_jogo/Peppino_jump.png)";
+const PLAYER_WALL_SLIDE_SPRITE = "url(imagens_jogo/Peppino_wall.png)";
+const PLAYER_HURT_SPRITE = "url(imagens_jogo/Peppino_hurt.png)";
+const PLAYER_STUN_SPRITE = "url(imagens_jogo/Peppino_fireass.png)";
+const PEPPINO_PARRY_SPRITE = "url(imagens_jogo/Peppino_parry.gif)";
+const NOISE_IDLE_SPRITE_NEW = "url(imagens_jogo/Noise_stopped.png)";
+const NOISE_WALK_SPRITE = "url(imagens_jogo/Noise_walk.gif)";
+const NOISE_JUMP_SPRITE = "url(imagens_jogo/Noise_jump.png)";
+const NOISE_DOUBLE_JUMP_SPRITE = "url(imagens_jogo/Noise_doublejump.png)";
+const NOISE_SCARED_SPRITE = "url(imagens_jogo/Noise_Scary.png)";
+const NOISE_HAPPY_SPRITE = "url(imagens_jogo/Noise_Happy.png)";
+const NOISE_POWERED_SPRITE = "url(imagens_jogo/Pepper_Pizza_Noise.gif)";
+const STUNNED_SPRITE = "url(imagens_jogo/Noise_hurt.png)";
+const PEPPER_SPRITE = "url(imagens_jogo/Pepper_Pizza_Peppino.gif)";
+const PLAYER_TIRED_SPRITE = "url(imagens_jogo/Peppino_milk.gif)";
+const NOISE_TIRED_SPRITE = "url(imagens_jogo/Noise_milk.gif)";
+const NOISE_PEPPER_STUN_SPRITE = "url(imagens_jogo/Noise_fireass.png)";
+const NOISE_POWERUP_PARRY_SPRITE = "url(imagens_jogo/Noise_parry.gif)";
+const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.png)";
+const NOISE_JOKE_SPRITE = "url(imagens_jogo/Noise_joke.png)";
+const BASE_GAME_WIDTH = 900;
+const BASE_GAME_HEIGHT = 500;
+const BASE_PLAYER_WIDTH = 75;
+const BASE_PLAYER_HEIGHT = 100;
+const BASE_NOISE_WIDTH = 75;
+const BASE_NOISE_HEIGHT = 100;
+const BASE_TOPPING_SIZE = 25;
+const BASE_PLATFORM_WIDTH = 400;
+const BASE_PLATFORM_WIDTH_TOP = 300;
+const BASE_PLATFORM_HEIGHT = 15;
+const BASE_PLATFORM_Y1 = 150;
+const BASE_PLATFORM_Y2 = 300;
+const BASE_PLAYER_START_X = 50;
+const BASE_NOISE_START_X_POS = BASE_GAME_WIDTH - BASE_NOISE_WIDTH - 50;
+let GAME_SCALE_FACTOR = 1;
+function getScaledValue(baseValue) {
+return baseValue * GAME_SCALE_FACTOR;}
+let GAME_WIDTH = BASE_GAME_WIDTH;
+let GAME_HEIGHT = BASE_GAME_HEIGHT;
+let PLAYER_WIDTH = BASE_PLAYER_WIDTH;
+let PLAYER_HEIGHT = BASE_PLAYER_HEIGHT;
+let NOISE_WIDTH = BASE_NOISE_WIDTH;
+let NOISE_HEIGHT = BASE_NOISE_HEIGHT;
+let TOPPING_SIZE = BASE_TOPPING_SIZE;
+let NOISE_START_X = getScaledValue(BASE_NOISE_START_X_POS);
+function updateScaledConstants() {
+GAME_WIDTH = GAME_AREA.clientWidth;
+GAME_HEIGHT = GAME_AREA.clientHeight;
+GAME_SCALE_FACTOR = GAME_WIDTH / BASE_GAME_WIDTH;
+PLAYER_WIDTH = getScaledValue(BASE_PLAYER_WIDTH);
+PLAYER_HEIGHT = getScaledValue(BASE_PLAYER_HEIGHT);
+NOISE_WIDTH = getScaledValue(BASE_NOISE_WIDTH);
+NOISE_HEIGHT = getScaledValue(BASE_NOISE_HEIGHT);
+TOPPING_SIZE = getScaledValue(BASE_TOPPING_SIZE);
+NOISE_START_X = getScaledValue(BASE_NOISE_START_X_POS);
+PLAYER.style.width = PLAYER_WIDTH + 'px';
+PLAYER.style.height = PLAYER_HEIGHT + 'px';
+NOISE.style.width = NOISE_WIDTH + 'px';
+NOISE.style.height = NOISE_HEIGHT + 'px';
+if (GAME_SCALE_FACTOR !== 0) {
+playerX = getScaledValue(playerX / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
+playerY = getScaledValue(playerY / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
+noiseX = getScaledValue(noiseX / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
+noiseY = getScaledValue(noiseY / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));}
+if (!isGameOver) {
+createPlatforms();
+updateItemsPosition();}}
+window.addEventListener('resize', () => {
+updateScaledConstants();});
+const GRAVITY = 0.5;
+const JUMP_STRENGTH = 15;
+const HIT_INVINCIBILITY_TIME = 1500;
+const POWERUP_INVINCIBILITY_TIME = 5000;
+const PARITY_SPRITE_DURATION = 500;
+const WALL_SLIDE_SPEED = 1.5;
+const WALL_JUMP_HORIZONTAL_PUSH = 10;
+const MAX_HEALTH = 6;
+const POWERUP_SPAWN_CHANCE = 0.10;
+const TOPPING_SPAWN_CHANCE = 1.0;
+const NOISE_POWERED_SPEED = 7;
+const MAX_NOISE_JUMPS = 2;
+const NOISE_SPEED = 4;
+const NOISE_JUMP_CHANCE = 0.05;
+const NOISE_JUMP_STRENGTH = 12;
+const NOISE_DOUBLE_JUMP_COOLDOWN = 100;
+const NOISE_JOKE_DURATION = 2500; 
+let score = 0;
+let time = 60;
+let isGameOver = true;
+let health = MAX_HEALTH;
+let hitsTaken = 0;
+let keys = {};
+let isInvincible = false;
+let isPowerupInvincible = false;
+let noiseIsPoweredUp = false;
+let playerX = BASE_PLAYER_START_X;
+let playerY = 0;
+let velocityY = 0;
+let isJumping = false;
+let isWallSliding = false;
+let isMoving = false;
+let playerFacingRight = true;
+let isPeppinoStunned = false;
+let isParrying = false;
+const PEPPINO_MILK_STUN_TIME = 800; 
+const PEPPINO_NORMAL_STUN_TIME = 1000; 
+const NOISE_STOMP_STUN_TIME = 2500;
+const NOISE_PEPPER_STUN_TIME = 5000;
+const WALK_SPEED = 5;
+const RUN_SPEED = 10;
+let currentSpeed = WALK_SPEED;
+let noiseX = NOISE_START_X;
+let noiseY = 0;
+let noiseVY = 0;
+let noiseJumpsUsed = 0;
+let noiseIsStunned = false;
+let noiseIsJoking = false;
+let noiseLastJumpTime = 0;
+const NOISE_STUN_TIME = 3000;
+let noiseDirection = -1;
+let currentNoiseSpeed = NOISE_SPEED;
+const TOPPING_CLASSES = ['topping-1', 'topping-2', 'topping-3', 'topping-4', 'topping-5'];
+const SPECIAL_TOPPINGS = ['topping-gerome', 'topping-life'];
+let hasGeromeSpawned = false;
+const platformBaseData = [
+{ x: (BASE_GAME_WIDTH / 2) - (BASE_PLATFORM_WIDTH / 2), y: BASE_PLATFORM_Y1, w: BASE_PLATFORM_WIDTH, h: BASE_PLATFORM_HEIGHT },
+{ x: (BASE_GAME_WIDTH / 2) - (BASE_PLATFORM_WIDTH_TOP / 2), y: BASE_PLATFORM_Y2, w: BASE_PLATFORM_WIDTH_TOP, h: BASE_PLATFORM_HEIGHT }];
+let timerInterval;
+let gameLoopInterval;
+let spawnInterval;
+let activePowerupElement = null;
+let playerPowerupTimer;
+let noisePowerupTimer;
+let noiseStunTimer;
+let parryTimer;
+function createPlatforms() {
+document.querySelectorAll('.platform').forEach(p => p.remove());
+platformBaseData.forEach((data, index) => {
+const platform = document.createElement('div');
+platform.classList.add('platform');
+platform.id = `platform-${index}`;
+platform.style.left = getScaledValue(data.x) + 'px';
+platform.style.bottom = getScaledValue(data.y) + 'px';
+platform.style.width = getScaledValue(data.w) + 'px';
+platform.style.height = getScaledValue(data.h) + 'px';
+GAME_AREA.appendChild(platform);});}
+function updateItemsPosition() {
+document.querySelectorAll('.topping, .power-up').forEach(item => {
+const itemX = parseFloat(item.style.left);
+const itemY = parseFloat(item.style.bottom);
+const baseItemX = itemX / GAME_SCALE_FACTOR;
+const baseItemY = itemY / GAME_SCALE_FACTOR;
+item.style.left = getScaledValue(baseItemX) + 'px';
+item.style.bottom = getScaledValue(baseItemY) + 'px';
+item.style.width = TOPPING_SIZE + 'px';
+item.style.height = TOPPING_SIZE + 'px';});}
+function updateHealthDisplay() {
+let html = '';
+for (let i = 0; i < MAX_HEALTH; i++) {
+if (i < health) {
+html += `<span id="heart-icon"></span>`;
+} else {
+html += `<span id="empty-heart-icon"></span>`;}}
+HEALTH_DISPLAY.innerHTML = 'Hits: ' + html;}
+function updatePeppinoSprite() {
+const onPlatform = checkPlatformCollision();
+const isGrounded = playerY === 0 || onPlatform;
+const movingHorizontally = keys['arrowright'] || keys['d'] || keys['arrowleft'] || keys['a'];
+isMoving = movingHorizontally;
+if (isGrounded && isMoving) {
+if (WALK_AUDIO.paused && !isMuted && !isPeppinoStunned && !PLAYER.classList.contains('peppino-tired-sprite')) {
+WALK_AUDIO.volume = 0.3;
+WALK_AUDIO.loop = true;
+WALK_AUDIO.play().catch(e => console.log("Walk Audio Play Error: ", e));
+}} else {
+WALK_AUDIO.pause();
+WALK_AUDIO.currentTime = 0;}
+PLAYER.classList.remove('moving-sprite', 'running-sprite', 'stomp-mode', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'wall-slide-sprite', 'peppino-parry-sprite');
+if (isPowerupInvincible) {
+if (isParrying) {
+PLAYER.style.backgroundImage = PEPPINO_PARRY_SPRITE;
+PLAYER.classList.add('peppino-parry-sprite');
+PLAYER.classList.remove('is-stunned', 'peppino-tired-sprite', 'invincible');
+return;}
+PLAYER.style.backgroundImage = PEPPER_SPRITE;
+PLAYER.classList.remove('is-stunned', 'peppino-tired-sprite');
+return;}
+if (PLAYER.classList.contains('peppino-tired-sprite')) {
+PLAYER.style.backgroundImage = PLAYER_TIRED_SPRITE;
+PLAYER.classList.add('is-stunned');
+return;}
+if (isInvincible) {
+if (isPeppinoStunned) {
+PLAYER.style.backgroundImage = PLAYER_STUN_SPRITE;
+PLAYER.classList.add('is-stunned');}
+else {
+PLAYER.style.backgroundImage = PLAYER_HURT_SPRITE;
+PLAYER.classList.add('peppino-hurt-sprite');
+PLAYER.classList.remove('is-stunned');}
+return;}
+PLAYER.classList.remove('is-stunned');
+if (isWallSliding) {
+PLAYER.style.backgroundImage = PLAYER_WALL_SLIDE_SPRITE;
+PLAYER.classList.add('wall-slide-sprite');}
+else if (playerY > 0 && !isGrounded) {
+PLAYER.style.backgroundImage = PLAYER_JUMP_SPRITE;}
+else if (isGrounded) {
+if (isMoving) {
+if (currentSpeed === RUN_SPEED) {
+PLAYER.style.backgroundImage = PLAYER_RUN_SPRITE;
+PLAYER.classList.add('running-sprite');
+} else {
+PLAYER.style.backgroundImage = PLAYER_WALK_SPRITE;
+PLAYER.classList.add('moving-sprite');
+}} else {
+PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;}}
+if (keys['arrowright'] || keys['d']) {
+playerFacingRight = true;
+} else if (keys['arrowleft'] || keys['a']) {
+playerFacingRight = false;}
+if (playerFacingRight) {
+PLAYER.classList.remove('facing-left');
+} else {
+PLAYER.classList.add('facing-left');}}
+function updateNoiseSprite() {
+if (noiseIsStunned || noiseIsJoking) {
+NOISE.classList.remove('noise-disabled');
+if (noiseIsJoking) {
+NOISE.style.backgroundImage = NOISE_JOKE_SPRITE;
+NOISE.classList.add('noise-joke-mode');
+return;}
+if (NOISE.style.backgroundImage === NOISE_POWERUP_PARRY_SPRITE) {
+NOISE.style.backgroundImage = NOISE_POWERUP_PARRY_SPRITE;
+return;}
+if (NOISE.style.backgroundImage === NOISE_PEPPER_STUN_SPRITE || NOISE.style.backgroundImage === 'url("imagens_jogo/Noise_fireass.png")') {
+NOISE.style.backgroundImage = NOISE_PEPPER_STUN_SPRITE;
+} else {
+NOISE.style.backgroundImage = NOISE.classList.contains('noise-tired-sprite') ? NOISE_TIRED_SPRITE : STUNNED_SPRITE;}
+return;}
+NOISE.classList.remove('is-stunned', 'invincible', 'noise-happy', 'noise-scared', 'noise-jumping', 'noise-double-jump', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode');
+const onPlatform = checkNoisePlatformCollision();
+const isGrounded = noiseY === 0 || onPlatform;
+if (isPowerupInvincible && noiseIsPoweredUp) {
+NOISE.style.backgroundImage = NOISE_POWERED_SPRITE;}
+else if (noiseIsPoweredUp) {
+NOISE.style.backgroundImage = NOISE_POWERED_SPRITE;}
+else if (isPowerupInvincible) {
+NOISE.style.backgroundImage = NOISE_SCARED_SPRITE;
+NOISE.classList.add('noise-scared');}
+else if (activePowerupElement) {
+NOISE.style.backgroundImage = NOISE_HAPPY_SPRITE;
+NOISE.classList.add('noise-happy');}
+else {
+if (noiseY > 0 && !isGrounded) {
+if (noiseJumpsUsed === 2) {
+NOISE.style.backgroundImage = NOISE_DOUBLE_JUMP_SPRITE;
+NOISE.classList.add('noise-double-jump');
+} else {
+NOISE.style.backgroundImage = NOISE_JUMP_SPRITE;
+NOISE.classList.add('noise-jumping');}
+} else if (isGrounded) {
+const isStationary = Math.abs(noiseVY) < getScaledValue(0.1) && Math.abs(noiseX + noiseDirection * currentNoiseSpeed - noiseX) < getScaledValue(1);
+if (isStationary) {
+NOISE.style.backgroundImage = NOISE_IDLE_SPRITE_NEW;
+NOISE.classList.add('noise-idle-sprite');
+} else {
+NOISE.style.backgroundImage = NOISE_WALK_SPRITE;}}}
+let noiseFacingRight = noiseDirection === 1;
+if (noiseFacingRight) {
+NOISE.classList.remove('facing-left');
+} else {
+NOISE.classList.add('facing-left');}}
+function checkPlatformCollision() {
+let onPlatform = false;
+document.querySelectorAll('.platform').forEach(platformElement => {
+const platformRect = platformElement.getBoundingClientRect();
+const playerRect = PLAYER.getBoundingClientRect();
+const gameAreaRect = GAME_AREA.getBoundingClientRect();
+const basePlatformX = parseFloat(platformElement.style.left) / GAME_SCALE_FACTOR;
+const basePlatformY = parseFloat(platformElement.style.bottom) / GAME_SCALE_FACTOR;
+const basePlatformW = parseFloat(platformElement.style.width) / GAME_SCALE_FACTOR;
+const basePlatformH = parseFloat(platformElement.style.height) / GAME_SCALE_FACTOR;
+const basePlayerX = playerX / GAME_SCALE_FACTOR;
+const basePlayerY = playerY / GAME_SCALE_FACTOR;
+const basePlayerW = BASE_PLAYER_WIDTH;
+const basePlayerH = BASE_PLAYER_HEIGHT;
+const baseHorizontalOverlap = basePlayerX < basePlatformX + basePlatformW && basePlayerX + basePlayerW > basePlatformX;
+if (baseHorizontalOverlap) {
+const isFalling = velocityY <= 0;
+const landingRange = 5;
+const basePlayerBottom = basePlayerY;
+const basePlayerNextBottom = basePlayerY + (velocityY / GAME_SCALE_FACTOR);
+const basePlatformTop = basePlatformY + basePlatformH;
+if (isFalling && basePlayerNextBottom <= basePlatformTop && basePlayerBottom >= basePlatformTop - (landingRange / GAME_SCALE_FACTOR)) {
+playerY = getScaledValue(basePlatformTop);
+velocityY = 0;
+isJumping = false;
+onPlatform = true;
+}}});
+return onPlatform;}
+function checkNoisePlatformCollision() {
+let onPlatform = false;
+document.querySelectorAll('.platform').forEach(platformElement => {
+const platformRect = platformElement.getBoundingClientRect();
+const noiseRect = NOISE.getBoundingClientRect();
+const gameAreaRect = GAME_AREA.getBoundingClientRect();
+const basePlatformX = parseFloat(platformElement.style.left) / GAME_SCALE_FACTOR;
+const basePlatformY = parseFloat(platformElement.style.bottom) / GAME_SCALE_FACTOR;
+const basePlatformW = parseFloat(platformElement.style.width) / GAME_SCALE_FACTOR;
+const basePlatformH = parseFloat(platformElement.style.height) / GAME_SCALE_FACTOR;
+const baseNoiseX = noiseX / GAME_SCALE_FACTOR;
+const baseNoiseY = noiseY / GAME_SCALE_FACTOR;
+const baseNoiseW = BASE_NOISE_WIDTH;
+const baseNoiseH = BASE_NOISE_HEIGHT;
+const baseHorizontalOverlap = baseNoiseX < basePlatformX + basePlatformW && baseNoiseX + baseNoiseW > basePlatformX;
+if (baseHorizontalOverlap) {
+const isFalling = noiseVY <= 0;
+const landingRange = 5;
+const baseNoiseBottom = noiseY;
+const baseNoiseNextBottom = noiseY + (noiseVY / GAME_SCALE_FACTOR);
+const basePlatformTop = basePlatformY + basePlatformH;
+if (isFalling && baseNoiseNextBottom <= basePlatformTop && baseNoiseBottom >= basePlatformTop - (landingRange / GAME_SCALE_FACTOR)) {
+noiseY = getScaledValue(basePlatformTop);
+noiseVY = 0;
+noiseJumpsUsed = 0;
+onPlatform = true;
+}}});
+return onPlatform;}
+function updatePlayerPosition() {
+const SCALED_WALK_SPEED = getScaledValue(WALK_SPEED / BASE_GAME_WIDTH * GAME_WIDTH);
+const SCALED_RUN_SPEED = getScaledValue(RUN_SPEED / BASE_GAME_WIDTH * GAME_WIDTH);
+const SCALED_CURRENT_SPEED = currentSpeed === WALK_SPEED ? SCALED_WALK_SPEED : SCALED_RUN_SPEED;
+const SCALED_GRAVITY = getScaledValue(GRAVITY);
+const SCALED_WALL_SLIDE_SPEED = getScaledValue(WALL_SLIDE_SPEED);
+const SCALED_WALL_JUMP_HORIZONTAL_PUSH = getScaledValue(WALL_JUMP_HORIZONTAL_PUSH);
+if (PLAYER.classList.contains('peppino-tired-sprite') && isPeppinoStunned) {
+velocityY = 0;
+return;}
+if (isPeppinoStunned || isParrying) {
+let onPlatform = checkPlatformCollision();
+if (!onPlatform) { velocityY -= SCALED_GRAVITY; }
+playerY += velocityY;
+if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
+playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+PLAYER.style.left = playerX + 'px';
+PLAYER.style.bottom = playerY + 'px';
+return;}
+let onPlatform = checkPlatformCollision();
+let isGrounded = playerY === 0 || onPlatform;
+const onLeftWall = playerX <= 0;
+const onRightWall = playerX >= GAME_WIDTH - PLAYER_WIDTH;
+if (!isGrounded && ((onLeftWall && (keys['ArrowLeft'] || keys['a'])) || (onRightWall && (keys['ArrowRight'] || keys['d'])))) {
+isWallSliding = true;
+if (velocityY < -SCALED_WALL_SLIDE_SPEED) { velocityY = -SCALED_WALL_SLIDE_SPEED; }
+} else { 
+isWallSliding = false;}
+if (keys['arrowright'] || keys['d']) { playerX += SCALED_CURRENT_SPEED; }
+if (keys['arrowleft'] || keys['a']) { playerX -= SCALED_CURRENT_SPEED; }
+if (!isWallSliding && !onPlatform) { velocityY -= SCALED_GRAVITY; }
+playerY += velocityY;
+if (playerY >= GAME_HEIGHT - PLAYER_HEIGHT) { playerY = GAME_HEIGHT - PLAYER_HEIGHT; if (velocityY > 0) { velocityY = 0; } }
+if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
+playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+PLAYER.style.left = playerX + 'px';
+PLAYER.style.bottom = playerY + 'px';}
+function playerJump() {
+const SCALED_JUMP_STRENGTH = getScaledValue(JUMP_STRENGTH);
+const SCALED_WALL_JUMP_HORIZONTAL_PUSH = getScaledValue(WALL_JUMP_HORIZONTAL_PUSH);
+if (isGameOver || isPeppinoStunned || isParrying) return;
+WALK_AUDIO.pause();
+WALK_AUDIO.currentTime = 0;
+if (playerY === 0 || checkPlatformCollision()) {
+velocityY = SCALED_JUMP_STRENGTH;
+isJumping = true;
+playSFX(SOUNDS.JumpPeppino);
+} else if (isWallSliding) {
+velocityY = SCALED_JUMP_STRENGTH;
+isJumping = true;
+isWallSliding = false;
+playSFX(SOUNDS.JumpPeppino);
+const onLeftWall = playerX <= 0;
+if (onLeftWall) { playerX += SCALED_WALL_JUMP_HORIZONTAL_PUSH; } else { playerX -= SCALED_WALL_JUMP_HORIZONTAL_PUSH; }}}
+function updateNoisePosition() {
+const SCALED_NOISE_SPEED = getScaledValue(NOISE_SPEED / BASE_GAME_WIDTH * GAME_WIDTH);
+const SCALED_NOISE_POWERED_SPEED = getScaledValue(NOISE_POWERED_SPEED / BASE_GAME_WIDTH * GAME_WIDTH);
+const SCALED_GRAVITY = getScaledValue(GRAVITY);
+if (noiseIsStunned || noiseIsJoking) {
+if (NOISE.classList.contains('invincible') && !NOISE.classList.contains('is-stunned')) {
+NOISE.classList.remove('invincible');}
+return;}
+let onPlatform = checkNoisePlatformCollision();
+let targetX;
+currentNoiseSpeed = SCALED_NOISE_SPEED;
+const isGrounded = noiseY === 0 || onPlatform;
+const canJump = isGrounded;
+if (isPowerupInvincible && noiseIsPoweredUp) {
+targetX = noiseX + noiseDirection * SCALED_NOISE_SPEED;
+currentNoiseSpeed = SCALED_NOISE_SPEED;}
+else if (noiseIsPoweredUp) {
+targetX = playerX;
+currentNoiseSpeed = SCALED_NOISE_POWERED_SPEED;}
+else if (isPowerupInvincible) {
+const distanceToPeppino = noiseX - playerX;
+targetX = noiseX + (distanceToPeppino > 0 ? currentNoiseSpeed : -currentNoiseSpeed) * 10;
+currentNoiseSpeed = SCALED_NOISE_POWERED_SPEED * 0.8;
+if (distanceToPeppino > 0) {
+noiseDirection = 1;
+} else {
+noiseDirection = -1;}}
+else if (activePowerupElement) {
+const powerupRect = activePowerupElement.getBoundingClientRect();
+const gameAreaRect = GAME_AREA.getBoundingClientRect();
+const powerupXGame = powerupRect.left - gameAreaRect.left;
+targetX = powerupXGame;
+currentNoiseSpeed = SCALED_NOISE_SPEED * 1.5;
+const powerupY = parseFloat(activePowerupElement.style.bottom);
+const isPowerupAboveNoise = powerupY > noiseY + NOISE_HEIGHT;
+const horizontalDistance = Math.abs(noiseX - powerupXGame);
+if (isPowerupAboveNoise) {
+if (canJump && horizontalDistance < NOISE_WIDTH * 2) {
+jumpNoise();
+} else if (!canJump && noiseJumpsUsed < MAX_NOISE_JUMPS) {
+jumpNoise();
+}} else if (canJump && Math.random() < NOISE_JUMP_CHANCE) {
+jumpNoise();}}
+else {
+targetX = noiseX + noiseDirection * SCALED_NOISE_SPEED;
+currentNoiseSpeed = SCALED_NOISE_SPEED;
+if (canJump && Math.random() < NOISE_JUMP_CHANCE) {
+jumpNoise();
+} else if (noiseJumpsUsed === 1 && Math.random() < NOISE_JUMP_CHANCE / 2) {
+jumpNoise();}}
+if (!isPowerupInvincible && !noiseIsPoweredUp) {
+if (targetX < noiseX) {
+noiseDirection = -1;
+} else if (targetX > noiseX) {
+noiseDirection = 1;
+}} else if (isPowerupInvincible && noiseIsPoweredUp) {
+if (noiseX <= 0) { noiseDirection = 1; }
+else if (noiseX >= GAME_WIDTH - NOISE_WIDTH) { noiseDirection = -1; }
+} else if (noiseIsPoweredUp) {
+if (noiseX < playerX) {
+noiseDirection = 1;
+} else if (noiseX > playerX) {
+noiseDirection = -1;
+}} else if (isPowerupInvincible) {
+if (targetX < noiseX) {
+noiseDirection = -1;
+} else if (targetX > noiseX) {
+noiseDirection = 1;
+}}noiseX += noiseDirection * currentNoiseSpeed;
+if (!noiseIsPoweredUp) {
+if (noiseX <= 0 || noiseX >= GAME_WIDTH - NOISE_WIDTH) {
+if (!isPowerupInvincible && !activePowerupElement) {
+noiseDirection *= -1;
+}noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
+}}if (noiseIsPoweredUp && isNoiseFacingTarget(targetX)) {
+if (canJump || (noiseJumpsUsed === 1 && Math.random() < 0.5)) {
+jumpNoise();
+}}if (!onPlatform) { noiseVY -= SCALED_GRAVITY; }
+noiseY += noiseVY;
+if (noiseY >= GAME_HEIGHT - NOISE_HEIGHT) { noiseY = GAME_HEIGHT - NOISE_HEIGHT; if (noiseVY > 0) { noiseVY = 0; } }
+if (noiseY <= 0) {
+noiseY = 0;
+noiseVY = 0;
+noiseJumpsUsed = 0;}
+NOISE.style.left = noiseX + 'px';
+NOISE.style.bottom = noiseY + 'px';}
+function isNoiseFacingTarget(targetX) {
+if (targetX > noiseX) { return noiseDirection === 1; }
+if (targetX < noiseX) { return noiseDirection === -1; }
+return false;}
+function jumpNoise() {
+const SCALED_NOISE_JUMP_STRENGTH = getScaledValue(NOISE_JUMP_STRENGTH);
+const currentTime = Date.now();
+const isGrounded = noiseY === 0 || checkNoisePlatformCollision();
+if (isGrounded) {
+noiseVY = SCALED_NOISE_JUMP_STRENGTH;
+noiseJumpsUsed = 1;
+noiseLastJumpTime = currentTime;
+playSFX(SOUNDS.JumpNoise);
+} else if (noiseJumpsUsed === 1 && (currentTime - noiseLastJumpTime) >= NOISE_DOUBLE_JUMP_COOLDOWN) {
+noiseVY = SCALED_NOISE_JUMP_STRENGTH;
+noiseJumpsUsed++;
+playSFX(SOUNDS.DoubleJumpNoise);}}
+function checkCollision() {
+const playerRect = PLAYER.getBoundingClientRect();
+const noiseRect = NOISE.getBoundingClientRect();
+const items = document.querySelectorAll('.topping, .power-up');
+items.forEach(item => {
+const itemRect = item.getBoundingClientRect();
+if (isColliding(playerRect, itemRect)) {
+if (item.classList.contains('power-up')) {
+collectPowerup(item);
+} else if (item.classList.contains('topping-gerome')) {
+collectGerome(item);
+} else if (item.classList.contains('topping-life')) {
+collectLifeMushroom(item);
+} else {
+collectTopping(item);}}});
+items.forEach(item => {
+const itemRect = item.getBoundingClientRect();
+if (isColliding(noiseRect, itemRect) && item.classList.contains('power-up') && !noiseIsPoweredUp) {
+collectNoisePowerup(item);}});
+if (isColliding(playerRect, noiseRect) && !noiseIsStunned && !noiseIsJoking) {
+if (isPowerupInvincible && noiseIsPoweredUp) {
+handleNoisePowerupConflict();
+return;}
+if (isPowerupInvincible) {
+handleNoisePepperHit();
+return;}
+if (noiseIsPoweredUp && !isInvincible) {
+handlePepperNoiseHitPeppino(); 
+return;}
+const isStomping = (velocityY < 0) && (playerY > noiseY + NOISE_HEIGHT - getScaledValue(10));
+if (isStomping) {
+handleNoiseStomp();
+} else if (!isInvincible) {
+handleNoiseHit(1);}}}
+function isColliding(rect1, rect2) {
+return (rect1.left < rect2.right && rect1.right > rect2.left &&
+rect1.bottom > rect2.top && rect1.top < rect2.bottom);}
 
-            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-                body.classList.remove('fullscreen-mode');
-                FULLSCREEN_BUTTON.textContent = '📱';
-            } else {
-                if (docEl.requestFullscreen) {
-                    docEl.requestFullscreen();
-                } else if (docEl.mozRequestFullScreen) {
-                    docEl.mozRequestFullScreen();
-                } else if (docEl.webkitRequestFullscreen) {
-                    docEl.webkitRequestFullscreen();
-                } else if (docEl.msRequestFullscreen) {
-                    docEl.msRequestFullscreen();
-                }
-                body.classList.add('fullscreen-mode');
-                FULLSCREEN_BUTTON.textContent = '💻';
-            }
-        }
-        function triggerKeyEvent(type, keyString) {
-            const event = new KeyboardEvent(type, {
-                key: keyString,
-                code: keyString,
-                bubbles: true,
-                cancelable: true,
-            });
-            document.dispatchEvent(event);
-        }
-        document.querySelectorAll('.mobile-button').forEach(button => {
-            const key = button.getAttribute('data-key');
-            const startEvent = () => {
-                if (!mobileKeys[key]) {
-                    mobileKeys[key] = true;
-                    triggerKeyEvent('keydown', key);
-                }
-            };
-            const endEvent = () => {
-                if (mobileKeys[key]) {
-                    mobileKeys[key] = false;
-                    triggerKeyEvent('keyup', key);
-                }
-            };
-            button.addEventListener('mousedown', startEvent);
-            button.addEventListener('mouseup', endEvent);
-            button.addEventListener('mouseleave', () => {
-                if (mobileKeys[key]) {
-                    endEvent();
-                }
-            });
-            button.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                startEvent();
-            });
-            button.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                endEvent();
-            });
-        });
+// FUNÇÕES DE DANO
+function handleNoiseHit(damage = 1) {
+if (isInvincible) return;
+health -= damage;
+hitsTaken++;
+updateHealthDisplay();
+if (health <= 0) {
+endGame();
+return;}
+playSFX(SOUNDS.HurtPeppino);
+isInvincible = true;
+PLAYER.classList.add('invincible', 'peppino-hurt-sprite');
+const pushBack = getScaledValue(70);
+if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
+playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+STATUS_DISPLAY.textContent = `Hit! ${health} remaining Hit(s).`;
+setTimeout(() => {
+isInvincible = false;
+PLAYER.classList.remove('invincible', 'peppino-hurt-sprite');
+STATUS_DISPLAY.textContent = 'Get the Toppings!';
+}, HIT_INVINCIBILITY_TIME);}
+function handlePepperNoiseHitPeppino() {
+if (isInvincible) return;
+health -= 2;
+hitsTaken += 2;
+updateHealthDisplay();
+if (health <= 0) {
+endGame();
+return;}
+playSFX(SOUNDS.ScreamPeppino);
+isInvincible = true;
+isPeppinoStunned = true;
+PLAYER.classList.add('invincible', 'peppino-stun-sprite', 'is-stunned');
+const pushBack = getScaledValue(100);
+if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
+playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+STATUS_DISPLAY.textContent = `Peppino is STUNNED!`;
+noiseIsJoking = true;
+NOISE.classList.add('noise-joke-mode');
+NOISE.style.backgroundImage = NOISE_JOKE_SPRITE;
+setTimeout(() => {
+isPeppinoStunned = false;
+PLAYER.classList.remove('peppino-stun-sprite', 'is-stunned');
+updatePeppinoSprite();
+}, PEPPINO_NORMAL_STUN_TIME);
+setTimeout(() => {
+isInvincible = false;
+PLAYER.classList.remove('invincible');
+STATUS_DISPLAY.textContent = 'Get the Toppings!';
+}, HIT_INVINCIBILITY_TIME);
+clearTimeout(noiseStunTimer); 
+noiseStunTimer = setTimeout(() => {
+noiseIsJoking = false;
+NOISE.classList.remove('noise-joke-mode');
+updateNoiseSprite(); 
+}, NOISE_JOKE_DURATION);
+}
+function dropLifeMushroom(x, y) {
+const DROP_CHANCE = 0.20;
+if (Math.random() < DROP_CHANCE) {
+const lifeTopping = document.createElement('div');
+lifeTopping.classList.add('topping', 'topping-life');
+const dropX = x + (NOISE_WIDTH / 2) - (TOPPING_SIZE / 2);
+let dropY = y + NOISE_HEIGHT;
+lifeTopping.style.left = dropX + 'px';
+lifeTopping.style.bottom = dropY + 'px';
+lifeTopping.style.width = TOPPING_SIZE + 'px';
+lifeTopping.style.height = TOPPING_SIZE + 'px';
+GAME_AREA.appendChild(lifeTopping);
+playSFX(SOUNDS.PepperSpawn);
+STATUS_DISPLAY.textContent = "The Noise dropped some HP!";
+setTimeout(() => {
+if (STATUS_DISPLAY.textContent.includes("HP!")) {
+STATUS_DISPLAY.textContent = 'Get the Toppings!';}
+}, 1500);}}
+function handleNoiseStomp() {
+const SCALED_JUMP_STRENGTH_HALF = getScaledValue(JUMP_STRENGTH / 2);
+velocityY = SCALED_JUMP_STRENGTH_HALF;
+const wasInvincible = isInvincible;
+if (!isPowerupInvincible) {
+isInvincible = true;
+PLAYER.classList.remove('peppino-hurt-sprite');
+PLAYER.classList.add('invincible', 'stomp-mode');}
+if (noiseIsPoweredUp) {
+endNoisePowerup();}
+clearTimeout(noiseStunTimer);
+noiseIsStunned = true;
+NOISE.classList.add('noise-disabled');
+NOISE.style.backgroundImage = STUNNED_SPRITE;
+playSFX(SOUNDS.HurtNoise);
+WALK_AUDIO.pause();
+WALK_AUDIO.currentTime = 0;
+STATUS_DISPLAY.textContent = `The Noise was stomped!`;
+dropLifeMushroom(noiseX, noiseY);
+setTimeout(() => {
+if (!wasInvincible && !isPowerupInvincible) {
+isInvincible = false;
+PLAYER.classList.remove('invincible', 'stomp-mode');}
+STATUS_DISPLAY.textContent = 'Get the Toppings!';
+}, HIT_INVINCIBILITY_TIME);
+noiseStunTimer = setTimeout(() => {
+noiseIsStunned = false;
+NOISE.classList.remove('noise-disabled');
+updateNoiseSprite();
+}, NOISE_STOMP_STUN_TIME);}
+function handleNoisePepperHit() {
+noiseIsJoking = false; 
+noiseIsStunned = true;
+NOISE.classList.add('noise-disabled', 'is-stunned', 'invincible'); 
+NOISE.style.backgroundImage = NOISE_PEPPER_STUN_SPRITE; 
+const pushBack = getScaledValue(100);
+if (playerX < noiseX) { noiseX += pushBack; } else { noiseX -= pushBack; }
+noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
+STATUS_DISPLAY.textContent = `The Noise was HEATED UP and STUNNED for 5 seconds!`; 
+playSFX(SOUNDS.HurtNoise);
+dropLifeMushroom(noiseX, noiseY);
+clearTimeout(noiseStunTimer);
+noiseStunTimer = setTimeout(() => {
+noiseIsStunned = false;
+NOISE.classList.remove('noise-disabled', 'is-stunned', 'invincible'); 
+updateNoiseSprite();
+STATUS_DISPLAY.textContent = 'Get the Toppings!';
+}, NOISE_PEPPER_STUN_TIME);}
+function handleNoisePowerupConflict() {
+playSFX(SOUNDS.PowerupConflict, 1.0);
+STATUS_DISPLAY.textContent = `I will not gonna SUGARCOAT IT!`;
+clearTimeout(parryTimer);
+isParrying = true;
+PLAYER.classList.add('peppino-parry-sprite');
+PLAYER.classList.add('is-stunned');
+if (playerX < noiseX) {
+PLAYER.classList.remove('facing-left');
+playerFacingRight = true;
+} else {
+PLAYER.classList.add('facing-left');
+playerFacingRight = false;}
+noiseIsStunned = true;
+NOISE.classList.add('noise-disabled');
+NOISE.style.backgroundImage = NOISE_POWERUP_PARRY_SPRITE;
+const pushBack = getScaledValue(50);
+if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
+if (noiseX < playerX) { noiseX -= pushBack; } else { noiseX += pushBack; }
+playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
+parryTimer = setTimeout(() => {
+isParrying = false;
+PLAYER.classList.remove('peppino-parry-sprite', 'is-stunned');
+updatePeppinoSprite();
+noiseIsStunned = false;
+NOISE.classList.remove('noise-disabled');
+updateNoiseSprite();
+STATUS_DISPLAY.textContent = 'Get the Toppings!';
+}, PARITY_SPRITE_DURATION);}
 
-        // --- SPRITES E CONFIGURAÇÕES ---
-        const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_stopped.png)";
-        const PLAYER_WALK_SPRITE = "url(imagens_jogo/Peppino_walk.gif)";
-        const PLAYER_RUN_SPRITE = "url(imagens_jogo/Peppino_run.png)";
-        const PLAYER_JUMP_SPRITE = "url(imagens_jogo/Peppino_jump.png)";
-        const PLAYER_WALL_SLIDE_SPRITE = "url(imagens_jogo/Peppino_wall.png)";
-        const PLAYER_HURT_SPRITE = "url(imagens_jogo/Peppino_hurt.png)";
-        const PLAYER_STUN_SPRITE = "url(imagens_jogo/Peppino_fireass.png)";
-        const NOISE_IDLE_SPRITE_NEW = "url(imagens_jogo/Noise_stopped.png)";
-        const NOISE_WALK_SPRITE = "url(imagens_jogo/Noise_walk.gif)";
-        const NOISE_JUMP_SPRITE = "url(imagens_jogo/Noise_jump.png)";
-        const NOISE_DOUBLE_JUMP_SPRITE = "url(imagens_jogo/Noise_doublejump.png)";
-        const NOISE_SCARED_SPRITE = "url(imagens_jogo/Noise_Scary.png)";
-        const NOISE_HAPPY_SPRITE = "url(imagens_jogo/Noise_Happy.png)";
-        const NOISE_POWERED_SPRITE = "url(imagens_jogo/Pepper_Pizza_Noise.gif)";
-        const STUNNED_SPRITE = "url(imagens_jogo/Noise_hurt.png)";
-        const PEPPER_SPRITE = "url(imagens_jogo/Pepper_Pizza_Peppino.gif)";
-        const PLAYER_TIRED_SPRITE = "url(imagens_jogo/Peppino_milk.gif)";
-        const NOISE_TIRED_SPRITE = "url(imagens_jogo/Noise_milk.gif)";
-        const NOISE_HIT_BY_PEPPER_SPRITE = "url(imagens_jogo/Noise_fireass.png)";
-        const NOISE_POWERUP_PARRY_SPRITE = "url(imagens_jogo/Noise_parry.gif)";
-        const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.png)";
-        const GAME_WIDTH = 900;
-        const GAME_HEIGHT = 500;
-        const PLAYER_WIDTH = 75;
-        const PLAYER_HEIGHT = 100;
-        const NOISE_WIDTH = 75;
-        const NOISE_HEIGHT = 100;
-        const GRAVITY = 0.5;
-        const JUMP_STRENGTH = 15;
-        const HIT_INVINCIBILITY_TIME = 1500;
-        const POWERUP_INVINCIBILITY_TIME = 5000;
-        const WALL_SLIDE_SPEED = 1.5;
-        const WALL_JUMP_HORIZONTAL_PUSH = 10;
-        const MAX_HEALTH = 6;
-        const POWERUP_SPAWN_CHANCE = 0.10;
-        const TOPPING_SPAWN_CHANCE = 1.0;
-        const NOISE_POWERED_SPEED = 7;
-        const TOPPING_SIZE = 25;
-        const MAX_NOISE_JUMPS = 2;
-        const NOISE_SPEED = 4;
-        const NOISE_JUMP_CHANCE = 0.05;
-        const NOISE_JUMP_STRENGTH = 12;
-        const NOISE_DOUBLE_JUMP_COOLDOWN = 100;
-        const NOISE_JOKE_TIME = 2500;
-        const NOISE_JOKE_SPRITE = "url(imagens_jogo/Noise_joke.png)";
-        let score = 0;
-        let time = 60;
-        let isGameOver = true;
-        let health = MAX_HEALTH;
-        let hitsTaken = 0;
-        let keys = {};
-        let isInvincible = false;
-        let isPowerupInvincible = false;
-        let noiseIsPoweredUp = false;
-        let playerX = 50;
-        let playerY = 0;
-        let velocityY = 0;
-        let isJumping = false;
-        let isWallSliding = false;
-        let isMoving = false;
-        let playerFacingRight = true;
-        let isPeppinoStunned = false;
-        const PEPPINO_STUN_TIME = HIT_INVINCIBILITY_TIME;
-        const WALK_SPEED = 5;
-        const RUN_SPEED = 10;
-        let currentSpeed = WALK_SPEED;
-        const NOISE_START_X = GAME_WIDTH - NOISE_WIDTH - 50;
-        let noiseX = NOISE_START_X;
-        let noiseY = 0;
-        let noiseVY = 0;
-        let noiseJumpsUsed = 0;
-        let noiseIsStunned = false;
-        let noiseIsJoking = false;
-        let noiseLastJumpTime = 0;
-        const NOISE_STUN_TIME = 3000;
-        let noiseDirection = -1;
-        let currentNoiseSpeed = NOISE_SPEED;
-        const TOPPING_CLASSES = ['topping-1', 'topping-2', 'topping-3', 'topping-4', 'topping-5'];
-        const SPECIAL_TOPPINGS = ['topping-gerome', 'topping-life'];
-        let hasGeromeSpawned = false;
-        const PLATFORM_WIDTH = 400;
-        const PLATFORM_WIDTH_TOP = 300;
-        const platformData = [
-            { x: (GAME_WIDTH / 2) - (PLATFORM_WIDTH / 2), y: 150, w: PLATFORM_WIDTH, h: 15 },
-            { x: (GAME_WIDTH / 2) - (PLATFORM_WIDTH_TOP / 2), y: 300, w: PLATFORM_WIDTH_TOP, h: 15 }
-        ];
-        let timerInterval;
-        let gameLoopInterval;
-        let spawnInterval;
-        let activePowerupElement = null;
-        let playerPowerupTimer;
-        let noisePowerupTimer;
+// FUNÇÕES DE ITENS E JOGO
+function collectTopping(toppingElement) {
+if (isGameOver) return;
+score += 100;
+SCORE_DISPLAY.textContent = `Score: ${score}`;
+toppingElement.remove();
+playSFX(SOUNDS.ToppingCollect);}
+function collectGerome(geromeElement) {
+if (isGameOver) return;
+score += 500;
+SCORE_DISPLAY.textContent = `Score: ${score}`;
+geromeElement.remove();
+playSFX(SOUNDS.GeromeCollect);
+STATUS_DISPLAY.textContent = "You found Gerome! +500 Points!";}
+function collectLifeMushroom(lifeElement) {
+if (isGameOver) return;
+lifeElement.remove();
+playSFX(SOUNDS.LifeCollect);
+if (health < MAX_HEALTH) {
+health = Math.min(MAX_HEALTH, health + 1);
+updateHealthDisplay();
+STATUS_DISPLAY.textContent = "+1 Hit!";
+} else {
+score += 100;
+SCORE_DISPLAY.textContent = `Score: ${score}`;
+STATUS_DISPLAY.textContent = "Max health! +100 Bonus Points!";}}
+function collectPowerup(powerupElement) {
+if (isGameOver) return;
+clearTimeout(playerPowerupTimer);
+powerupElement.remove();
+activePowerupElement = null;
+isInvincible = true;
+isPowerupInvincible = true;
+isPeppinoStunned = false;
+PLAYER.classList.remove('is-stunned', 'peppino-tired-sprite', 'peppino-parry-sprite');
+PLAYER.classList.add('invincible');
+updatePeppinoSprite();
+playSFX(SOUNDS.PepperCollect);
+playBGM(PEPPER_PEPPINO_AUDIO);
+STATUS_DISPLAY.textContent = "You got the Pepper pizza! 5 seconds of POWER!";
+playerPowerupTimer = setTimeout(() => {
+isInvincible = false;
+isPowerupInvincible = false;
+PLAYER.classList.remove('invincible', 'peppino-parry-sprite');
+PLAYER.classList.add('peppino-tired-sprite');
+playBGM(BGM_AUDIO);
+STATUS_DISPLAY.textContent = 'Have some milk!';
+isPeppinoStunned = true;
+PLAYER.classList.add('is-stunned');
+setTimeout(() => {
+PLAYER.classList.remove('peppino-tired-sprite');
+isPeppinoStunned = false; 
+PLAYER.classList.remove('is-stunned');
+updatePeppinoSprite();
+}, PEPPINO_MILK_STUN_TIME);
+}, POWERUP_INVINCIBILITY_TIME);}
+function collectNoisePowerup(powerupElement) {
+if (isGameOver || noiseIsPoweredUp) return;
+clearTimeout(noisePowerupTimer);
+powerupElement.remove();
+activePowerupElement = null;
+noiseIsPoweredUp = true;
+NOISE.classList.add('noise-powered-up');
+updateNoiseSprite();
+playSFX(SOUNDS.PepperCollect);
+playBGM(PEPPER_NOISE_AUDIO);
+STATUS_DISPLAY.textContent = "The Noise got the Pepper Pizza! RUN FOR YOUR LIFE!";
+noisePowerupTimer = setTimeout(() => {
+endNoisePowerup();
+}, POWERUP_INVINCIBILITY_TIME);}
+function endNoisePowerup() {
+clearTimeout(noisePowerupTimer);
+noiseIsPoweredUp = false;
+NOISE.classList.remove('noise-powered-up');
+noiseIsStunned = true;
+NOISE.classList.add('noise-disabled', 'noise-tired-sprite');
+updateNoiseSprite();
+playBGM(BGM_AUDIO);
+STATUS_DISPLAY.textContent = 'The Noise drinked some milk!.';
+clearTimeout(noiseStunTimer);
 
-        // --- IMPLEMENTAÇÃO DAS FUNÇÕES DE MOVIMENTO E COLISÃO ---
-        function createPlatforms() {
-            document.querySelectorAll('.platform').forEach(p => p.remove());
-            platformData.forEach((data, index) => {
-                const platform = document.createElement('div');
-                platform.classList.add('platform');
-                platform.id = `platform-${index}`;
-                platform.style.left = data.x + 'px';
-                platform.style.bottom = data.y + 'px';
-                platform.style.width = data.w + 'px';
-                platform.style.height = data.h + 'px';
-                GAME_AREA.appendChild(platform);
-            });
-        }
-        function updateHealthDisplay() {
-            let html = '';
-            for (let i = 0; i < MAX_HEALTH; i++) {
-                if (i < health) {
-                    html += `<span id="heart-icon"></span>`;
-                } else {
-                    html += `<span id="empty-heart-icon"></span>`;
-                }
-            }
-            HEALTH_DISPLAY.innerHTML = 'Hits: ' + html;
-        }
-        function updatePeppinoSprite() {
-            const onPlatform = checkPlatformCollision();
-            const isGrounded = playerY === 0 || onPlatform;
-            const movingHorizontally = keys['arrowright'] || keys['d'] || keys['arrowleft'] || keys['a'];
-            isMoving = movingHorizontally;
-            if (isGrounded && isMoving) {
-                if (WALK_AUDIO.paused && !isMuted && !isPeppinoStunned) {
-                    WALK_AUDIO.volume = 0.3;
-                    WALK_AUDIO.loop = true;
-                    WALK_AUDIO.play().catch(e => console.log("Walk Audio Play Error: ", e));
-                }
-            } else {
-                WALK_AUDIO.pause();
-                WALK_AUDIO.currentTime = 0;
-            }
-            PLAYER.classList.remove('moving-sprite', 'running-sprite', 'stomp-mode', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'wall-slide-sprite');
-            if (isPowerupInvincible) {
-                PLAYER.style.backgroundImage = PEPPER_SPRITE;
-                PLAYER.classList.remove('is-stunned');
-                return;
-            }
-            if (PLAYER.classList.contains('peppino-tired-sprite')) {
-                PLAYER.style.backgroundImage = PLAYER_TIRED_SPRITE;
-                PLAYER.classList.remove('is-stunned');
-                return;
-            }
-            if (isInvincible) {
-                if (isPeppinoStunned) {
-                    PLAYER.style.backgroundImage = PLAYER_STUN_SPRITE;
-                    PLAYER.classList.add('is-stunned');
-                }
-                else {
-                    PLAYER.style.backgroundImage = PLAYER_HURT_SPRITE;
-                    PLAYER.classList.add('peppino-hurt-sprite');
-                    PLAYER.classList.remove('is-stunned');
-                }
-                return;
-            }
-            PLAYER.classList.remove('is-stunned');
-            if (isWallSliding) {
-                PLAYER.style.backgroundImage = PLAYER_WALL_SLIDE_SPRITE;
-                PLAYER.classList.add('wall-slide-sprite');
-            }
-            else if (playerY > 0 && !isGrounded) {
-                PLAYER.style.backgroundImage = PLAYER_JUMP_SPRITE;
-            }
-            else if (isGrounded) {
-                if (isMoving) {
-                    if (currentSpeed === RUN_SPEED) {
-                        PLAYER.style.backgroundImage = PLAYER_RUN_SPRITE;
-                        PLAYER.classList.add('running-sprite');
-                    } else {
-                        PLAYER.style.backgroundImage = PLAYER_WALK_SPRITE;
-                        PLAYER.classList.add('moving-sprite');
-                    }
-                } else {
-                    PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
-                }
-            }
-            if (keys['arrowright'] || keys['d']) {
-                playerFacingRight = true;
-            } else if (keys['arrowleft'] || keys['a']) {
-                playerFacingRight = false;
-            }
-            if (playerFacingRight) {
-                PLAYER.classList.remove('facing-left');
-            } else {
-                PLAYER.classList.add('facing-left');
-            }
-        }
-        function updateNoiseSprite() {
-            if (noiseIsStunned || noiseIsJoking) {
-                NOISE.style.backgroundImage = noiseIsJoking ? NOISE_JOKE_SPRITE : NOISE.style.backgroundImage;
-                return;
-            }
-            if (NOISE.classList.contains('noise-tired-sprite')) {
-                NOISE.style.backgroundImage = NOISE_TIRED_SPRITE;
-                return;
-            }
-            if (NOISE.style.backgroundImage === NOISE_POWERUP_PARRY_SPRITE) {
-                return;
-            }
-            NOISE.classList.remove('noise-happy', 'noise-scared', 'noise-jumping', 'noise-double-jump', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite');
-            const onPlatform = checkNoisePlatformCollision();
-            const isGrounded = noiseY === 0 || onPlatform;
-            if (isPowerupInvincible && noiseIsPoweredUp) {
-                NOISE.style.backgroundImage = NOISE_POWERED_SPRITE;
-            }
-            else if (noiseIsPoweredUp) {
-                NOISE.style.backgroundImage = NOISE_POWERED_SPRITE;
-            }
-            else if (isPowerupInvincible) {
-                NOISE.style.backgroundImage = NOISE_SCARED_SPRITE;
-                NOISE.classList.add('noise-scared');
-            }
-            else if (activePowerupElement) {
-                NOISE.style.backgroundImage = NOISE_HAPPY_SPRITE;
-                NOISE.classList.add('noise-happy');
-            }
-            else {
-                if (noiseJumpsUsed === 2 && noiseY > 0) {
-                    NOISE.style.backgroundImage = NOISE_DOUBLE_JUMP_SPRITE;
-                    NOISE.classList.add('noise-double-jump');
-                }
-                else if (noiseY > 0 && !isGrounded) {
-                    NOISE.style.backgroundImage = NOISE_JUMP_SPRITE;
-                    NOISE.classList.add('noise-jumping');
-                }
-                else if (isGrounded) {
-                    const isStationary = Math.abs(noiseX + noiseDirection * currentNoiseSpeed - noiseX) < 1;
-                    if (isStationary) {
-                        NOISE.style.backgroundImage = NOISE_IDLE_SPRITE_NEW;
-                        NOISE.classList.add('noise-idle-sprite');
-                    } else {
-                        NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
-                    }
-                }
-            }
-            let noiseFacingRight = noiseDirection === 1;
-            if (noiseFacingRight) {
-                NOISE.classList.remove('facing-left');
-            } else {
-                NOISE.classList.add('facing-left');
-            }
-        }
-        function checkPlatformCollision() {
-            let onPlatform = false;
-            platformData.forEach(platform => {
-                const horizontalOverlap = playerX < platform.x + platform.w && playerX + PLAYER_WIDTH > platform.x;
-                if (horizontalOverlap) {
-                    const landingZone = (playerY + velocityY <= platform.y + platform.h) && (playerY >= platform.y + platform.h);
-                    if (landingZone) {
-                        playerY = platform.y + platform.h;
-                        velocityY = 0;
-                        isJumping = false;
-                        onPlatform = true;
-                    }
-                }
-            });
-            return onPlatform;
-        }
-        function checkNoisePlatformCollision() {
-            let onPlatform = false;
-            platformData.forEach(platform => {
-                const horizontalOverlap = noiseX < platform.x + platform.w && noiseX + NOISE_WIDTH > platform.x;
-                if (horizontalOverlap) {
-                    const landingZone = noiseY + noiseVY <= platform.y + platform.h && noiseY >= platform.y + platform.h;
-                    if (landingZone) {
-                        noiseY = platform.y + platform.h;
-                        noiseVY = 0;
-                        noiseJumpsUsed = 0;
-                    }
-                }
-            });
-            return onPlatform;
-        }
-        function updatePlayerPosition() {
-            if (isPeppinoStunned) {
-                let onPlatform = checkPlatformCollision();
-                if (!onPlatform) { velocityY -= GRAVITY; }
-                playerY += velocityY;
-                if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
-                PLAYER.style.bottom = playerY + 'px';
-                return;
-            }
-            let onPlatform = checkPlatformCollision();
-            let isGrounded = playerY === 0 || onPlatform;
-            const onLeftWall = playerX <= 0;
-            const onRightWall = playerX >= GAME_AREA.clientWidth - PLAYER_WIDTH;
-            if (!isGrounded && ((onLeftWall && (keys['ArrowLeft'] || keys['a'])) || (onRightWall && (keys['ArrowRight'] || keys['d'])))) {
-                isWallSliding = true;
-                if (velocityY < -WALL_SLIDE_SPEED) { velocityY = -WALL_SLIDE_SPEED; }
-            } else {
-                isWallSliding = false;
-            }
-            if (keys['arrowright'] || keys['d']) { playerX += currentSpeed; }
-            if (keys['arrowleft'] || keys['a']) { playerX -= currentSpeed; }
-            if (!isWallSliding && !onPlatform) { velocityY -= GRAVITY; }
+const NOISE_MILK_TIME = 500;
+setTimeout(() => {
+NOISE.classList.remove('noise-tired-sprite');
+NOISE.style.backgroundImage = STUNNED_SPRITE;
+}, NOISE_MILK_TIME);
+noiseStunTimer = setTimeout(() => {
+noiseIsStunned = false;
+NOISE.classList.remove('noise-disabled');
+updateNoiseSprite();
+}, POWERUP_INVINCIBILITY_TIME + NOISE_MILK_TIME);}
+function getRandomSpawnPosition() {
+const spawnYPoints = [0];
+document.querySelectorAll('.platform').forEach(p => {
+const pY = parseFloat(p.style.bottom);
+const pH = parseFloat(p.style.height);
+spawnYPoints.push(pY + pH);});
+const selectedY = spawnYPoints[Math.floor(Math.random() * spawnYPoints.length)];
+const scaledToppingSize = TOPPING_SIZE;
+if (selectedY === 0) {
+return {
+x: Math.random() * (GAME_WIDTH - scaledToppingSize),
+y: selectedY + getScaledValue(5)};
+} else {
+let platformElement = Array.from(document.querySelectorAll('.platform')).find(p => parseFloat(p.style.bottom) + parseFloat(p.style.height) === selectedY);
+if (platformElement) {
+const minX = parseFloat(platformElement.style.left);
+const maxX = minX + parseFloat(platformElement.style.width) - scaledToppingSize;
+return {
+x: minX + Math.random() * (maxX - minX),
+y: selectedY};}
+return {
+x: Math.random() * (GAME_WIDTH - scaledToppingSize),
+y: 0};}}
+function spawnTopping() {
+if (isGameOver) return;
+if (Math.random() < POWERUP_SPAWN_CHANCE && !activePowerupElement) {
+const powerup = document.createElement('div');
+powerup.classList.add('power-up', 'invincibility-powerup');
+const { x, y } = getRandomSpawnPosition();
+powerup.style.left = x + 'px';
+powerup.style.bottom = y + 'px';
+powerup.style.width = TOPPING_SIZE + 'px';
+powerup.style.height = TOPPING_SIZE + 'px';
+GAME_AREA.appendChild(powerup);
+activePowerupElement = powerup;
+updateNoiseSprite();
+playSFX(SOUNDS.PepperSpawn);
+setTimeout(() => {
+if (powerup.parentNode === GAME_AREA) {
+powerup.remove();
+activePowerupElement = null;
+updateNoiseSprite();}
+}, POWERUP_INVINCIBILITY_TIME);}
+if (document.querySelectorAll('.topping').length < 10) {
+if (Math.random() < TOPPING_SPAWN_CHANCE) {
+const topping = document.createElement('div');
+let randomToppingClass;
+const chance = Math.random();
+if (!hasGeromeSpawned && chance < 0.10) {
+randomToppingClass = 'topping-gerome';
+hasGeromeSpawned = true;
+playSFX(SOUNDS.GeromeSpawn);}
+else {
+randomToppingClass = TOPPING_CLASSES[Math.floor(Math.random() * TOPPING_CLASSES.length)];}
+topping.classList.add('topping', randomToppingClass);
+const { x, y } = getRandomSpawnPosition();
+topping.style.left = x + 'px';
+topping.style.bottom = y + 'px';
+topping.style.width = TOPPING_SIZE + 'px';
+topping.style.height = TOPPING_SIZE + 'px';
+GAME_AREA.appendChild(topping);}}}
+function calculateRank(hits, finalScore) {
+let rank = 'F-RANK';
+let rankClass = 'rank-F-image';
+let rankMessage = '';
+let rankColor = 'gray';
+if (health <= 0 || hits >= MAX_HEALTH) {
+rankMessage = `YOU SUCK!`;
+return { rank: 'F-RANK', rankClass: 'rank-F-image', message: rankMessage, color: 'gray' };}
+if (hits === 0) {
+rank = 'P-RANK';
+rankClass = 'rank-P-image';
+rankMessage = 'Perfection!';
+rankColor = '#570faf';}
+else if (hits <= 1 && finalScore >= 3000) {
+rank = 'S-RANK';
+rankClass = 'rank-S-image';
+rankMessage = 'Your rank is (almost) PERFECT!';
+rankColor = '#e28f01';}
+else if (hits <= 2 && finalScore >= 2500) {
+rank = 'A-RANK';
+rankClass = 'rank-A-image';
+rankMessage = 'Your rank is AMAZING!';
+rankColor = '#fe1800';}
+else if (hits <= 3 && finalScore >= 2000) {
+rank = 'B-RANK';
+rankClass = 'rank-B-image';
+rankMessage = 'Your rank is OK.';
+rankColor = '#78a5ff';}
+else if (hits <= 4 && finalScore >= 1500) {
+rank = 'C-RANK';
+rankClass = 'rank-C-image';
+rankMessage = 'Your rank is crappy.';
+rankColor = '#00b00d';}
+else if (hits <= 5 && finalScore >= 1000) {
+rank = 'D-RANK';
+rankClass = 'rank-D-image';
+rankMessage = 'Your rank is AWFUL!';
+rankColor = '#464646';}
+else if (hits === 6 && finalScore <= 100) {
+rankMessage = 'YOU SUCK!';
+rankColor = 'gray';}
+else {
+rankMessage = `IDK. Score/Hits adquired isn't enough.`;
+rankClass = 'rank-IDK-image';
+rankColor = 'gray';}
+return { rank, rankClass, message: rankMessage, color: rankColor };}
+function gameLoop() {
+updatePeppinoSprite();
+updateNoiseSprite();
+updatePlayerPosition();
+updateNoisePosition();
+checkCollision();
+score = Math.max(0, score);}
+function startTimer() {
+timerInterval = setInterval(() => {
+time--;
+TIMER_DISPLAY.textContent = `Time: ${time}`;
+if (time <= 0) {
+clearInterval(timerInterval);
+endGame(true);}
+}, 1000);}
+function endGame(timeUp = false) {
+isGameOver = true;
+clearInterval(timerInterval);
+clearInterval(gameLoopInterval);
+clearInterval(spawnInterval);
+clearTimeout(playerPowerupTimer);
+clearTimeout(noisePowerupTimer);
+clearTimeout(noiseStunTimer);
+clearTimeout(parryTimer);
+document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
+RANK_IMAGE_CONTAINER.style.display = 'none';
+stopBGM();
+activePowerupElement = null;
+isPowerupInvincible = false;
+noiseIsPoweredUp = false;
+noiseIsStunned = false;
+noiseIsJoking = false;
+isPeppinoStunned = false;
+isParrying = false;
+isRunningLocked = false;
+MOBILE_RUN_BUTTON.classList.remove('active');
+keys['shift'] = false;
+PLAYER.classList.remove('moving-sprite', 'running-sprite', 'stomp-mode', 'invincible', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'is-stunned', 'wall-slide-sprite', 'peppino-parry-sprite');
+PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
+NOISE.classList.remove('noise-disabled', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode', 'is-stunned', 'invincible');
+NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
+RANK_IMAGE_CONTAINER.style.display = 'none';
+const rankData = calculateRank(hitsTaken, score);
 
-            playerY += velocityY;
-            if (playerY >= GAME_HEIGHT - PLAYER_HEIGHT) { playerY = GAME_HEIGHT - PLAYER_HEIGHT; if (velocityY > 0) { velocityY = 0; } }
-            if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
-            playerX = Math.max(0, Math.min(GAME_AREA.clientWidth - PLAYER_WIDTH, playerX));
-            PLAYER.style.left = playerX + 'px';
-            PLAYER.style.bottom = playerY + 'px';
-        }
-        function playerJump() {
-            if (isGameOver || isPeppinoStunned) return;
-            WALK_AUDIO.pause();
-            WALK_AUDIO.currentTime = 0;
-            if (playerY === 0 || checkPlatformCollision()) {
-                velocityY = JUMP_STRENGTH;
-                isJumping = true;
-                playSFX(SOUNDS.JumpPeppino);
-            } else if (isWallSliding) {
-                velocityY = JUMP_STRENGTH;
-                isJumping = true;
-                isWallSliding = false;
-                playSFX(SOUNDS.JumpPeppino);
+// VITÓRIA DO NOISE
+if (health <= 0) {
+playSFX(SOUNDS.WinNoise);
+STATUS_DISPLAY.textContent = `F-RANK! ${rankData.message} Points: ${score}.`;
+STATUS_DISPLAY.style.color = rankData.color;
+PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_lose.png)';
+NOISE.style.backgroundImage = 'url(imagens_jogo/Noise_win.png)';
+NOISE.classList.remove('facing-left');
+RANK_IMAGE_CONTAINER.style.display = 'block';
+RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
 
-                const onLeftWall = playerX <= 0;
-                if (onLeftWall) { playerX += WALL_JUMP_HORIZONTAL_PUSH; } else { playerX -= WALL_JUMP_HORIZONTAL_PUSH; }
-            }
-        }
-        function updateNoisePosition() {
-            if (noiseIsStunned || noiseIsJoking) { return; }
-            let onPlatform = checkNoisePlatformCollision();
-            let targetX;
-            let currentSpeed = NOISE_SPEED;
-            const isGrounded = noiseY === 0 || onPlatform;
-            const canJump = isGrounded;
-            if (isPowerupInvincible && noiseIsPoweredUp) {
-                targetX = noiseX + noiseDirection * NOISE_SPEED;
-                currentSpeed = NOISE_SPEED;
-            }
-            else if (noiseIsPoweredUp) {
-                targetX = playerX;
-                currentSpeed = NOISE_POWERED_SPEED;
-            }
-            else if (isPowerupInvincible) {
-                const distanceToPeppino = noiseX - playerX;
-                targetX = noiseX + (distanceToPeppino > 0 ? currentNoiseSpeed : -currentNoiseSpeed) * 10;
-                currentSpeed = NOISE_POWERED_SPEED * 0.8;
-                if (distanceToPeppino > 0) {
-                    noiseDirection = 1;
-                } else {
-                    noiseDirection = -1;
-                }
-            }
-            else if (activePowerupElement) {
-                const powerupRect = activePowerupElement.getBoundingClientRect();
-                const gameAreaRect = GAME_AREA.getBoundingClientRect();
-                const powerupXGame = powerupRect.left - gameAreaRect.left;
-                targetX = powerupXGame;
-                currentSpeed = NOISE_SPEED * 1.5;
-                const powerupY = parseFloat(activePowerupElement.style.bottom);
-                const isPowerupAboveNoise = powerupY > noiseY + NOISE_HEIGHT;
-                const horizontalDistance = Math.abs(noiseX - powerupXGame);
-                if (isPowerupAboveNoise) {
-                    if (canJump && horizontalDistance < NOISE_WIDTH * 2) {
-                        jumpNoise();
-                    } else if (!canJump && noiseJumpsUsed < MAX_NOISE_JUMPS) {
-                        jumpNoise();
-                    }
-                } else if (canJump && Math.random() < NOISE_JUMP_CHANCE) {
-                    jumpNoise();
-                }
-            }
-            else {
-                targetX = noiseX + noiseDirection * NOISE_SPEED;
-                currentSpeed = NOISE_SPEED;
-                if (canJump && Math.random() < NOISE_JUMP_CHANCE) {
-                    jumpNoise();
-                } else if (noiseJumpsUsed === 1 && Math.random() < NOISE_JUMP_CHANCE / 2) {
-                    jumpNoise();
-                }
-            }
-            if (!isPowerupInvincible && !noiseIsPoweredUp) {
-                if (targetX < noiseX) {
-                    noiseDirection = -1;
-                } else if (targetX > noiseX) {
-                    noiseDirection = 1;
-                }
-            } else if (isPowerupInvincible && noiseIsPoweredUp) {
-                if (noiseX <= 0) { noiseDirection = 1; }
-                else if (noiseX >= GAME_AREA.clientWidth - NOISE_WIDTH) { noiseDirection = -1; }
-            } else if (noiseIsPoweredUp) {
-                if (noiseX < playerX) {
-                    noiseDirection = 1;
-                } else if (noiseX > playerX) {
-                    noiseDirection = -1;
-                }
-            } else if (isPowerupInvincible) {
-                if (targetX < noiseX) {
-                    noiseDirection = -1;
-                } else if (targetX > noiseX) {
-                    noiseDirection = 1;
-                }
-            }
-            noiseX += noiseDirection * currentSpeed;
-            if (!noiseIsPoweredUp) {
-                if (noiseX <= 0 || noiseX >= GAME_AREA.clientWidth - NOISE_WIDTH) {
-                    if (!isPowerupInvincible && !activePowerupElement) {
-                        noiseDirection *= -1;
-                    }
-                    noiseX = Math.max(0, Math.min(GAME_AREA.clientWidth - NOISE_WIDTH, noiseX));
-                }
-            }
-            if (noiseIsPoweredUp && isNoiseFacingTarget(targetX)) {
-                if (canJump || (noiseJumpsUsed === 1 && Math.random() < 0.5)) {
-                    jumpNoise();
-                }
-            }
-            if (!onPlatform) { noiseVY -= GRAVITY; }
-            noiseY += noiseVY;
-            if (noiseY >= GAME_HEIGHT - NOISE_HEIGHT) { noiseY = GAME_HEIGHT - NOISE_HEIGHT; if (noiseVY > 0) { noiseVY = 0; } }
-            if (noiseY <= 0) {
-                noiseY = 0;
-                noiseVY = 0;
-                noiseJumpsUsed = 0;
-            }
-            NOISE.style.left = noiseX + 'px';
-            NOISE.style.bottom = noiseY + 'px';
-        }
-        function isNoiseFacingTarget(targetX) {
-            if (targetX > noiseX) { return noiseDirection === 1; }
-            if (targetX < noiseX) { return noiseDirection === -1; }
-            return false;
-        }
-        function jumpNoise() {
-            const currentTime = Date.now();
-            const isGrounded = noiseY === 0 || checkNoisePlatformCollision();
-            if (isGrounded) {
-                noiseVY = NOISE_JUMP_STRENGTH;
-                noiseJumpsUsed = 1;
-                noiseLastJumpTime = currentTime;
-                playSFX(SOUNDS.JumpNoise);
-            } else if (noiseJumpsUsed === 1 && (currentTime - noiseLastJumpTime) >= NOISE_DOUBLE_JUMP_COOLDOWN) {
-                noiseVY = NOISE_JUMP_STRENGTH;
-                noiseJumpsUsed++;
-                playSFX(SOUNDS.DoubleJumpNoise);
-            }
-        }
-        function checkCollision() {
-            const playerRect = PLAYER.getBoundingClientRect();
-            const noiseRect = NOISE.getBoundingClientRect();
-            const items = document.querySelectorAll('.topping, .power-up');
-            items.forEach(item => {
-                const itemRect = item.getBoundingClientRect();
-                if (isColliding(playerRect, itemRect)) {
-                    if (item.classList.contains('power-up')) {
-                        collectPowerup(item);
-                    } else if (item.classList.contains('topping-gerome')) {
-                        collectGerome(item);
-                    } else if (item.classList.contains('topping-life')) {
-                        collectLifeMushroom(item);
-                    } else {
-                        collectTopping(item);
-                    }
-                }
-            });
-            items.forEach(item => {
-                const itemRect = item.getBoundingClientRect();
-                if (isColliding(noiseRect, itemRect) && item.classList.contains('power-up') && !noiseIsPoweredUp) {
-                    collectNoisePowerup(item);
-                }
-            });
-            if (isColliding(playerRect, noiseRect) && !noiseIsStunned && !noiseIsJoking) {
-                if (isPowerupInvincible && noiseIsPoweredUp) {
-                    handleNoisePowerupConflict();
-                    return;
-                }
-                if (isPowerupInvincible) {
-                    handleNoisePepperHit();
-                    return;
-                }
-                if (noiseIsPoweredUp && !isInvincible) {
-                    handlePepperNoiseHitPeppino();
-                    return;
-                }
-                const isStomping = (velocityY < 0) && (playerY > noiseY + NOISE_HEIGHT - 10);
-                if (isStomping) {
-                    handleNoiseStomp();
-                } else if (!isInvincible) {
-                    handleNoiseHit(1);
-                }
-            }
-        }
-        function isColliding(rect1, rect2) {
-            return (rect1.left < rect2.right && rect1.right > rect2.left &&
-                rect1.bottom > rect2.top && rect1.top < rect2.bottom);
-        }
+// VITÓRIA DO PEPPINO
+} else if (timeUp) {
+playSFX(SOUNDS.WinPeppino);
+STATUS_DISPLAY.textContent = `${rankData.rank}! ${rankData.message} Points: ${score}.`; 
+STATUS_DISPLAY.style.color = rankData.color;
+RANK_IMAGE_CONTAINER.style.display = 'block';
+RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
+PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_win.png)';
+NOISE.style.backgroundImage = NOISE_LOSE_SPRITE;
+NOISE.classList.remove('facing-left');}
+STATUS_DISPLAY.style.display = 'block';
+RESET_BUTTON.style.display = 'block';}
 
-        // --- FUNÇÕES DE DANO ---
-        function handleNoiseHit(damage = 1) {
-            if (isInvincible) return;
-            health -= damage;
-            hitsTaken++;
-            updateHealthDisplay();
+// CONTROLES DO TECLADO
+document.addEventListener('keydown', (e) => {
+if (isGameOver || isPeppinoStunned || isParrying) return;
+const key = e.key.toLowerCase();
+keys[key] = true;
+if (key === ' ' || key === 'w') {
+playerJump();}
+if (key === 'shift' && currentSpeed === WALK_SPEED) {
+currentSpeed = RUN_SPEED;}});
+document.addEventListener('keyup', (e) => {
+const key = e.key.toLowerCase();
+if (key === 'shift' && isRunningLocked) {
+return;}
+keys[key] = false;
+if (key === 'shift') {
+currentSpeed = WALK_SPEED;
+}});
 
-            if (health <= 0) {
-                endGame();
-                return;
-            }
-            playSFX(SOUNDS.HurtPeppino);
-            isInvincible = true;
-            PLAYER.classList.add('invincible', 'peppino-hurt-sprite');
-            const pushBack = 70;
-            if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
-            playerX = Math.max(0, Math.min(GAME_AREA.clientWidth - PLAYER_WIDTH, playerX));
-            STATUS_DISPLAY.textContent = `Hit! ${health} remaining Hit(s).`;
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.classList.remove('invincible', 'peppino-hurt-sprite');
-                STATUS_DISPLAY.textContent = 'Get the Toppings!';
-            }, HIT_INVINCIBILITY_TIME);
-        }
-        function handlePepperNoiseHitPeppino() {
-            if (isInvincible) return;
-            health -= 2;
-            hitsTaken += 2;
-            updateHealthDisplay();
-
-            if (health <= 0) {
-                endGame();
-                return;
-            }
-            playSFX(SOUNDS.ScreamPeppino);
-            isInvincible = true;
-            isPeppinoStunned = true;
-            PLAYER.classList.add('invincible', 'peppino-stun-sprite', 'is-stunned');
-            noiseIsJoking = true;
-            NOISE.style.backgroundImage = NOISE_JOKE_SPRITE;
-            NOISE.classList.add('noise-disabled');
-            const pushBack = 100;
-            if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
-            playerX = Math.max(0, Math.min(GAME_AREA.clientWidth - PLAYER_WIDTH, playerX));
-            STATUS_DISPLAY.textContent = `Peppino is STUNNED!`;
-            setTimeout(() => {
-                isInvincible = false;
-                isPeppinoStunned = false;
-                PLAYER.classList.remove('invincible', 'peppino-stun-sprite', 'is-stunned');
-                STATUS_DISPLAY.textContent = 'Get the Toppings!';
-            }, PEPPINO_STUN_TIME);
-            setTimeout(() => {
-                noiseIsJoking = false;
-                NOISE.classList.remove('noise-disabled');
-                updateNoiseSprite();
-            }, NOISE_JOKE_TIME);
-        }
-        function dropLifeMushroom(x, y) {
-            const DROP_CHANCE = 0.20;
-            if (Math.random() < DROP_CHANCE) {
-                const lifeTopping = document.createElement('div');
-                lifeTopping.classList.add('topping', 'topping-life');
-                const dropX = x + (NOISE_WIDTH / 2) - (TOPPING_SIZE / 2);
-                let dropY = 0;
-                dropY = y + NOISE_HEIGHT;
-                lifeTopping.style.left = dropX + 'px';
-                lifeTopping.style.bottom = dropY + 'px';
-                GAME_AREA.appendChild(lifeTopping);
-                playSFX(SOUNDS.PepperSpawn); 
-                STATUS_DISPLAY.textContent = "The Noise dropped some HP!";
-                setTimeout(() => {
-                    if (STATUS_DISPLAY.textContent.includes("Life Mushroom")) {
-                        STATUS_DISPLAY.textContent = 'Get the Toppings!';
-                    }
-                }, 1500); 
-            }
-        }        
-        function handleNoiseStomp() {
-            velocityY = JUMP_STRENGTH / 2;
-            const wasInvincible = isInvincible;
-            if (!isPowerupInvincible) {
-                isInvincible = true;
-                PLAYER.classList.remove('peppino-hurt-sprite');
-                PLAYER.classList.add('invincible', 'stomp-mode');
-            }
-            if (noiseIsPoweredUp) {
-                endNoisePowerup();
-            }
-            noiseIsStunned = true;
-            NOISE.classList.add('noise-disabled');
-            NOISE.style.backgroundImage = STUNNED_SPRITE;
-            playSFX(SOUNDS.HurtNoise);
-            WALK_AUDIO.pause();
-            WALK_AUDIO.currentTime = 0;
-            STATUS_DISPLAY.textContent = `The Noise was stomped!`;
-            dropLifeMushroom(noiseX, noiseY); 
-            setTimeout(() => {
-                if (!wasInvincible && !isPowerupInvincible) {
-                    isInvincible = false;
-                    PLAYER.classList.remove('invincible', 'stomp-mode');
-                }
-                STATUS_DISPLAY.textContent = 'Get the Toppings!';
-            }, HIT_INVINCIBILITY_TIME);
-            setTimeout(() => {
-                noiseIsStunned = false;
-                NOISE.classList.remove('noise-disabled');
-                updateNoiseSprite();
-            }, NOISE_STUN_TIME);
-        }
-        function handleNoisePepperHit() {
-            noiseIsStunned = true;
-            NOISE.classList.add('noise-disabled');
-            NOISE.style.backgroundImage = NOISE_HIT_BY_PEPPER_SPRITE;
-            const pushBack = 100;
-            if (playerX < noiseX) { noiseX += pushBack; } else { noiseX -= pushBack; }
-            noiseX = Math.max(0, Math.min(GAME_AREA.clientWidth - NOISE_WIDTH, noiseX));
-            STATUS_DISPLAY.textContent = `The Noise was KNOCKED OUT!`;
-            playSFX(SOUNDS.HurtNoise);
-            dropLifeMushroom(noiseX, noiseY); 
-            setTimeout(() => {
-                noiseIsStunned = false;
-                NOISE.classList.remove('noise-disabled');
-                updateNoiseSprite();
-                STATUS_DISPLAY.textContent = 'Get the Toppings!';
-            }, NOISE_STUN_TIME * 1.5);
-        }
-        function handleNoisePowerupConflict() {
-            playSFX(SOUNDS.PowerupConflict, 1.0);
-            STATUS_DISPLAY.textContent = `Noise is not gonna SUGARCOAT IT!`;
-            NOISE.style.backgroundImage = NOISE_POWERUP_PARRY_SPRITE;
-            const pushBack = 50;
-            if (playerX < noiseX) { noiseX += pushBack; } else { noiseX -= pushBack; }
-            noiseX = Math.max(0, Math.min(GAME_AREA.clientWidth - NOISE_WIDTH, noiseX));
-            noiseIsStunned = true;
-            NOISE.classList.add('noise-disabled');
-            setTimeout(() => {
-                noiseIsStunned = false;
-                NOISE.classList.remove('noise-disabled');
-                NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
-                updateNoiseSprite();
-            }, 500);
-        }
-        // --- FUNÇÕES DE ITENS E JOGO ---
-        function collectTopping(toppingElement) {
-            if (isGameOver) return;
-            score += 100;
-            SCORE_DISPLAY.textContent = `Score: ${score}`;
-            toppingElement.remove();
-            playSFX(SOUNDS.ToppingCollect);
-        }
-        function collectGerome(geromeElement) {
-            if (isGameOver) return;
-            score += 500;
-            SCORE_DISPLAY.textContent = `Score: ${score}`;
-            geromeElement.remove();
-            playSFX(SOUNDS.GeromeCollect);
-            STATUS_DISPLAY.textContent = "You found Gerome! +500 Points!";
-        }
-        function collectLifeMushroom(lifeElement) {
-            if (isGameOver) return;
-            lifeElement.remove();
-            playSFX(SOUNDS.LifeCollect);
-            if (health < MAX_HEALTH) {
-                health = Math.min(MAX_HEALTH, health + 1);
-                updateHealthDisplay();
-                STATUS_DISPLAY.textContent = "+1 Hit!";
-            } else {
-                score += 100;
-                SCORE_DISPLAY.textContent = `Score: ${score}`;
-                STATUS_DISPLAY.textContent = "Max health! +100 Bonus Points!";
-            }
-        }
-        function collectPowerup(powerupElement) {
-            if (isGameOver) return;
-            clearTimeout(playerPowerupTimer);
-            powerupElement.remove();
-            activePowerupElement = null;
-            isInvincible = true;
-            isPowerupInvincible = true;
-            isPeppinoStunned = false;
-            PLAYER.classList.remove('is-stunned');
-            PLAYER.classList.add('invincible');
-            updatePeppinoSprite();
-            playSFX(SOUNDS.PepperCollect);
-            playBGM(PEPPER_PEPPINO_AUDIO);
-            STATUS_DISPLAY.textContent = "You got the Pepper pizza! 5 seconds of POWER!";
-            playerPowerupTimer = setTimeout(() => {
-                isInvincible = false;
-                isPowerupInvincible = false;
-                PLAYER.classList.remove('invincible');
-                PLAYER.classList.add('peppino-tired-sprite');
-                playBGM(BGM_AUDIO);
-                STATUS_DISPLAY.textContent = 'Have some milk!';
-                setTimeout(() => {
-                    PLAYER.classList.remove('peppino-tired-sprite');
-                    updatePeppinoSprite();
-                }, 500);
-            }, POWERUP_INVINCIBILITY_TIME);
-        }
-        function collectNoisePowerup(powerupElement) {
-            if (isGameOver || noiseIsPoweredUp) return;
-            clearTimeout(noisePowerupTimer);
-            powerupElement.remove();
-            activePowerupElement = null;
-            noiseIsPoweredUp = true;
-            NOISE.classList.add('noise-powered-up');
-            updateNoiseSprite();
-            playSFX(SOUNDS.PepperCollect);
-            playBGM(PEPPER_NOISE_AUDIO);
-            STATUS_DISPLAY.textContent = "The Noise got the Pepper Pizza! RUN FOR YOUR LIFE!";
-            noisePowerupTimer = setTimeout(() => {
-                endNoisePowerup();
-            }, POWERUP_INVINCIBILITY_TIME);
-        }
-        function endNoisePowerup() {
-            clearTimeout(noisePowerupTimer);
-            noiseIsPoweredUp = false;
-            NOISE.classList.remove('noise-powered-up');
-            noiseIsStunned = true;
-            NOISE.classList.add('noise-disabled', 'noise-tired-sprite');
-            updateNoiseSprite();
-            playBGM(BGM_AUDIO);
-            STATUS_DISPLAY.textContent = 'The Noise drinked some milk!.';
-            setTimeout(() => {
-                NOISE.classList.remove('noise-tired-sprite');
-                NOISE.style.backgroundImage = STUNNED_SPRITE;
-            }, 500);
-            setTimeout(() => {
-                noiseIsStunned = false;
-                NOISE.classList.remove('noise-disabled');
-                updateNoiseSprite();
-            }, NOISE_STUN_TIME);
-        }
-        function getRandomSpawnPosition() {
-            const spawnYPoints = [0];
-            platformData.forEach(p => {
-                spawnYPoints.push(p.y + p.h);
-            });
-            const selectedY = spawnYPoints[Math.floor(Math.random() * spawnYPoints.length)];
-            if (selectedY === 0) {
-                return {
-                    x: Math.random() * (GAME_WIDTH - TOPPING_SIZE),
-                    y: selectedY + 5
-                };
-            } else {
-                let platform = platformData.find(p => p.y + p.h === selectedY);
-                if (platform) {
-                    const minX = platform.x;
-                    const maxX = platform.x + platform.w - TOPPING_SIZE;
-                    return {
-                        x: minX + Math.random() * (maxX - minX),
-                        y: selectedY
-                    };
-                }
-                return {
-                    x: Math.random() * (GAME_WIDTH - TOPPING_SIZE),
-                    y: 0
-                };
-            }
-        }
-        function spawnTopping() {
-            if (isGameOver) return;
-            if (Math.random() < POWERUP_SPAWN_CHANCE && !activePowerupElement) {
-                const powerup = document.createElement('div');
-                powerup.classList.add('power-up', 'invincibility-powerup');
-                const { x, y } = getRandomSpawnPosition();
-                powerup.style.left = x + 'px';
-                powerup.style.bottom = y + 'px';
-                GAME_AREA.appendChild(powerup);
-                activePowerupElement = powerup;
-                updateNoiseSprite();
-                playSFX(SOUNDS.PepperSpawn);
-                setTimeout(() => {
-                    if (powerup.parentNode === GAME_AREA) {
-                        powerup.remove();
-                        activePowerupElement = null;
-                    }
-                }, POWERUP_INVINCIBILITY_TIME);
-            }
-            if (document.querySelectorAll('.topping').length < 10) {
-                if (Math.random() < TOPPING_SPAWN_CHANCE) {
-                    const topping = document.createElement('div');
-                    let randomToppingClass;
-
-                    const chance = Math.random();
-                    if (!hasGeromeSpawned && chance < 0.10) {
-                        randomToppingClass = 'topping-gerome';
-                        hasGeromeSpawned = true;
-                        playSFX(SOUNDS.GeromeSpawn);
-                    }
-                    else {
-                        randomToppingClass = TOPPING_CLASSES[Math.floor(Math.random() * TOPPING_CLASSES.length)];
-                    }
-                    
-                    topping.classList.add('topping', randomToppingClass);
-                    const { x, y } = getRandomSpawnPosition();
-                    topping.style.left = x + 'px';
-                    topping.style.bottom = y + 'px';
-                    GAME_AREA.appendChild(topping);
-                }
-            }
-        }
-        function calculateRank(hits, finalScore) {
-            let rank = 'F-RANK';
-            let rankClass = 'rank-F-image';
-            let rankMessage = '';
-            let rankColor = 'gray';
-            if (health <= 0 || hits >= MAX_HEALTH) {
-                rankMessage = `Game Over. YOU SUCK!`;
-                return { rank: 'F-RANK', rankClass: 'rank-F-image', message: rankMessage, color: 'gray' };
-            }
-            if (hits === 0) {
-                rank = 'P-RANK';
-                rankClass = 'rank-P-image';
-                rankMessage = 'Perfection!';
-                rankColor = '#570faf';
-            }
-            else if (hits <= 1 && finalScore >= 3000) {
-                rank = 'S-RANK';
-                rankClass = 'rank-S-image';
-                rankMessage = 'Your rank is (almost) PERFECT!';
-                rankColor = '#e28f01';
-            }
-            else if (hits <= 2 && finalScore >= 2500) {
-                rank = 'A-RANK';
-                rankClass = 'rank-A-image';
-                rankMessage = 'Your rank is AMAZING!';
-                rankColor = '#fe1800';
-            }
-            else if (hits <= 3 && finalScore >= 2000) {
-                rank = 'B-RANK';
-                rankClass = 'rank-B-image';
-                rankMessage = 'Your rank is OK.';
-                rankColor = '#78a5ff';
-            }
-            else if (hits <= 4 && finalScore >= 1500) {
-                rank = 'C-RANK';
-                rankClass = 'rank-C-image';
-                rankMessage = 'Your rank is crappy.';
-                rankColor = '#00b00d';
-            }
-            else if (hits <= 5 && finalScore >= 1000) {
-                rank = 'D-RANK';
-                rankClass = 'rank-D-image';
-                rankMessage = 'Your rank is AWFUL!';
-                rankColor = '#464646';
-            }
-            else if (hits === 6 && finalScore <= 100) {
-                rankMessage = 'YOU SUCK!';
-                rankColor = 'gray';
-            }
-            else {
-                rankMessage = `F-RANK. Score or Hits requirement not achived.`;
-                rankClass = 'rank-F-image';
-                rankColor = 'gray';
-            }
-            return { rank, rankClass, message: rankMessage, color: rankColor };
-        }
-        function gameLoop() {
-            updatePeppinoSprite();
-            updateNoiseSprite();
-            updatePlayerPosition();
-            updateNoisePosition();
-            checkCollision();
-            score = Math.max(0, score);
-        }
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                time--;
-                TIMER_DISPLAY.textContent = `Time: ${time}`;
-
-                if (time <= 0) {
-                    clearInterval(timerInterval);
-                    endGame(true);
-                }
-            }, 1000);
-        }
-        function endGame(timeUp = false) {
-            isGameOver = true;
-            clearInterval(timerInterval);
-            clearInterval(gameLoopInterval);
-            clearInterval(spawnInterval);
-            clearTimeout(playerPowerupTimer);
-            clearTimeout(noisePowerupTimer);
-            document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
-            RANK_IMAGE_CONTAINER.style.display = 'none';
-            stopBGM();
-            activePowerupElement = null;
-            isPowerupInvincible = false;
-            noiseIsPoweredUp = false;
-            noiseIsStunned = false;
-            noiseIsJoking = false;
-            isPeppinoStunned = false;
-            PLAYER.classList.remove('moving-sprite', 'running-sprite', 'stomp-mode', 'invincible', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'is-stunned', 'wall-slide-sprite');
-            NOISE.classList.remove('noise-disabled', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite');
-            const rankData = calculateRank(hitsTaken, score);
-
-            // VITÓRIA DO NOISE            
-            if (health <= 0) {
-                playSFX(SOUNDS.WinNoise);
-                STATUS_DISPLAY.textContent = rankData.message;
-                STATUS_DISPLAY.style.color = rankData.color;
-                PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_lose.png)';
-                NOISE.style.backgroundImage = 'url(imagens_jogo/Noise_win.png)';
-                NOISE.classList.remove('facing-left');
-                RANK_IMAGE_CONTAINER.style.display = 'block';
-                RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
-
-                // VITÓRIA DO PEPPINO              
-            } else if (timeUp) {
-                playSFX(SOUNDS.WinPeppino);
-                STATUS_DISPLAY.textContent = `Rank ${rankData.rank}! Score: ${score}. ${rankData.message}`;
-                STATUS_DISPLAY.style.color = rankData.color;
-                RANK_IMAGE_CONTAINER.style.display = 'block';
-                RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
-                PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_win.png)';
-                NOISE.style.backgroundImage = NOISE_LOSE_SPRITE;
-                NOISE.classList.remove('facing-left');
-            }
-            STATUS_DISPLAY.style.display = 'block';
-        }
-
-        // --- CONTROLES DO TECLADO ---
-        document.addEventListener('keydown', (e) => {
-            if (isGameOver || isPeppinoStunned) return;
-            const key = e.key.toLowerCase();
-            keys[key] = true;
-            if (key === ' ' || key === 'w') {
-                playerJump();
-            }
-            if (key === 'shift' && currentSpeed === WALK_SPEED) {
-                currentSpeed = RUN_SPEED;
-            }
-        });
-        document.addEventListener('keyup', (e) => {
-            const key = e.key.toLowerCase();
-            keys[key] = false;
-            if (key === 'shift') {
-                currentSpeed = WALK_SPEED;
-                PLAYER.textContent = 'Peppino';
-            }
-        });
-
-        // --- INICIALIZAÇÃO ---
-        function startGame() {
-            if (!isGameOver) { endGame(); }
-            if (START_SCREEN.style.display !== 'none') {
-                hideStartScreen();
-            }
-            score = 0;
-            time = 60;
-            health = MAX_HEALTH;
-            hitsTaken = 0;
-            isGameOver = false;
-            keys = {};
-            mobileKeys = {}; 
-            currentSpeed = WALK_SPEED;
-            isInvincible = false;
-            isPowerupInvincible = false;
-            noiseIsPoweredUp = false;
-            activePowerupElement = null;
-            isWallSliding = false;
-            noiseIsStunned = false;
-            noiseIsJoking = false;
-            isPeppinoStunned = false;
-            playerFacingRight = true;
-            hasGeromeSpawned = false;
-            clearTimeout(playerPowerupTimer);
-            clearTimeout(noisePowerupTimer);
-            velocityY = 0;
-            noiseVY = 0;
-            noiseLastJumpTime = 0;
-            PLAYER.classList.remove('invincible', 'stomp-mode', 'facing-left', 'running-sprite', 'moving-sprite', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'is-stunned', 'wall-slide-sprite');
-            PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
-            NOISE.classList.remove('noise-disabled', 'facing-left', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite');
-            NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
-            RANK_IMAGE_CONTAINER.style.display = 'none';
-            clearInterval(timerInterval);
-            clearInterval(gameLoopInterval);
-            clearInterval(spawnInterval);
-            document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
-            SCORE_DISPLAY.textContent = 'Score: 0';
-            TIMER_DISPLAY.textContent = 'Time: 60';
-            updateHealthDisplay();
-            STATUS_DISPLAY.textContent = 'Use the platforms to get the Toppings!';
-            STATUS_DISPLAY.className = 'message';
-            STATUS_DISPLAY.style.color = 'white';
-            STATUS_DISPLAY.style.display = 'block';
-            playBGM(BGM_AUDIO);
-            playerX = 50;
-            playerY = 0;
-            noiseX = NOISE_START_X;
-            noiseY = 0;
-            PLAYER.style.left = playerX + 'px';
-            PLAYER.style.bottom = playerY + 'px';
-            NOISE.style.left = noiseX + 'px';
-            NOISE.style.bottom = noiseY + 'px'
-            createPlatforms();
-            startTimer();
-            gameLoopInterval = setInterval(gameLoop, 1000 / 60);
-            for (let i = 0; i < 5; i++) {
-                const topping = document.createElement('div');
-                const randomToppingClass = TOPPING_CLASSES[Math.floor(Math.random() * TOPPING_CLASSES.length)];
-                topping.classList.add('topping', randomToppingClass);
-                const { x, y } = getRandomSpawnPosition();
-                topping.style.left = x + 'px';
-                topping.style.bottom = y + 'px';
-                GAME_AREA.appendChild(topping);
-            }
-            spawnInterval = setInterval(spawnTopping, 1000);
-
-        }
-        window.onload = () => {
-            isGameOver = true;
-            updateHealthDisplay();
-            playBGM(START_BGM_AUDIO);
-            showStartScreen();
-        }
-    </script>
-
+// INICIALIZAÇÃO
+function startGame() {
+updateScaledConstants();
+if (!isGameOver) { endGame(); }
+if (START_SCREEN.style.display !== 'none') {
+hideStartScreen();}
+score = 0;
+time = 60;
+health = MAX_HEALTH;
+hitsTaken = 0;
+isGameOver = false;
+keys = {};
+mobileKeys = {};
+isRunningLocked = false;
+MOBILE_RUN_BUTTON.classList.remove('active');
+currentSpeed = WALK_SPEED;
+isInvincible = false;
+isPowerupInvincible = false;
+noiseIsPoweredUp = false;
+activePowerupElement = null;
+isWallSliding = false;
+noiseIsStunned = false;
+noiseIsJoking = false;
+isPeppinoStunned = false;
+isParrying = false;
+playerFacingRight = true;
+hasGeromeSpawned = false;
+clearTimeout(playerPowerupTimer);
+clearTimeout(noisePowerupTimer);
+clearTimeout(noiseStunTimer);
+clearTimeout(parryTimer);
+velocityY = 0;
+noiseVY = 0;
+noiseLastJumpTime = 0;
+PLAYER.classList.remove('invincible', 'stomp-mode', 'facing-left', 'running-sprite', 'moving-sprite', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'is-stunned', 'wall-slide-sprite', 'peppino-parry-sprite');
+PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
+NOISE.classList.remove('noise-disabled', 'facing-left', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode', 'is-stunned', 'invincible');
+NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
+RANK_IMAGE_CONTAINER.style.display = 'none';
+clearInterval(timerInterval);
+clearInterval(gameLoopInterval);
+clearInterval(spawnInterval);
+document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
+SCORE_DISPLAY.textContent = 'Score: 0';
+TIMER_DISPLAY.textContent = 'Time: 60';
+updateHealthDisplay();
+STATUS_DISPLAY.textContent = 'Use the platforms to get the Toppings!';
+STATUS_DISPLAY.className = 'message';
+STATUS_DISPLAY.style.color = 'white';
+STATUS_DISPLAY.style.display = 'block';
+playBGM(BGM_AUDIO);
+playerX = getScaledValue(BASE_PLAYER_START_X);
+playerY = 0;
+noiseX = NOISE_START_X;
+noiseY = 0;
+PLAYER.style.left = playerX + 'px';
+PLAYER.style.bottom = playerY + 'px';
+NOISE.style.left = noiseX + 'px';
+NOISE.style.bottom = noiseY + 'px'
+createPlatforms();
+startTimer();
+gameLoopInterval = setInterval(gameLoop, 1000 / 60);
+for (let i = 0; i < 5; i++) {
+const topping = document.createElement('div');
+const randomToppingClass = TOPPING_CLASSES[Math.floor(Math.random() * TOPPING_CLASSES.length)];
+topping.classList.add('topping', randomToppingClass);
+const { x, y } = getRandomSpawnPosition();
+topping.style.left = x + 'px';
+topping.style.bottom = y + 'px';
+topping.style.width = TOPPING_SIZE + 'px';
+topping.style.height = TOPPING_SIZE + 'px';
+GAME_AREA.appendChild(topping);}
+spawnInterval = setInterval(spawnTopping, 1000);}
+window.onload = () => {
+updateScaledConstants();
+isGameOver = true;
+updateHealthDisplay();
+playBGM(START_BGM_AUDIO);
+showStartScreen();}
+</script>
 </body>
-
 </html>

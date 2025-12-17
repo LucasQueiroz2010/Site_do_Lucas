@@ -71,6 +71,7 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 7.1- Site do Lucas V1.7.1
 1) Mudanças no README.
 2) Mudanças pequenas no "jogo.html"
+!-try.remove "fatal_error" ... task_failed-!
 
 8- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas)
 1) Foi adicionado um dicionário no começo do README.
@@ -78,3 +79,10 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 3) Foi mudado algumas interações entre as estrelas da "Página Inicial".
 4) Foi mudado um botão da sessão "Sua Opinião!" na "Página Inicial".
 5) Foi adicionado backgrounds variados dependendo do tamanho da sua tela na "Página Inicial", dando certo suporte para mobile e telas maiores.
+!-try.remove "fatal_error" ... task_failed-!
+
+9- Site do Lucas V1.8.1: atualização GAMER 2
+1) Foi adicionado uma funcionalidade caso o Player (Peppino) e o inimigo (The Noise) estejam com o poder da Pepper Pizza.
+2) Outros pequenos bugs/erros foram consertados
+3) Essa atualização tem o proposito de testar o modo mobile do jogo.
+!-try.remove "fatal_error" ... task_failed-!
