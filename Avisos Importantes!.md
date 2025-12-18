@@ -105,6 +105,7 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 1) A form de acessar o PTWE foi mudado para uma forma mais caracterizada.
 2) Pequenos detalhes no jogo/site foram atualizados/mudados.
 3) Essa é a primeira versão para testar o modo mobile do PTWE.
+4) O contador de versões na 'Página Inicial' foi atualizado.
 !-try.remove "fatal_error" ... task_failed-!
 !-update "fatal_error_remover" from V1 to V2-!
 !_try.remove subject 'fatal_error'  ...  task failed_!
