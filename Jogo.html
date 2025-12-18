@@ -23,7 +23,14 @@ user-select: none;
 -webkit-user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
-}#main-container {
+}
+.icon-unmute { background-image: url(imagens_jogo/unmute_button.png) !important; }
+.icon-mute { background-image: url(imagens_jogo/mute_button.png) !important; }
+.icon-mobile { background-image: url(imagens_jogo/Mobile_icon.png) !important; }
+.icon-desktop { background-image: url(imagens_jogo/PC_icon.png) !important; }
+.icon-fullscreen-enter { background-image: url(imagens_jogo/fullscreen_on.png) !important; }
+.icon-fullscreen-exit { background-image: url(imagens_jogo/fullscreen_off.png) !important; }
+#main-container {
 position: relative;
 width: 100%;
 max-width: var(--game-base-width);
@@ -66,7 +73,6 @@ background-size: cover;
 background-repeat: no-repeat;
 position: relative;
 display: none;
-transform-origin: top left;
 }#player,
 #the-noise,
 .platform,
@@ -93,14 +99,12 @@ background-image: url(imagens_jogo/Peppino_fireass.png);
 }.stomp-mode {
 background-image: url(imagens_jogo/Peppino_jump.png);
 }.peppino-win-sprite {
-background-image: url(imagens_jogo/Peppino_win.png);
+background-image: url(imagens_jogo/Peppino_win.gif);
 }.peppino-lose-sprite {
-background-image: url(imagens_jogo/Peppino_lose.png);
-}.invincible {
+background-image: url(imagens_jogo/Peppino_lose.gif);}
+.invincible {
 opacity: 0.7;
-animation: flicker 0.1s infinite alternate;
-}
-
+animation: flicker 0.1s infinite alternate;}
 .is-stunned {
 pointer-events: none;
 }.peppino-tired-sprite {
@@ -125,8 +129,8 @@ background-image: url(imagens_jogo/Noise_jump.png);
 }.noise-double-jump {
 background-image: url(imagens_jogo/Noise_doublejump.png);
 }.noise-win-sprite {
-background-image: url(imagens_jogo/Noise_win.png);
-}.noise-disabled {
+background-image: url(imagens_jogo/Noise_win.gif);}
+.noise-disabled {
 opacity: 0.7;
 transform: translateY(10px);
 background-image: url(imagens_jogo/Noise_hurt.png);}
@@ -140,8 +144,25 @@ background-image: url(imagens_jogo/Noise_Scary.png);
 }.noise-powered-up {
 background-image: url(imagens_jogo/Pepper_Pizza_Noise.gif);
 }.noise-tired-sprite {
-background-image: url(imagens_jogo/Noise_milk.gif)
-}
+background-image: url(imagens_jogo/Noise_milk.gif)}
+#gustavo {
+position: absolute;
+width: 60px;
+height: 80px;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+background-size: contain;
+background-repeat: no-repeat;
+z-index: 5;}
+.gustavo-idle-sprite { background-image: url(imagens_jogo/Gustavo_idle.png); }
+.gustavo-noise-hit-sprite { background-image: url(imagens_jogo/Gustavo_N_hit.gif); }
+.gustavo-drop-sprite { background-image: url(imagens_jogo/Gustavo_drop.gif); }
+.gustavo-peppino-hit-sprite { background-image: url(imagens_jogo/Gustavo_P_hit.gif); }
+.gustavo-pepper-peppino-sprite { background-image: url(imagens_jogo/Gustavo_PP.png); }
+.gustavo-pepper-noise-sprite { background-image: url(imagens_jogo/Gustavo_PN.png); }
+.gustavo-win-sprite { background-image: url(imagens_jogo/Gustavo_P_win.gif); }
+.gustavo-lose-sprite { background-image: url(imagens_jogo/Gustavo_N_win.gif); }
 .power-up {
 width: 35px;
 height: 35px;
@@ -261,7 +282,7 @@ background-image: url(imagens_jogo/B-Rank.jpg);
 border: 3px solid #78a5ff;
 }.rank-C-image {
 background-image: url(imagens_jogo/C-Rank.png);
-border: 3px solid #00b00d;
+border: 33px solid #00b00d;
 }.rank-D-image {
 background-image: url(imagens_jogo/D-Rank.png);
 border: 3px solid #464646;
@@ -306,7 +327,8 @@ box-shadow: 0 4px #d35400;}
 
 /* --- POSICIONAMENTO DOS BOTÕES DE UI --- */
 #mute-button,
-#fullscreen-button {
+#fullscreen-button,
+#desktop-fullscreen-button {
 position: fixed;
 top: 20px;
 background: none;
@@ -316,24 +338,33 @@ cursor: pointer;
 z-index: 1000;
 color: white;
 text-shadow: 1px 1px black;
-}#mute-button {
+padding: 0;
+width: 40px; /* Tamanho fixo para conter a imagem */
+height: 40px;
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+}
+/* BOTÃO MUTE */
+#mute-button {
 right: 20px;
-}#fullscreen-button {
+}
+/* BOTÃO MODO MOBILE/PC */
+#fullscreen-button {
 right: 80px;
-}#reset-button {
-margin-top: 20px;
-padding: 10px 20px;
-font-size: 1.2em;
-font-weight: bold;
-cursor: pointer;
-background-color: #8B4513;
-color: white;
-border: 3px solid black;
-border-radius: 5px;
-box-shadow: 0 3px #54260d;
-display: none;
-}#reset-button:hover {
-background-color: #A0522D;}
+}
+/* NOVO BOTÃO TELA CHEIA */
+#desktop-fullscreen-button {
+right: 140px; /* Posicionado à esquerda do botão de mobile */
+}
+
+/* ÍCONES PADRÕES */
+.icon-unmute { background-image: url(imagens_jogo/Icon_Unmute.png); }
+.icon-mute { background-image: url(imagens_jogo/Icon_Mute.png); }
+.icon-mobile { background-image: url(imagens_jogo/Icon_Mobile.png); }
+.icon-desktop { background-image: url(imagens_jogo/Icon_Desktop.png); }
+.icon-fullscreen-enter { background-image: url(imagens_jogo/Icon_Fullscreen_Enter.png); }
+.icon-fullscreen-exit { background-image: url(imagens_jogo/Icon_Fullscreen_Exit.png); }
 
 /* --- ESTILOS PARA CONTROLES MÓVEIS --- */
 #mobile-controls {
@@ -409,8 +440,14 @@ background-image: url(imagens_jogo/Run_button.gif);
 <body>
 <div class="line"><a class="Bordalink branco Pizza_Game_Link" href="index.html"> Site Principal </a>
 </div>
-<button id="mute-button" onclick="toggleMute()" title="Ligar/Desligar Áudio">🔊</button>
-<button id="fullscreen-button" onclick="toggleFullscreen()" title="Modo PC/Mobile">📱 </button>
+
+<button id="desktop-fullscreen-button" onclick="toggleDesktopFullscreen()" title="Modo Tela Cheia" class="icon-fullscreen-enter"></button>
+
+<button id="fullscreen-button" onclick="toggleFullscreen()" title="Modo PC/Mobile" class="icon-mobile"></button>
+
+<button id="mute-button" onclick="toggleMute()" title="Ligar/Desligar Áudio" class="icon-unmute"></button>
+
+
 <h2 class="Pizza_text">Pizza Tower - Web Edition</h2>
 <div style="display:none;">
 <audio id="bgm-audio" loop src="soundtrack_jogo/Background_Music.mp3"></audio>
@@ -431,9 +468,9 @@ background-image: url(imagens_jogo/Run_button.gif);
 <button class="depression" onclick="hideStartScreen(); startGame();">Start Game!</button>
 </div>
 <div id="game-area">
-<div id="player"></div> 
+<div id="player"></div> 
 <div id="the-noise"></div>
-<div id="mobile-controls">
+<div id="gustavo"></div> <div id="mobile-controls">
 <div id="mobile-left" class="mobile-button" data-key="a" title="Esquerda"></div>
 <div id="mobile-right" class="mobile-button" data-key="d" title="Direita"></div>
 <div id="mobile-jump" class="mobile-button" data-key="w" title="Pular"></div>
@@ -453,6 +490,7 @@ const START_SCREEN = document.getElementById('start-screen');
 const GAME_AREA = document.getElementById('game-area');
 const PLAYER = document.getElementById('player');
 const NOISE = document.getElementById('the-noise');
+const GUSTAVO = document.getElementById('gustavo');
 const SCORE_DISPLAY = document.getElementById('score');
 const HEALTH_DISPLAY = document.getElementById('health');
 const TIMER_DISPLAY = document.getElementById('timer');
@@ -460,15 +498,61 @@ const STATUS_DISPLAY = document.getElementById('status');
 const RANK_IMAGE_CONTAINER = document.getElementById('rank-image-container');
 const MUTE_BUTTON = document.getElementById('mute-button');
 const RESET_BUTTON = document.getElementById('reset-button');
+const DESKTOP_FULLSCREEN_BUTTON = document.getElementById('desktop-fullscreen-button');
+function toggleDesktopFullscreen() {
+if (!document.fullscreenElement) {
+document.documentElement.requestFullscreen().catch(err => {
+console.error(`Erro ao tentar ativar tela cheia: ${err.message}`);});
+} else {
+if (document.exitFullscreen) {
+document.exitFullscreen();}}}
+function updateDesktopFullscreenIcon() {
+if (document.fullscreenElement) {
+DESKTOP_FULLSCREEN_BUTTON.classList.remove('icon-fullscreen-enter');
+DESKTOP_FULLSCREEN_BUTTON.classList.add('icon-fullscreen-exit');
+} else {
+DESKTOP_FULLSCREEN_BUTTON.classList.remove('icon-fullscreen-exit');
+DESKTOP_FULLSCREEN_BUTTON.classList.add('icon-fullscreen-enter');}}
+document.addEventListener('fullscreenchange', updateDesktopFullscreenIcon);
 
-// CONTROLES MOBILE
+// FUNCIONALIDADES MOBILE
 const FULLSCREEN_BUTTON = document.getElementById('fullscreen-button');
 const MOBILE_CONTROLS = document.getElementById('mobile-controls');
 const MOBILE_RUN_BUTTON = document.getElementById('mobile-run');
 let mobileKeys = {};
 let isRunningLocked = false;
+const UNMUTE_ICON_SPRITE = "imagens_jogo/unmute_button";
+const MUTE_ICON_SPRITE = "imagens_jogo/mute_button";
+const MOBILE_ICON_SPRITE = "imagens_jogo/Mobile_icon";
+const DESKTOP_ICON_SPRITE = "imagens_jogo/PC_icon";
+const FULLSCREEN_ENTER_ICON_SPRITE = "imagens_jogo/fullscreen_on";
+const FULLSCREEN_EXIT_ICON_SPRITE = "imagens_jogo/fullscreen_off";
+function toggleFullscreen() {
+const body = document.body;
+if (body.classList.contains('fullscreen-mode')) {
+body.classList.remove('fullscreen-mode');
+FULLSCREEN_BUTTON.classList.remove('icon-desktop');
+FULLSCREEN_BUTTON.classList.add('icon-mobile');
+FULLSCREEN_BUTTON.title = 'Alternar para Modo Mobile';
+} else {
+body.classList.add('fullscreen-mode');
+FULLSCREEN_BUTTON.classList.remove('icon-mobile');
+FULLSCREEN_BUTTON.classList.add('icon-desktop');
+FULLSCREEN_BUTTON.title = 'Alternar para Modo PC';}
+updateScaledConstants();}
+
 
 // ELEMENTOS DE ÁUDIO
+function toggleMute() {
+isMuted = !isMuted;
+if (isMuted) {
+MUTE_BUTTON.classList.remove('icon-unmute');
+MUTE_BUTTON.classList.add('icon-mute');
+} else {
+MUTE_BUTTON.classList.remove('icon-mute');
+MUTE_BUTTON.classList.add('icon-unmute');}
+ALL_AUDIO_ELEMENTS.forEach(audio => {
+audio.muted = isMuted;});}
 const BGM_AUDIO = document.getElementById('bgm-audio');
 const START_BGM_AUDIO = document.getElementById('start-bgm-audio');
 const PEPPER_PEPPINO_AUDIO = document.getElementById('pepper-peppino-audio');
@@ -499,12 +583,19 @@ StartScreenMusic: "soundtrack_jogo/Start_Music.mp3",
 PowerupConflict: "soundtrack_jogo/Parry.wav",
 GeromeSpawn: "soundtrack_jogo/Gerome_spawn.wav",
 GeromeCollect: "soundtrack_jogo/Gerome_collect.wav",
-LifeCollect: "soundtrack_jogo/Hat_collect.wav",};
+LifeCollect: "soundtrack_jogo/Hat_collect.wav",
+GustavoDrop: "soundtrack_jogo/Gustavo_drop.mp3", 
+};
 
 // FUNÇÕES DE ÁUDIO
 function toggleMute() {
 isMuted = !isMuted;
-MUTE_BUTTON.textContent = isMuted ? '🔇' : '🔊';
+if (isMuted) {
+MUTE_BUTTON.classList.remove(UNMUTE_ICON_SPRITE);
+MUTE_BUTTON.classList.add(MUTE_ICON_SPRITE);
+} else {
+MUTE_BUTTON.classList.remove(MUTE_ICON_SPRITE);
+MUTE_BUTTON.classList.add(UNMUTE_ICON_SPRITE);}
 ALL_AUDIO_ELEMENTS.forEach(audio => {
 audio.muted = isMuted;});}
 function playSFX(soundPath, volume = sfxVolume) {
@@ -524,8 +615,41 @@ musicElement.play().catch(e => console.log("BGM Play Error (Blocked by browser, 
 ALL_AUDIO_ELEMENTS.forEach(audio => {
 audio.pause();
 audio.currentTime = 0;});}
-
 // FUNÇÕES DE CONTROLE DE TELA
+function toggleDesktopFullscreen() {
+const docEl = document.documentElement;
+if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+if (document.exitFullscreen) {
+document.exitFullscreen();
+} else if (document.mozCancelFullScreen) {
+document.mozCancelFullScreen();
+} else if (document.webkitExitFullscreen) {
+document.webkitExitFullscreen();
+} else if (document.msExitFullscreen) {
+document.msExitFullscreen();}
+} else {
+if (docEl.requestFullscreen) {
+docEl.requestFullscreen();
+} else if (docEl.mozRequestFullScreen) {
+docEl.mozRequestFullScreen();
+} else if (docEl.webkitRequestFullscreen) {
+docEl.webkitRequestFullscreen();
+} else if (docEl.msRequestFullscreen) {
+docEl.msRequestFullscreen();}}}
+document.addEventListener('fullscreenchange', updateDesktopFullscreenIcon);
+document.addEventListener('webkitfullscreenchange', updateDesktopFullscreenIcon);
+document.addEventListener('mozfullscreenchange', updateDesktopFullscreenIcon);
+document.addEventListener('msfullscreenchange', updateDesktopFullscreenIcon);
+function updateDesktopFullscreenIcon() {
+const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+if (isFullscreen) {
+DESKTOP_FULLSCREEN_BUTTON.classList.remove(FULLSCREEN_ENTER_ICON_SPRITE);
+DESKTOP_FULLSCREEN_BUTTON.classList.add(FULLSCREEN_EXIT_ICON_SPRITE);
+DESKTOP_FULLSCREEN_BUTTON.title = 'Sair do Modo Tela Cheia';
+} else {
+DESKTOP_FULLSCREEN_BUTTON.classList.remove(FULLSCREEN_EXIT_ICON_SPRITE);
+DESKTOP_FULLSCREEN_BUTTON.classList.add(FULLSCREEN_ENTER_ICON_SPRITE);
+DESKTOP_FULLSCREEN_BUTTON.title = 'Entrar no Modo Tela Cheia';}}
 function hideStartScreen() {
 START_BGM_AUDIO.pause();
 START_SCREEN.style.display = 'none';
@@ -547,28 +671,16 @@ STATUS_DISPLAY.style.color = 'black';}
 function toggleFullscreen() {
 const docEl = document.documentElement;
 const body = document.body;
-if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-if (document.exitFullscreen) {
-document.exitFullscreen();
-} else if (document.mozCancelFullScreen) {
-document.mozCancelFullScreen();
-} else if (document.webkitExitFullscreen) {
-document.webkitExitFullscreen();
-} else if (document.msExitFullscreen) {
-document.msExitFullscreen();}
+if (body.classList.contains('fullscreen-mode')) {
 body.classList.remove('fullscreen-mode');
-FULLSCREEN_BUTTON.textContent = '📱';
+FULLSCREEN_BUTTON.classList.remove(DESKTOP_ICON_SPRITE);
+FULLSCREEN_BUTTON.classList.add(MOBILE_ICON_SPRITE);
+FULLSCREEN_BUTTON.title = 'Modo Mobile';
 } else {
-if (MAIN_CONTAINER.requestFullscreen) {
-MAIN_CONTAINER.requestFullscreen();
-} else if (MAIN_CONTAINER.mozRequestFullScreen) {
-MAIN_CONTAINER.mozRequestFullScreen();
-} else if (MAIN_CONTAINER.webkitRequestFullscreen) {
-MAIN_CONTAINER.webkitRequestFullscreen();
-} else if (MAIN_CONTAINER.msRequestFullscreen) {
-MAIN_CONTAINER.msRequestFullscreen();}
 body.classList.add('fullscreen-mode');
-FULLSCREEN_BUTTON.textContent = '💻';}}
+FULLSCREEN_BUTTON.classList.remove(MOBILE_ICON_SPRITE);
+FULLSCREEN_BUTTON.classList.add(DESKTOP_ICON_SPRITE);
+FULLSCREEN_BUTTON.title = 'Modo PC';}}
 function triggerKeyEvent(type, keyString) {
 const event = new KeyboardEvent(type, {
 key: keyString,
@@ -667,7 +779,7 @@ endedButton.classList.remove('active');
 triggerKeyEvent('keyup', endedKey);}
 delete activeTouches[touch.identifier];});});});
 
-// SPRITES E CONFIGURAÇÕES
+//SPRITES DO PEPPINO
 const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_stopped.png)";
 const PLAYER_WALK_SPRITE = "url(imagens_jogo/Peppino_walk.gif)";
 const PLAYER_RUN_SPRITE = "url(imagens_jogo/Peppino_run.png)";
@@ -676,7 +788,12 @@ const PLAYER_WALL_SLIDE_SPRITE = "url(imagens_jogo/Peppino_wall.png)";
 const PLAYER_HURT_SPRITE = "url(imagens_jogo/Peppino_hurt.png)";
 const PLAYER_STUN_SPRITE = "url(imagens_jogo/Peppino_fireass.png)";
 const PEPPINO_PARRY_SPRITE = "url(imagens_jogo/Peppino_parry.gif)";
-const NOISE_IDLE_SPRITE_NEW = "url(imagens_jogo/Noise_stopped.png)";
+const PEPPER_SPRITE = "url(imagens_jogo/Pepper_Pizza_Peppino.gif)";
+const PLAYER_TIRED_SPRITE = "url(imagens_jogo/Peppino_milk.gif)";
+const PEPPINO_WIN_TIME_SPRITE = "url(imagens_jogo/Peppino_win.gif)"; 
+const PEPPINO_LOSE_NOISE_SPRITE = "url(imagens_jogo/Peppino_lose.gif)"; 
+
+//SPRITES DO NOISE
 const NOISE_WALK_SPRITE = "url(imagens_jogo/Noise_walk.gif)";
 const NOISE_JUMP_SPRITE = "url(imagens_jogo/Noise_jump.png)";
 const NOISE_DOUBLE_JUMP_SPRITE = "url(imagens_jogo/Noise_doublejump.png)";
@@ -684,19 +801,32 @@ const NOISE_SCARED_SPRITE = "url(imagens_jogo/Noise_Scary.png)";
 const NOISE_HAPPY_SPRITE = "url(imagens_jogo/Noise_Happy.png)";
 const NOISE_POWERED_SPRITE = "url(imagens_jogo/Pepper_Pizza_Noise.gif)";
 const STUNNED_SPRITE = "url(imagens_jogo/Noise_hurt.png)";
-const PEPPER_SPRITE = "url(imagens_jogo/Pepper_Pizza_Peppino.gif)";
-const PLAYER_TIRED_SPRITE = "url(imagens_jogo/Peppino_milk.gif)";
+const NOISE_IDLE_SPRITE_NEW = "url(imagens_jogo/Noise_stopped.png)";
 const NOISE_TIRED_SPRITE = "url(imagens_jogo/Noise_milk.gif)";
 const NOISE_PEPPER_STUN_SPRITE = "url(imagens_jogo/Noise_fireass.png)";
 const NOISE_POWERUP_PARRY_SPRITE = "url(imagens_jogo/Noise_parry.gif)";
-const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.png)";
+const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.gif)";
+const NOISE_WIN_SPRITE = "url(imagens_jogo/Noise_win.gif)";
 const NOISE_JOKE_SPRITE = "url(imagens_jogo/Noise_joke.png)";
+
+// SPRITES DO GUSTAVO
+const GUSTAVO_IDLE_SPRITE = "url(imagens_jogo/Gustavo_idle.png)";
+const GUSTAVO_NOISE_HIT_SPRITE = "url(imagens_jogo/Gustavo_N_hit.gif)";
+const GUSTAVO_DROP_SPRITE = "url(imagens_jogo/Gustavo_drop.gif)";
+const GUSTAVO_PEPPINO_HIT_SPRITE = "url(imagens_jogo/Gustavo_P_hit.gif)";
+const GUSTAVO_PEPPER_PEPPINO_SPRITE = "url(imagens_jogo/Gustavo_PP.png)";
+const GUSTAVO_PEPPER_NOISE_SPRITE = "url(imagens_jogo/Gustavo_PN.png)";
+const GUSTAVO_WIN_SPRITE = "url(imagens_jogo/Gustavo_P_win.gif)";
+const GUSTAVO_LOSE_SPRITE = "url(imagens_jogo/Gustavo_N_win.gif)";
+const GUSTAVO_DROP_CHANCE = 0.25;
 const BASE_GAME_WIDTH = 900;
 const BASE_GAME_HEIGHT = 500;
 const BASE_PLAYER_WIDTH = 75;
 const BASE_PLAYER_HEIGHT = 100;
 const BASE_NOISE_WIDTH = 75;
 const BASE_NOISE_HEIGHT = 100;
+const BASE_GUSTAVO_WIDTH = 70; 
+const BASE_GUSTAVO_HEIGHT = 90; 
 const BASE_TOPPING_SIZE = 25;
 const BASE_PLATFORM_WIDTH = 400;
 const BASE_PLATFORM_WIDTH_TOP = 300;
@@ -730,6 +860,16 @@ PLAYER.style.width = PLAYER_WIDTH + 'px';
 PLAYER.style.height = PLAYER_HEIGHT + 'px';
 NOISE.style.width = NOISE_WIDTH + 'px';
 NOISE.style.height = NOISE_HEIGHT + 'px';
+const GUSTAVO_WIDTH = getScaledValue(BASE_GUSTAVO_WIDTH); 
+const GUSTAVO_HEIGHT = getScaledValue(BASE_GUSTAVO_HEIGHT); 
+const GUSTAVO_X = (GAME_WIDTH / 2) - (GUSTAVO_WIDTH / 2);
+const GUSTAVO_Y = 0;
+GUSTAVO.style.width = GUSTAVO_WIDTH + 'px';
+GUSTAVO.style.height = GUSTAVO_HEIGHT + 'px';
+GUSTAVO.style.left = GUSTAVO_X + 'px';
+GUSTAVO.style.bottom = GUSTAVO_Y + 'px';
+GUSTAVO.style.transform = '';
+
 if (GAME_SCALE_FACTOR !== 0) {
 playerX = getScaledValue(playerX / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
 playerY = getScaledValue(playerY / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
@@ -756,7 +896,7 @@ const NOISE_SPEED = 4;
 const NOISE_JUMP_CHANCE = 0.05;
 const NOISE_JUMP_STRENGTH = 12;
 const NOISE_DOUBLE_JUMP_COOLDOWN = 100;
-const NOISE_JOKE_DURATION = 2500; 
+const NOISE_JOKE_DURATION = 2500; 
 let score = 0;
 let time = 60;
 let isGameOver = true;
@@ -775,8 +915,8 @@ let isMoving = false;
 let playerFacingRight = true;
 let isPeppinoStunned = false;
 let isParrying = false;
-const PEPPINO_MILK_STUN_TIME = 800; 
-const PEPPINO_NORMAL_STUN_TIME = 1000; 
+const PEPPINO_MILK_STUN_TIME = 800; 
+const PEPPINO_NORMAL_STUN_TIME = 1000; 
 const NOISE_STOMP_STUN_TIME = 2500;
 const NOISE_PEPPER_STUN_TIME = 5000;
 const WALK_SPEED = 5;
@@ -806,6 +946,10 @@ let playerPowerupTimer;
 let noisePowerupTimer;
 let noiseStunTimer;
 let parryTimer;
+
+let gustavoState = 'idle';
+let gustavoStateTimer;
+const GUSTAVO_ANIM_DURATION = 500;
 function createPlatforms() {
 document.querySelectorAll('.platform').forEach(p => p.remove());
 platformBaseData.forEach((data, index) => {
@@ -818,23 +962,60 @@ platform.style.width = getScaledValue(data.w) + 'px';
 platform.style.height = getScaledValue(data.h) + 'px';
 GAME_AREA.appendChild(platform);});}
 function updateItemsPosition() {
+platformBaseData.forEach((data, index) => {
+const platform = document.getElementById(`platform-${index}`);
+if (platform) {
+platform.style.left = getScaledValue(data.x) + 'px';
+platform.style.bottom = getScaledValue(data.y) + 'px';
+platform.style.width = getScaledValue(data.w) + 'px';
+platform.style.height = getScaledValue(data.h) + 'px';}});
 document.querySelectorAll('.topping, .power-up').forEach(item => {
-const itemX = parseFloat(item.style.left);
-const itemY = parseFloat(item.style.bottom);
-const baseItemX = itemX / GAME_SCALE_FACTOR;
-const baseItemY = itemY / GAME_SCALE_FACTOR;
-item.style.left = getScaledValue(baseItemX) + 'px';
-item.style.bottom = getScaledValue(baseItemY) + 'px';
 item.style.width = TOPPING_SIZE + 'px';
 item.style.height = TOPPING_SIZE + 'px';});}
 function updateHealthDisplay() {
-let html = '';
-for (let i = 0; i < MAX_HEALTH; i++) {
-if (i < health) {
-html += `<span id="heart-icon"></span>`;
+HEALTH_DISPLAY.innerHTML = 'Hits: ';
+for (let i = 0; i < health; i++) {
+const heart = document.createElement('span');
+heart.id = 'heart-icon';
+HEALTH_DISPLAY.appendChild(heart);}
+for (let i = 0; i < MAX_HEALTH - health; i++) {
+const emptyHeart = document.createElement('span');
+emptyHeart.id = 'empty-heart-icon';
+HEALTH_DISPLAY.appendChild(emptyHeart);}}
+function updateGustavoSprite() {
+GUSTAVO.classList.remove('facing-left', 'gustavo-idle-sprite', 'gustavo-noise-hit-sprite', 'gustavo-drop-sprite', 'gustavo-peppino-hit-sprite', 'gustavo-pepper-peppino-sprite', 'gustavo-pepper-noise-sprite', 'gustavo-win-sprite', 'gustavo-lose-sprite');
+const GUSTAVO_CENTER_X = GUSTAVO.offsetLeft + (GUSTAVO.offsetWidth / 2);
+if (playerX + (PLAYER_WIDTH / 2) < GUSTAVO_CENTER_X) {
+GUSTAVO.classList.add('facing-left');
+} else {}
+if (isGameOver) {
+if (health <= 0) {
+GUSTAVO.style.backgroundImage = GUSTAVO_LOSE_SPRITE;
 } else {
-html += `<span id="empty-heart-icon"></span>`;}}
-HEALTH_DISPLAY.innerHTML = 'Hits: ' + html;}
+GUSTAVO.style.backgroundImage = GUSTAVO_WIN_SPRITE;}
+return;}
+if (gustavoState === 'drop') {
+GUSTAVO.style.backgroundImage = GUSTAVO_DROP_SPRITE;
+return;}
+if (gustavoState === 'noise_hit') {
+GUSTAVO.style.backgroundImage = GUSTAVO_NOISE_HIT_SPRITE;
+return;}
+if (gustavoState === 'peppino_hit') {
+GUSTAVO.style.backgroundImage = GUSTAVO_PEPPINO_HIT_SPRITE;
+return;}
+if (isPowerupInvincible) {
+GUSTAVO.style.backgroundImage = GUSTAVO_PEPPER_PEPPINO_SPRITE;
+return;}
+if (noiseIsPoweredUp) {
+GUSTAVO.style.backgroundImage = GUSTAVO_PEPPER_NOISE_SPRITE;
+return;}
+GUSTAVO.style.backgroundImage = GUSTAVO_IDLE_SPRITE;}
+function setGustavoState(state, duration = GUSTAVO_ANIM_DURATION) {
+clearTimeout(gustavoStateTimer);
+gustavoState = state;
+gustavoStateTimer = setTimeout(() => {
+gustavoState = 'idle';
+}, duration);}
 function updatePeppinoSprite() {
 const onPlatform = checkPlatformCollision();
 const isGrounded = playerY === 0 || onPlatform;
@@ -1025,7 +1206,7 @@ const onRightWall = playerX >= GAME_WIDTH - PLAYER_WIDTH;
 if (!isGrounded && ((onLeftWall && (keys['ArrowLeft'] || keys['a'])) || (onRightWall && (keys['ArrowRight'] || keys['d'])))) {
 isWallSliding = true;
 if (velocityY < -SCALED_WALL_SLIDE_SPEED) { velocityY = -SCALED_WALL_SLIDE_SPEED; }
-} else { 
+} else { 
 isWallSliding = false;}
 if (keys['arrowright'] || keys['d']) { playerX += SCALED_CURRENT_SPEED; }
 if (keys['arrowleft'] || keys['a']) { playerX -= SCALED_CURRENT_SPEED; }
@@ -1183,7 +1364,7 @@ if (isPowerupInvincible) {
 handleNoisePepperHit();
 return;}
 if (noiseIsPoweredUp && !isInvincible) {
-handlePepperNoiseHitPeppino(); 
+handlePepperNoiseHitPeppino(); 
 return;}
 const isStomping = (velocityY < 0) && (playerY > noiseY + NOISE_HEIGHT - getScaledValue(10));
 if (isStomping) {
@@ -1204,6 +1385,7 @@ if (health <= 0) {
 endGame();
 return;}
 playSFX(SOUNDS.HurtPeppino);
+setGustavoState('peppino_hit'); 
 isInvincible = true;
 PLAYER.classList.add('invincible', 'peppino-hurt-sprite');
 const pushBack = getScaledValue(70);
@@ -1224,6 +1406,7 @@ if (health <= 0) {
 endGame();
 return;}
 playSFX(SOUNDS.ScreamPeppino);
+setGustavoState('peppino_hit'); 
 isInvincible = true;
 isPeppinoStunned = true;
 PLAYER.classList.add('invincible', 'peppino-stun-sprite', 'is-stunned');
@@ -1244,31 +1427,33 @@ isInvincible = false;
 PLAYER.classList.remove('invincible');
 STATUS_DISPLAY.textContent = 'Get the Toppings!';
 }, HIT_INVINCIBILITY_TIME);
-clearTimeout(noiseStunTimer); 
+clearTimeout(noiseStunTimer); 
 noiseStunTimer = setTimeout(() => {
 noiseIsJoking = false;
 NOISE.classList.remove('noise-joke-mode');
-updateNoiseSprite(); 
+updateNoiseSprite(); 
 }, NOISE_JOKE_DURATION);
 }
-function dropLifeMushroom(x, y) {
-const DROP_CHANCE = 0.20;
-if (Math.random() < DROP_CHANCE) {
+function attemptGustavoDrop(x, y) {
+if (Math.random() < GUSTAVO_DROP_CHANCE) {
 const lifeTopping = document.createElement('div');
 lifeTopping.classList.add('topping', 'topping-life');
-const dropX = x + (NOISE_WIDTH / 2) - (TOPPING_SIZE / 2);
-let dropY = y + NOISE_HEIGHT;
+const dropX = parseFloat(GUSTAVO.style.left) + (parseFloat(GUSTAVO.style.width) / 2) - (TOPPING_SIZE / 2);
+const dropY = parseFloat(GUSTAVO.style.bottom) + parseFloat(GUSTAVO.style.height) + getScaledValue(10);
 lifeTopping.style.left = dropX + 'px';
 lifeTopping.style.bottom = dropY + 'px';
 lifeTopping.style.width = TOPPING_SIZE + 'px';
 lifeTopping.style.height = TOPPING_SIZE + 'px';
 GAME_AREA.appendChild(lifeTopping);
-playSFX(SOUNDS.PepperSpawn);
-STATUS_DISPLAY.textContent = "The Noise dropped some HP!";
+playSFX(SOUNDS.GustavoDrop);
+setGustavoState('drop', 1000);
+STATUS_DISPLAY.textContent = "Gustavo dropped some HP!";
 setTimeout(() => {
 if (STATUS_DISPLAY.textContent.includes("HP!")) {
 STATUS_DISPLAY.textContent = 'Get the Toppings!';}
-}, 1500);}}
+}, 1500);
+return true;}
+return false;}
 function handleNoiseStomp() {
 const SCALED_JUMP_STRENGTH_HALF = getScaledValue(JUMP_STRENGTH / 2);
 velocityY = SCALED_JUMP_STRENGTH_HALF;
@@ -1287,7 +1472,8 @@ playSFX(SOUNDS.HurtNoise);
 WALK_AUDIO.pause();
 WALK_AUDIO.currentTime = 0;
 STATUS_DISPLAY.textContent = `The Noise was stomped!`;
-dropLifeMushroom(noiseX, noiseY);
+attemptGustavoDrop(noiseX, noiseY); 
+setGustavoState('noise_hit');
 setTimeout(() => {
 if (!wasInvincible && !isPowerupInvincible) {
 isInvincible = false;
@@ -1300,20 +1486,21 @@ NOISE.classList.remove('noise-disabled');
 updateNoiseSprite();
 }, NOISE_STOMP_STUN_TIME);}
 function handleNoisePepperHit() {
-noiseIsJoking = false; 
+noiseIsJoking = false; 
 noiseIsStunned = true;
-NOISE.classList.add('noise-disabled', 'is-stunned', 'invincible'); 
-NOISE.style.backgroundImage = NOISE_PEPPER_STUN_SPRITE; 
+NOISE.classList.add('noise-disabled', 'is-stunned', 'invincible'); 
+NOISE.style.backgroundImage = NOISE_PEPPER_STUN_SPRITE; 
 const pushBack = getScaledValue(100);
 if (playerX < noiseX) { noiseX += pushBack; } else { noiseX -= pushBack; }
 noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
-STATUS_DISPLAY.textContent = `The Noise was HEATED UP and STUNNED for 5 seconds!`; 
+STATUS_DISPLAY.textContent = `The Noise was HEATED UP!`; 
 playSFX(SOUNDS.HurtNoise);
-dropLifeMushroom(noiseX, noiseY);
+attemptGustavoDrop(noiseX, noiseY);
+setGustavoState('noise_hit');
 clearTimeout(noiseStunTimer);
 noiseStunTimer = setTimeout(() => {
 noiseIsStunned = false;
-NOISE.classList.remove('noise-disabled', 'is-stunned', 'invincible'); 
+NOISE.classList.remove('noise-disabled', 'is-stunned', 'invincible'); 
 updateNoiseSprite();
 STATUS_DISPLAY.textContent = 'Get the Toppings!';
 }, NOISE_PEPPER_STUN_TIME);}
@@ -1384,6 +1571,7 @@ isPowerupInvincible = true;
 isPeppinoStunned = false;
 PLAYER.classList.remove('is-stunned', 'peppino-tired-sprite', 'peppino-parry-sprite');
 PLAYER.classList.add('invincible');
+setGustavoState('pepper_peppino', POWERUP_INVINCIBILITY_TIME); 
 updatePeppinoSprite();
 playSFX(SOUNDS.PepperCollect);
 playBGM(PEPPER_PEPPINO_AUDIO);
@@ -1399,7 +1587,7 @@ isPeppinoStunned = true;
 PLAYER.classList.add('is-stunned');
 setTimeout(() => {
 PLAYER.classList.remove('peppino-tired-sprite');
-isPeppinoStunned = false; 
+isPeppinoStunned = false; 
 PLAYER.classList.remove('is-stunned');
 updatePeppinoSprite();
 }, PEPPINO_MILK_STUN_TIME);
@@ -1411,6 +1599,7 @@ powerupElement.remove();
 activePowerupElement = null;
 noiseIsPoweredUp = true;
 NOISE.classList.add('noise-powered-up');
+setGustavoState('pepper_noise', POWERUP_INVINCIBILITY_TIME); 
 updateNoiseSprite();
 playSFX(SOUNDS.PepperCollect);
 playBGM(PEPPER_NOISE_AUDIO);
@@ -1428,6 +1617,8 @@ updateNoiseSprite();
 playBGM(BGM_AUDIO);
 STATUS_DISPLAY.textContent = 'The Noise drinked some milk!.';
 clearTimeout(noiseStunTimer);
+gustavoState = 'idle'; 
+updateGustavoSprite();
 
 const NOISE_MILK_TIME = 500;
 setTimeout(() => {
@@ -1549,6 +1740,7 @@ return { rank, rankClass, message: rankMessage, color: rankColor };}
 function gameLoop() {
 updatePeppinoSprite();
 updateNoiseSprite();
+updateGustavoSprite();
 updatePlayerPosition();
 updateNoisePosition();
 checkCollision();
@@ -1570,6 +1762,7 @@ clearTimeout(playerPowerupTimer);
 clearTimeout(noisePowerupTimer);
 clearTimeout(noiseStunTimer);
 clearTimeout(parryTimer);
+clearTimeout(gustavoStateTimer); 
 document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
 RANK_IMAGE_CONTAINER.style.display = 'none';
 stopBGM();
@@ -1583,6 +1776,7 @@ isParrying = false;
 isRunningLocked = false;
 MOBILE_RUN_BUTTON.classList.remove('active');
 keys['shift'] = false;
+gustavoState = 'end_game';
 PLAYER.classList.remove('moving-sprite', 'running-sprite', 'stomp-mode', 'invincible', 'peppino-tired-sprite', 'peppino-hurt-sprite', 'peppino-stun-sprite', 'is-stunned', 'wall-slide-sprite', 'peppino-parry-sprite');
 PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
 NOISE.classList.remove('noise-disabled', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode', 'is-stunned', 'invincible');
@@ -1595,8 +1789,8 @@ if (health <= 0) {
 playSFX(SOUNDS.WinNoise);
 STATUS_DISPLAY.textContent = `F-RANK! ${rankData.message} Points: ${score}.`;
 STATUS_DISPLAY.style.color = rankData.color;
-PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_lose.png)';
-NOISE.style.backgroundImage = 'url(imagens_jogo/Noise_win.png)';
+PLAYER.style.backgroundImage = PEPPINO_LOSE_NOISE_SPRITE;
+NOISE.style.backgroundImage = NOISE_WIN_SPRITE;
 NOISE.classList.remove('facing-left');
 RANK_IMAGE_CONTAINER.style.display = 'block';
 RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
@@ -1604,15 +1798,16 @@ RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
 // VITÓRIA DO PEPPINO
 } else if (timeUp) {
 playSFX(SOUNDS.WinPeppino);
-STATUS_DISPLAY.textContent = `${rankData.rank}! ${rankData.message} Points: ${score}.`; 
+STATUS_DISPLAY.textContent = `${rankData.rank}! ${rankData.message} Points: ${score}.`; 
 STATUS_DISPLAY.style.color = rankData.color;
 RANK_IMAGE_CONTAINER.style.display = 'block';
 RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
-PLAYER.style.backgroundImage = 'url(imagens_jogo/Peppino_win.png)';
+PLAYER.style.backgroundImage = PEPPINO_WIN_TIME_SPRITE;
 NOISE.style.backgroundImage = NOISE_LOSE_SPRITE;
 NOISE.classList.remove('facing-left');}
 STATUS_DISPLAY.style.display = 'block';
-RESET_BUTTON.style.display = 'block';}
+RESET_BUTTON.style.display = 'block';
+updateGustavoSprite();}
 
 // CONTROLES DO TECLADO
 document.addEventListener('keydown', (e) => {
@@ -1663,6 +1858,8 @@ clearTimeout(playerPowerupTimer);
 clearTimeout(noisePowerupTimer);
 clearTimeout(noiseStunTimer);
 clearTimeout(parryTimer);
+clearTimeout(gustavoStateTimer);
+gustavoState = 'idle';
 velocityY = 0;
 noiseVY = 0;
 noiseLastJumpTime = 0;
@@ -1670,6 +1867,7 @@ PLAYER.classList.remove('invincible', 'stomp-mode', 'facing-left', 'running-spri
 PLAYER.style.backgroundImage = PLAYER_IDLE_SPRITE;
 NOISE.classList.remove('noise-disabled', 'facing-left', 'noise-jumping', 'noise-double-jump', 'noise-happy', 'noise-scared', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode', 'is-stunned', 'invincible');
 NOISE.style.backgroundImage = NOISE_WALK_SPRITE;
+updateGustavoSprite();
 RANK_IMAGE_CONTAINER.style.display = 'none';
 clearInterval(timerInterval);
 clearInterval(gameLoopInterval);
@@ -1710,7 +1908,10 @@ updateScaledConstants();
 isGameOver = true;
 updateHealthDisplay();
 playBGM(START_BGM_AUDIO);
-showStartScreen();}
+showStartScreen();
+updateDesktopFullscreenIcon();
+MUTE_BUTTON.classList.add(UNMUTE_ICON_SPRITE);
+FULLSCREEN_BUTTON.classList.add(MOBILE_ICON_SPRITE);}
 </script>
 </body>
 </html>

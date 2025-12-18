@@ -81,8 +81,15 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 5) Foi adicionado backgrounds variados dependendo do tamanho da sua tela na "Página Inicial", dando certo suporte para mobile e telas maiores.
 !-try.remove "fatal_error" ... task_failed-!
 
-9- Site do Lucas V1.8.1: atualização GAMER 2
+8.1- Site do Lucas V1.8.1: atualização GAMER 2
 1) Foi adicionado uma funcionalidade caso o Player (Peppino) e o inimigo (The Noise) estejam com o poder da Pepper Pizza.
 2) Outros pequenos bugs/erros foram consertados
 3) Essa atualização tem o proposito de testar o modo mobile do jogo.
+!-try.remove "fatal_error" ... task_failed-!
+
+8.2- Site do Lucas V1.8.2: atualização GAMER 3
+1) Gustavo foi adicionado ao PTWE, sendo sua funcionalidade a de, quando o The Noise for atingido, ele tem 25% de chance de dropar um HP para o Peppino (player).
+2) Melhores botões de mute/unmute, fullscreen on/off e modo mobile/PC.
+3) Melhoria em alguns sprites do Peppino e do The Noise.
+4) Foi adicionado a versão do site da 'Página Inicial".
 !-try.remove "fatal_error" ... task_failed-!
