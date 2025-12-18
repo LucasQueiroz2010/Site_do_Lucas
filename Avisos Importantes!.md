@@ -109,3 +109,6 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 !-try.remove "fatal_error" ... task_failed-!
 !-update "fatal_error_remover" from V1 to V2-!
 !_try.remove subject 'fatal_error'  ...  task failed_!
+
+8.4.1- Site do Lucas V1.8.4.1: teste mobile 1
+1) Novo botão adicionado, pois os players da versão mobile não conseguem acessar a antiga forma de entrar no PTWE (essa interação ocorre quando é clicado emcima do Peppino da "Página Inicial", e ainda existe essa interação). 
