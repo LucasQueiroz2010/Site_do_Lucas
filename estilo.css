@@ -369,15 +369,22 @@
 			text-align: center;
 		}
 
+		#transicao3{
+		position: relative;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		}
+
 		#transicao3:hover {
 			width: 666px;
-			height: 75px;
-			text-align: center;
+			height: 80px;
 			background: black;
 			color: white;
 			transition: all 1.5s;
-			font-size: 46px;
-			background-position: center;
+			font-size: 45px;
+			text-align: center;
 		}
 
 		#transicaolink:hover {
@@ -497,10 +504,6 @@ padding: 3px;
 	position: relative;
 	}
 
-.justify{
-	justify-content: center;
-}
-
 .Pizza_Link:hover{
 	text-decoration: none;
 	color: yellow;
@@ -552,7 +555,13 @@ padding: 3px;
 
 			.Pizza_Web{
 				text-decoration: none;
+				text-align: center;
 				color: yellow;
+				bottom: -888px;
+				right: 325px;
+				font-size: 250px;
+				position: absolute;
+				opacity: 0;
 			}
 
 			.Pizza_Web:hover{
@@ -583,4 +592,51 @@ padding: 3px;
 
 			.🕈︎✋︎🏱︎{
 				font-size: 10px;
+			}
+
+			.Versão_do_Site {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            color: black;
+            font-size: 25px;
+            background-color: white;
+            padding: 5px 10px;
+            border: 5px groove #54260d;
+            z-index: 1000;}
+
+			.justity{
+				padding-left: 1000px;
+			}
+
+			.conteudo2 article {
+   			 display: inline-block;
+    		margin: 0 auto;
+    		padding: 20px;
+    		min-width: 300px;}
+
+			.conteudo2 {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+			}
+
+			#transicao3 {
+				text-align: center;
+				width: auto;
+				margin-bottom: 20px;
+			}
+
+			.caixa-centralizada {
+				background-color: black;
+				border: 3px solid white;
+				border-radius: 10px;
+				padding: 20px;
+				width: fit-content;
+				min-width: 250px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
 			}

@@ -100,3 +100,11 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 3) Todos os sprites do Gustavo foram atualizados.
 4) Algumas mudanças ocorreram na 'Página Principal'.
 !-try.remove "fatal_error" ... task_failed-!
+
+8.4- Site do Lucas V1.8.4: atualização GAMER 5: acesso atualizado (1ª versão e teste para mobile).
+1) A form de acessar o PTWE foi mudado para uma forma mais caracterizada.
+2) Pequenos detalhes no jogo/site foram atualizados/mudados.
+3) Essa é a primeira versão para testar o modo mobile do PTWE.
+!-try.remove "fatal_error" ... task_failed-!
+!-update "fatal_error_remover" from V1 to V2-!
+!_try.remove subject 'fatal_error'  ...  task failed_!

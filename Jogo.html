@@ -329,32 +329,17 @@ background-size: contain;
 background-repeat: no-repeat;
 background-position: center;
 margin: 20px auto 0;
-background-color: transparent;
-}.rank-P-image {
-background-image: url(imagens_jogo/P-Rank.png);
-border: 3px solid #570faf;
-}.rank-S-image {
-background-image: url(imagens_jogo/S-Rank.png);
-border: 3px solid #e28f01;
-}.rank-A-image {
-background-image: url(imagens_jogo/A-Rank.png);
-border: 3px solid #fe1800;
-}.rank-B-image {
-background-image: url(imagens_jogo/B-Rank.jpg);
-border: 3px solid #78a5ff;
-}.rank-C-image {
-background-image: url(imagens_jogo/C-Rank.png);
-border: 33px solid #00b00d;
-}.rank-D-image {
-background-image: url(imagens_jogo/D-Rank.png);
-border: 3px solid #464646;
-}.rank-F-image {
-background-image: url(imagens_jogo/F-Rank.png);
-border: 3px solid gray;
-}.rank-IDK-image {
-background-image: url(imagens_jogo/IDK-Rank.png);
-border: 3px solid #d0b8b8;
-}.message {
+background-color: transparent;}
+.rank-P-image { background-image: url(imagens_jogo/P-Rank.png); border: 3px solid black; }
+.rank-S-image { background-image: url(imagens_jogo/S-Rank.png); border: 3px solid black; }
+.rank-A-image { background-image: url(imagens_jogo/A-Rank.png); border: 3px solid black; }
+.rank-B-image { background-image: url(imagens_jogo/B-Rank.jpg); border: 3px solid black; }
+.rank-C-image { background-image: url(imagens_jogo/C-Rank.png); border: 33px solid black; }
+.rank-D-image { background-image: url(imagens_jogo/D-Rank.png); border: 3px solid black; }
+.rank-F-image { background-image: url(imagens_jogo/F-Rank.png); border: 3px solid black; }
+.rank-IDK-image { background-image: url(imagens_jogo/IDK-Rank.png); border: 3px solid #d0b8b8; }
+.rank-DEAD-image { background-image: url(imagens_jogo/DEAD_Rank.png); border: 5px solid black; filter: drop-shadow(0 0 10px #d0b8b8); }
+.message {
 margin-top: 20px;
 font-size: 2em;
 font-weight: bold;
@@ -917,9 +902,9 @@ const BASE_PLAYER_WIDTH = 75;
 const BASE_PLAYER_HEIGHT = 100;
 const BASE_NOISE_WIDTH = 75;
 const BASE_NOISE_HEIGHT = 100;
-const BASE_GUSTAVO_WIDTH = 70; 
-const BASE_GUSTAVO_HEIGHT = 90; 
-const BASE_TOPPING_SIZE = 25;
+const BASE_GUSTAVO_WIDTH = 100; 
+const BASE_GUSTAVO_HEIGHT = 110; 
+const BASE_TOPPING_SIZE = 25;   
 const BASE_PLATFORM_WIDTH = 400;
 const BASE_PLATFORM_WIDTH_TOP = 300;
 const BASE_PLATFORM_HEIGHT = 15;
@@ -1783,14 +1768,17 @@ topping.style.bottom = y + 'px';
 topping.style.width = TOPPING_SIZE + 'px';
 topping.style.height = TOPPING_SIZE + 'px';
 GAME_AREA.appendChild(topping);}}}
-function calculateRank(hits, finalScore) {
+function calculateRank(hits, finalScore) {  
+if (health <= 0) {
+return { 
+rank: 'DEAD', 
+rankClass: 'rank-DEAD-image', 
+message: 'YOU DIED!', 
+color: '#d0b8b8' };}
 let rank = 'F-RANK';
 let rankClass = 'rank-F-image';
 let rankMessage = '';
 let rankColor = 'gray';
-if (health <= 0 || hits >= MAX_HEALTH) {
-rankMessage = `YOU SUCK!`;
-return { rank: 'F-RANK', rankClass: 'rank-F-image', message: rankMessage, color: 'gray' };}
 if (hits === 0) {
 rank = 'P-RANK';
 rankClass = 'rank-P-image';
@@ -1815,19 +1803,18 @@ else if (hits <= 4 && finalScore >= 1500) {
 rank = 'C-RANK';
 rankClass = 'rank-C-image';
 rankMessage = 'Your rank is crappy.';
-rankColor = '#00b00d';}
+rankColor = '#00b00d';
+}
 else if (hits <= 5 && finalScore >= 1000) {
 rank = 'D-RANK';
 rankClass = 'rank-D-image';
 rankMessage = 'Your rank is AWFUL!';
 rankColor = '#464646';}
-else if (hits === 6 && finalScore <= 100) {
-rankMessage = 'YOU SUCK!';
-rankColor = 'gray';}
 else {
-rankMessage = `IDK. Score/Hits adquired isn't enough.`;
-rankClass = 'rank-IDK-image';
-rankColor = 'gray';}
+rankMessage = `YOU SUCK!`;
+rankClass = 'rank-F-image';
+rankColor = 'gray';
+}
 return { rank, rankClass, message: rankMessage, color: rankColor };}
 function gameLoop() {
 updatePeppinoSprite();
@@ -1845,6 +1832,48 @@ if (time <= 0) {
 clearInterval(timerInterval);
 endGame(true);}
 }, 1000);}
+function endGame(timeUp = false) {
+isGameOver = true;
+clearInterval(timerInterval);
+clearInterval(gameLoopInterval);
+clearInterval(spawnInterval);
+clearTimeout(playerPowerupTimer);
+clearTimeout(noisePowerupTimer);
+clearTimeout(noiseStunTimer);
+clearTimeout(parryTimer);
+clearTimeout(gustavoStateTimer); 
+document.querySelectorAll('.topping, .power-up').forEach(t => t.remove());
+RANK_IMAGE_CONTAINER.style.display = 'none';
+stopBGM();
+activePowerupElement = null;
+isPowerupInvincible = false;
+noiseIsPoweredUp = false;
+noiseIsStunned = false;
+noiseIsJoking = false;
+isPeppinoStunned = false;
+isParrying = false;
+isRunningLocked = false;
+MOBILE_RUN_BUTTON.classList.remove('active');
+keys['shift'] = false;
+gustavoState = 'end_game';
+const rankData = calculateRank(hitsTaken, score);
+STATUS_DISPLAY.textContent = `${rankData.rank}! ${rankData.message} Points: ${score}.`;
+STATUS_DISPLAY.style.color = rankData.color;
+RANK_IMAGE_CONTAINER.style.display = 'block';
+RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
+if (health <= 0) {
+playSFX(SOUNDS.WinNoise);
+PLAYER.style.backgroundImage = PEPPINO_LOSE_NOISE_SPRITE;
+NOISE.style.backgroundImage = NOISE_WIN_SPRITE;
+NOISE.classList.remove('facing-left');
+} else if (timeUp) {
+playSFX(SOUNDS.WinPeppino);
+PLAYER.style.backgroundImage = PEPPINO_WIN_TIME_SPRITE;
+NOISE.style.backgroundImage = NOISE_LOSE_SPRITE;
+NOISE.classList.remove('facing-left');}
+STATUS_DISPLAY.style.display = 'block';
+RESET_BUTTON.style.display = 'block';
+updateGustavoSprite();}
 function endGame(timeUp = false) {
 isGameOver = true;
 clearInterval(timerInterval);
