@@ -15,26 +15,21 @@
 			background-size: cover;
 			font-family: Isaac;
 		}
-		
-		/* Small */
 		@media (max-width: 576px)  { 
 			body{
 				background-image: url(imagens/Fundo1celular.jpg);
 			}
 		}
-		/* Medium */
 		@media (max-width: 768px) {
 			body{
 				background-image: url(imagens/Fundo1tablet.jpg);
 			}
 		}
-				/* Large */
 		@media (max-width: 992px) {
 			body{
 				background-image: url(imagens/Fundo1.jfif);
 			}
 		}
-				/* X-Large */
 		@media (max-width: 1200px) {
 			body{
 				background-image: url(imagens/Fundo1XL.jpg);
@@ -54,7 +49,7 @@
 	</ul><br>
 	<h2 class="Borda line branco backgroundblack">Página principal</h2>
 
-	<p class="text-secondary">Seja bem-vindo a página inicial do site do Lucas V1.8.2!</p>
+	<p class="text-secondary">Seja bem-vindo a página inicial do site do Lucas V1.8.3!</p>
 	<p class="text-secondary">Fique a vontade!</p>
 	<p class="text-primary">Feedbacks sempre são bem vindos!</p>
 
@@ -65,65 +60,61 @@
 		<fieldset>
 			<legend class="esquerda">Informações:</legend>
 
-			<div>
+			<div class="form-group">
 				<label for="nome" class="esquerda text-info">Nome:ﾠ</label>
-				<input type="text" name="nome" id="nome" placeholder="Insira seu nome!" class="this nome" required autofocus>
+				<input type="text" name="nome" id="nome" placeholder="Insira seu nome!" class="this nome form-control-lg centralizar" required autofocus>
 			</div>
 
-			<div>
+			<div class="form-group">
 				<label for="Email" class="esquerda align text-info">Email:</label>
-				<input type="email" name="nome" id="Email" placeholder="Insira seu email!" class="this email" required>
+				<input type="email" name="nome" id="Email" placeholder="Insira seu email!" class="this email form-control-lg centralizar" required>
 			</div>
 
-			<div>
-				<label for="senha" class="esquerda align text-info">Senha:</label>
-				<input type="password" name="nome" id="senha" placeholder="Insira sua senha!" class="this senha" min="6" max="10" required>
+			<div class="form-group">
+				<label for="Senha" class="esquerda align text-info">Senha:</label>
+				<input type="Senha" name="nome" id="Senha" placeholder="Insira sua senha!" class="this senha form-control centralizar" required>
 			</div>
+
+			<div class="form-group">
 				<label for="data" class="esquerda text-info"><Data></Data>Que dia você nasceu?</label>
-				<input type="date" name="Data" id="Data" placeholder="Que dia é hoje?!" class="this calendario" required>
+				<input type="date" name="Data" id="Data" placeholder="Que dia é hoje?!" class="this calendario form-control centralizar" required>
 			</div>
 
 		</fieldset>
 		
 		<fieldset>
-			<label for="Comente aqui!" class="esquerda text-info">Comentários:</label>
-			<div>
-				<input type="search" name="Comente aqui!" id="Comente aqui!" placeholder="Comente aqui!"
-					class="this comentario">
+			<div class="form-group">
+				<label for="Comentários" class="text-info">comentários:</label>
+				<textarea class="form-control" id="Comentários" rows="4"></textarea>
 			</div>
 		</fieldset>
 
 		<fieldset>
-			<legend class="text-info">Lembrar de mim?</legend>
+			<div class="form-group">
+				<label for="Lembrar" class="text-info">Lembrar de mim?</label>
+				<select class="form-control centralizar" id="Lembrar" name="Lembrar">
+					<option class="text-dark">Selecione...</option>
+					<option class="text-success">Sim</option>
+					<option class="text-danger">Não</option>
+				</select>
+			</div>
+			<div class="text-info">Esse site é bem feito?</div>
 			<div>
 				<label class="text-success" for="Sim">
-					<input type="radio" name="Lembrar?" id="Sim">Sim
+					<input type="radio" name="Será?" id="Sim">Sim
 				</label>
 			</div>
 			<div>
 				<label class="text-danger" for="Não">
-					<input type="radio" name="Lembrar?" id="Não">Não
+					<input type="radio" name="Será?" id="Não">Não
+				</label>
+			</div>
+			<div>
+				<label class="text-warning" for="+/-">
+					<input type="radio" name="Será?" id="+/-">+/-
 				</label>
 			</div>
 		</fieldset>
-
-			<div class="text-info">Esse site é bem feito?</div>
-			<div class="dropdown">
-				<button class="btn btn-dark dropdown-togle" data-toggle="dropdown" type="button">
-					Selecione...
-				</button>
-				<div class="dropdown-menu">
-					<label class="text-success dropdown-item" for="Sim!">
-						<input type="radio" name="Será?" id="Sim!">Sim!
-					</label>
-					<label class="text-danger dropdown-item" for="Não...">
-						<input type="radio" name="Será?" id="Não...">Não...
-					</label>
-					<label class="text-warning dropdown-item" for="+/-">
-						<input type="radio" name="Será?" id="+/-">+/-
-					</label>
-				</div>
-			</div>
 		<input style="cursor: help;" class="submit BIGSHOT btn btn-lg" type="submit" value="Enviar" id="transicaolink">	
 	</form>
 	<br>

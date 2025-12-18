@@ -68,12 +68,12 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 6) Foi adicionado um botão de mute/unmute.  
 !-try.remove "fatal_error" ... task_failed-!
 
-7.1- Site do Lucas V1.7.1
+7.1- Site do Lucas V1.7.1.
 1) Mudanças no README.
 2) Mudanças pequenas no "jogo.html"
 !-try.remove "fatal_error" ... task_failed-!
 
-8- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas)
+8- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas).
 1) Foi adicionado um dicionário no começo do README.
 2) Foi adicionado o modo mobile no PTWE (Pizza Tower Web Edition, vou me referir ao jogo assim de agora em diante). O modo mobile faz o jogo ficar em tela cheia e faz aparecer quatro botões: botão de andar para esquerda e direita, botão de pular e de correr, mas tirando isso, é a mesma coisa (isso é um WIP, ou). 
 3) Foi mudado algumas interações entre as estrelas da "Página Inicial".
@@ -81,15 +81,22 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 5) Foi adicionado backgrounds variados dependendo do tamanho da sua tela na "Página Inicial", dando certo suporte para mobile e telas maiores.
 !-try.remove "fatal_error" ... task_failed-!
 
-8.1- Site do Lucas V1.8.1: atualização GAMER 2
+8.1- Site do Lucas V1.8.1: atualização GAMER 2.
 1) Foi adicionado uma funcionalidade caso o Player (Peppino) e o inimigo (The Noise) estejam com o poder da Pepper Pizza.
 2) Outros pequenos bugs/erros foram consertados
 3) Essa atualização tem o proposito de testar o modo mobile do jogo.
 !-try.remove "fatal_error" ... task_failed-!
 
-8.2- Site do Lucas V1.8.2: atualização GAMER 3
+8.2- Site do Lucas V1.8.2: atualização GAMER 3.
 1) Gustavo foi adicionado ao PTWE, sendo sua funcionalidade a de, quando o The Noise for atingido, ele tem 25% de chance de dropar um HP para o Peppino (player).
 2) Melhores botões de mute/unmute, fullscreen on/off e modo mobile/PC.
 3) Melhoria em alguns sprites do Peppino e do The Noise.
 4) Foi adicionado a versão do site da 'Página Inicial".
+!-try.remove "fatal_error" ... task_failed-!
+
+8.3- Site do Lucas V1.8.3: atualização GAMER 4 (e pequenos detalhes).
+1) Todos os sprites do Peppino foram atualizados.
+2) (Quase) Todos os sprites do The Noise foram atualizados.
+3) Todos os sprites do Gustavo foram atualizados.
+4) Algumas mudanças ocorreram na 'Página Principal'.
 !-try.remove "fatal_error" ... task_failed-!

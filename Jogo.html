@@ -64,7 +64,69 @@ justify-content: flex-end;
 align-items: center;
 z-index: 20;
 color: white;
-}#game-area {
+}
+.icon-unmute { background-image: url(imagens_jogo/unmute_button.png) !important; }
+.icon-mute { background-image: url(imagens_jogo/mute_button.png) !important; }
+.icon-mobile { background-image: url(imagens_jogo/Mobile_icon.png) !important; }
+.icon-desktop { background-image: url(imagens_jogo/PC_icon.png) !important; }
+.icon-fullscreen-enter { background-image: url(imagens_jogo/fullscreen_on.png) !important; }
+.icon-fullscreen-exit { background-image: url(imagens_jogo/fullscreen_off.png) !important; }
+.icon-reset { background-image: url(imagens_jogo/Reset_icon.png) !important; }
+.icon-pc-back { background-image: url(imagens_jogo/PC_Back_icon.png) !important; }
+#mute-button, #fullscreen-button, #desktop-fullscreen-button {
+position: fixed; 
+top: 20px; 
+background: none; 
+border: none; 
+cursor: pointer; 
+z-index: 1000; 
+width: 40px; 
+height: 40px; 
+background-size: contain; 
+background-repeat: no-repeat;}
+#mute-button { right: 20px; }
+#fullscreen-button { right: 70px; }
+#desktop-fullscreen-button { right: 120px; }
+/* --- ESTILO MODO MOBILE FOCO TOTAL --- */
+.fullscreen-mode #main-container {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border: none;
+}
+
+/* Esconde o que não for jogo no modo mobile */
+.fullscreen-mode #mute-button, 
+.fullscreen-mode #fullscreen-button, 
+.fullscreen-mode #desktop-fullscreen-button,
+.fullscreen-mode .line,
+.fullscreen-mode .Pizza_text 
+{display: none !important;}
+#mobile-reset-btn, #mobile-pc-btn {
+position: absolute;
+top: 10px;
+width: 45px;
+height: 45px;
+background-size: contain;
+background-repeat: no-repeat;
+background-color: rgba(0,0,0,0.4);
+border: 2px solid white;
+border-radius: 8px;
+z-index: 10001;
+display: none;
+cursor: pointer;}
+.fullscreen-mode #mobile-reset-btn, 
+.fullscreen-mode #mobile-pc-btn { display: block; }
+#mobile-reset-btn { left: 10px; }
+#mobile-pc-btn { left: 65px; }
+#game-area {
 width: 100%;
 height: 100%;
 background-color: black;
@@ -87,17 +149,17 @@ transform: scaleX(-1);
 }.moving-sprite {
 background-image: url(imagens_jogo/Peppino_walk.gif);
 }.running-sprite {
-background-image: url(imagens_jogo/Peppino_run.png);
+background-image: url(imagens_jogo/Peppino_run.gif);
 }.jumping-sprite {
-background-image: url(imagens_jogo/Peppino_jump.png);
+background-image: url(imagens_jogo/Peppino_jump.gif);
 }.wall-slide-sprite {
-background-image: url(imagens_jogo/Peppino_wall.png);
+background-image: url(imagens_jogo/Peppino_wall.gif);
 }.peppino-hurt-sprite {
-background-image: url(imagens_jogo/Peppino_hurt.png);
+background-image: url(imagens_jogo/Peppino_hurt.gif);
 }.peppino-stun-sprite {
-background-image: url(imagens_jogo/Peppino_fireass.png);
+background-image: url(imagens_jogo/Peppino_fireass.gif);
 }.stomp-mode {
-background-image: url(imagens_jogo/Peppino_jump.png);
+background-image: url(imagens_jogo/Peppino_stomp.gif);
 }.peppino-win-sprite {
 background-image: url(imagens_jogo/Peppino_win.gif);
 }.peppino-lose-sprite {
@@ -133,14 +195,14 @@ background-image: url(imagens_jogo/Noise_win.gif);}
 .noise-disabled {
 opacity: 0.7;
 transform: translateY(10px);
-background-image: url(imagens_jogo/Noise_hurt.png);}
+background-image: url(imagens_jogo/Noise_hurt.gif);}
 .noise-joke-mode {
 opacity: 1;
 pointer-events: none;}
 .noise-happy {
-background-image: url(imagens_jogo/Noise_Happy.png);
+background-image: url(imagens_jogo/Noise_happy.gif);
 }.noise-scared {
-background-image: url(imagens_jogo/Noise_Scary.png);
+background-image: url(imagens_jogo/Noise_scaried.gif);
 }.noise-powered-up {
 background-image: url(imagens_jogo/Pepper_Pizza_Noise.gif);
 }.noise-tired-sprite {
@@ -155,12 +217,12 @@ transform: translateX(-50%);
 background-size: contain;
 background-repeat: no-repeat;
 z-index: 5;}
-.gustavo-idle-sprite { background-image: url(imagens_jogo/Gustavo_idle.png); }
+.gustavo-idle-sprite { background-image: url(imagens_jogo/Gustavo_idle.gif); }
 .gustavo-noise-hit-sprite { background-image: url(imagens_jogo/Gustavo_N_hit.gif); }
 .gustavo-drop-sprite { background-image: url(imagens_jogo/Gustavo_drop.gif); }
 .gustavo-peppino-hit-sprite { background-image: url(imagens_jogo/Gustavo_P_hit.gif); }
-.gustavo-pepper-peppino-sprite { background-image: url(imagens_jogo/Gustavo_PP.png); }
-.gustavo-pepper-noise-sprite { background-image: url(imagens_jogo/Gustavo_PN.png); }
+.gustavo-pepper-peppino-sprite { background-image: url(imagens_jogo/Gustavo_PP.gif); }
+.gustavo-pepper-noise-sprite { background-image: url(imagens_jogo/Gustavo_PN.gif); }
 .gustavo-win-sprite { background-image: url(imagens_jogo/Gustavo_P_win.gif); }
 .gustavo-lose-sprite { background-image: url(imagens_jogo/Gustavo_N_win.gif); }
 .power-up {
@@ -172,7 +234,7 @@ background-repeat: no-repeat;
 animation: glow 1s infinite alternate;
 z-index: 12;
 }.invincibility-powerup {
-background-image: url(imagens_jogo/Pepper_Pizza.webp);
+background-image: url(imagens_jogo/Pepper_Pizza.gif);
 }@keyframes flicker {
 from {
 opacity: 1;
@@ -202,17 +264,17 @@ border-radius: 50%;
 animation: bounce 0.5s infinite alternate;
 z-index: 8;
 }.topping-1 {
-background-image: url(imagens_jogo/Mushroom.webp);
+background-image: url(imagens_jogo/Mushroom.gif);
 }.topping-2 {
-background-image: url(imagens_jogo/Cheese.webp);
+background-image: url(imagens_jogo/Cheese.gif);
 }.topping-3 {
-background-image: url(imagens_jogo/Tomato.webp);
+background-image: url(imagens_jogo/Tomato.gif);
 }.topping-4 {
-background-image: url(imagens_jogo/Weiner.webp);
+background-image: url(imagens_jogo/Weiner.gif);
 }.topping-5 {
-background-image: url(imagens_jogo/Pineapple.webp);
+background-image: url(imagens_jogo/Pineapple.gif);
 }.topping-gerome {
-background-image: url(imagens_jogo/Gerome.webp);
+background-image: url(imagens_jogo/Gerome.gif);
 }.topping-life {
 background-image: url(imagens_jogo/Peppino_hat.png);
 border-radius: 5px;
@@ -468,6 +530,8 @@ background-image: url(imagens_jogo/Run_button.gif);
 <button class="depression" onclick="hideStartScreen(); startGame();">Start Game!</button>
 </div>
 <div id="game-area">
+<div id="mobile-reset-btn" class="icon-reset" onclick="startGame()" title="Reiniciar"></div>
+<div id="mobile-pc-btn" class="icon-pc-back" onclick="toggleFullscreen()" title="Voltar ao PC"></div>
 <div id="player"></div> 
 <div id="the-noise"></div>
 <div id="gustavo"></div> <div id="mobile-controls">
@@ -516,6 +580,34 @@ DESKTOP_FULLSCREEN_BUTTON.classList.add('icon-fullscreen-enter');}}
 document.addEventListener('fullscreenchange', updateDesktopFullscreenIcon);
 
 // FUNCIONALIDADES MOBILE
+function toggleMute() {
+isMuted = !isMuted;
+const audios = document.querySelectorAll('audio');
+audios.forEach(a => a.muted = isMuted);
+if (isMuted) {
+MUTE_BUTTON.classList.replace('icon-unmute', 'icon-mute');
+} else {
+MUTE_BUTTON.classList.replace('icon-mute', 'icon-unmute');}}
+function toggleFullscreen() {
+const isMobileActive = document.body.classList.toggle('fullscreen-mode');
+if (isMobileActive) {
+FULLSCREEN_BUTTON.classList.replace('icon-mobile', 'icon-desktop');
+} else {
+FULLSCREEN_BUTTON.classList.replace('icon-desktop', 'icon-mobile');}
+if (typeof updateScaledConstants === "function") {
+updateScaledConstants();}}
+function toggleDesktopFullscreen() {
+if (!document.fullscreenElement) {
+document.documentElement.requestFullscreen().catch(err => console.log(err));
+} else {
+document.exitFullscreen();}}
+document.addEventListener('fullscreenchange', () => {
+const isFS = !!document.fullscreenElement;
+if (isFS) {
+DESKTOP_FULLSCREEN_BUTTON.classList.replace('icon-fullscreen-enter', 'icon-fullscreen-exit');
+} else {
+DESKTOP_FULLSCREEN_BUTTON.classList.replace('icon-fullscreen-exit', 'icon-fullscreen-enter');
+}});
 const FULLSCREEN_BUTTON = document.getElementById('fullscreen-button');
 const MOBILE_CONTROLS = document.getElementById('mobile-controls');
 const MOBILE_RUN_BUTTON = document.getElementById('mobile-run');
@@ -780,13 +872,13 @@ triggerKeyEvent('keyup', endedKey);}
 delete activeTouches[touch.identifier];});});});
 
 //SPRITES DO PEPPINO
-const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_stopped.png)";
+const PLAYER_IDLE_SPRITE = "url(imagens_jogo/Peppino_idle.gif";
 const PLAYER_WALK_SPRITE = "url(imagens_jogo/Peppino_walk.gif)";
-const PLAYER_RUN_SPRITE = "url(imagens_jogo/Peppino_run.png)";
-const PLAYER_JUMP_SPRITE = "url(imagens_jogo/Peppino_jump.png)";
-const PLAYER_WALL_SLIDE_SPRITE = "url(imagens_jogo/Peppino_wall.png)";
-const PLAYER_HURT_SPRITE = "url(imagens_jogo/Peppino_hurt.png)";
-const PLAYER_STUN_SPRITE = "url(imagens_jogo/Peppino_fireass.png)";
+const PLAYER_RUN_SPRITE = "url(imagens_jogo/Peppino_run.gif)";
+const PLAYER_JUMP_SPRITE = "url(imagens_jogo/Peppino_jump.gif)";
+const PLAYER_WALL_SLIDE_SPRITE = "url(imagens_jogo/Peppino_wall.gif)";
+const PLAYER_HURT_SPRITE = "url(imagens_jogo/Peppino_hurt.gif)";
+const PLAYER_STUN_SPRITE = "url(imagens_jogo/Peppino_fireass.gif)";
 const PEPPINO_PARRY_SPRITE = "url(imagens_jogo/Peppino_parry.gif)";
 const PEPPER_SPRITE = "url(imagens_jogo/Pepper_Pizza_Peppino.gif)";
 const PLAYER_TIRED_SPRITE = "url(imagens_jogo/Peppino_milk.gif)";
@@ -797,28 +889,28 @@ const PEPPINO_LOSE_NOISE_SPRITE = "url(imagens_jogo/Peppino_lose.gif)";
 const NOISE_WALK_SPRITE = "url(imagens_jogo/Noise_walk.gif)";
 const NOISE_JUMP_SPRITE = "url(imagens_jogo/Noise_jump.png)";
 const NOISE_DOUBLE_JUMP_SPRITE = "url(imagens_jogo/Noise_doublejump.png)";
-const NOISE_SCARED_SPRITE = "url(imagens_jogo/Noise_Scary.png)";
-const NOISE_HAPPY_SPRITE = "url(imagens_jogo/Noise_Happy.png)";
+const NOISE_SCARED_SPRITE = "url(imagens_jogo/Noise_scaried.gif)";
+const NOISE_HAPPY_SPRITE = "url(imagens_jogo/Noise_happy.gif)";
 const NOISE_POWERED_SPRITE = "url(imagens_jogo/Pepper_Pizza_Noise.gif)";
-const STUNNED_SPRITE = "url(imagens_jogo/Noise_hurt.png)";
+const STUNNED_SPRITE = "url(imagens_jogo/Noise_hurt.gif)";
 const NOISE_IDLE_SPRITE_NEW = "url(imagens_jogo/Noise_stopped.png)";
 const NOISE_TIRED_SPRITE = "url(imagens_jogo/Noise_milk.gif)";
-const NOISE_PEPPER_STUN_SPRITE = "url(imagens_jogo/Noise_fireass.png)";
+const NOISE_PEPPER_STUN_SPRITE = "url(imagens_jogo/Noise_fireass.gif)";
 const NOISE_POWERUP_PARRY_SPRITE = "url(imagens_jogo/Noise_parry.gif)";
 const NOISE_LOSE_SPRITE = "url(imagens_jogo/Noise_lose.gif)";
 const NOISE_WIN_SPRITE = "url(imagens_jogo/Noise_win.gif)";
 const NOISE_JOKE_SPRITE = "url(imagens_jogo/Noise_joke.png)";
 
 // SPRITES DO GUSTAVO
-const GUSTAVO_IDLE_SPRITE = "url(imagens_jogo/Gustavo_idle.png)";
+const GUSTAVO_IDLE_SPRITE = "url(imagens_jogo/Gustavo_idle.gif)";
 const GUSTAVO_NOISE_HIT_SPRITE = "url(imagens_jogo/Gustavo_N_hit.gif)";
 const GUSTAVO_DROP_SPRITE = "url(imagens_jogo/Gustavo_drop.gif)";
 const GUSTAVO_PEPPINO_HIT_SPRITE = "url(imagens_jogo/Gustavo_P_hit.gif)";
-const GUSTAVO_PEPPER_PEPPINO_SPRITE = "url(imagens_jogo/Gustavo_PP.png)";
-const GUSTAVO_PEPPER_NOISE_SPRITE = "url(imagens_jogo/Gustavo_PN.png)";
+const GUSTAVO_PEPPER_PEPPINO_SPRITE = "url(imagens_jogo/Gustavo_PP.gif)";
+const GUSTAVO_PEPPER_NOISE_SPRITE = "url(imagens_jogo/Gustavo_PN.gif)";
 const GUSTAVO_WIN_SPRITE = "url(imagens_jogo/Gustavo_P_win.gif)";
 const GUSTAVO_LOSE_SPRITE = "url(imagens_jogo/Gustavo_N_win.gif)";
-const GUSTAVO_DROP_CHANCE = 0.25;
+const GUSTAVO_DROP_CHANCE = 0.50;
 const BASE_GAME_WIDTH = 900;
 const BASE_GAME_HEIGHT = 500;
 const BASE_PLAYER_WIDTH = 75;
@@ -1086,7 +1178,7 @@ return;}
 if (NOISE.style.backgroundImage === NOISE_POWERUP_PARRY_SPRITE) {
 NOISE.style.backgroundImage = NOISE_POWERUP_PARRY_SPRITE;
 return;}
-if (NOISE.style.backgroundImage === NOISE_PEPPER_STUN_SPRITE || NOISE.style.backgroundImage === 'url("imagens_jogo/Noise_fireass.png")') {
+if (NOISE.style.backgroundImage === NOISE_PEPPER_STUN_SPRITE || NOISE.style.backgroundImage === 'url("imagens_jogo/Noise_fireass.gif")') {
 NOISE.style.backgroundImage = NOISE_PEPPER_STUN_SPRITE;
 } else {
 NOISE.style.backgroundImage = NOISE.classList.contains('noise-tired-sprite') ? NOISE_TIRED_SPRITE : STUNNED_SPRITE;}
@@ -1413,7 +1505,7 @@ PLAYER.classList.add('invincible', 'peppino-stun-sprite', 'is-stunned');
 const pushBack = getScaledValue(100);
 if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
 playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
-STATUS_DISPLAY.textContent = `Peppino is STUNNED!`;
+STATUS_DISPLAY.textContent = `Peppino was HEATED UP!`;
 noiseIsJoking = true;
 NOISE.classList.add('noise-joke-mode');
 NOISE.style.backgroundImage = NOISE_JOKE_SPRITE;
@@ -1903,6 +1995,15 @@ topping.style.width = TOPPING_SIZE + 'px';
 topping.style.height = TOPPING_SIZE + 'px';
 GAME_AREA.appendChild(topping);}
 spawnInterval = setInterval(spawnTopping, 1000);}
+window.onload = () => {
+updateScaledConstants();
+isGameOver = true;
+updateHealthDisplay();
+playBGM(START_BGM_AUDIO);
+showStartScreen();
+MUTE_BUTTON.classList.add('icon-unmute');
+FULLSCREEN_BUTTON.classList.add('icon-mobile');
+DESKTOP_FULLSCREEN_BUTTON.classList.add('icon-fullscreen-enter');};
 window.onload = () => {
 updateScaledConstants();
 isGameOver = true;
