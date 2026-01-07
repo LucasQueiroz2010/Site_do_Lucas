@@ -1,17 +1,18 @@
 Dicionário:
 WIP: Work In Progress, ou seja, trabalho em progresso. Algo quenão está 100% pronto e pode sofrer atualizações.
 PTWE: Pizza Tower Web Edition. 
+ND: Nota do desenvolvedor.
 Atualizações abaixo:
 
 0- Site do Lucas V1.0: o começo de tudo.
 O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o público. Então obrigado por visitá-lo!  (Só para avisar, esse site ainda está imcompleto, ou seja, espere por mais atualizações!). Eu gostaria de agradecer meu irmão Davi por ter falado com meus pais (os donos da empresa) para que eu possa trabalhar com 15 anos. Agradeço também o meu pai Icaro e minha mãe Taynan por me deixarem trabalhar na FIT Gestão empresarial (a empresa dos dois). Agradeço também ao Renan e ao Felipe (duas pessoas que trabalham na minha área) por serem tão legais comigo, mesmo eu sendo um novato. Agradeçimentos especiais ao Bruno, que me ajudou a publicar o site no GitHub.
 
-1- Site do Lucas V1.1: Pequenas adições.
+1.0- Site do Lucas V1.1: Pequenas adições.
 1) Foi adicionado: uma nova fonte personalizada.
 2) Foi substituido: três imagens.
 3) Foi excluido: 2 "documentos".
 
-2- Site do Lucas V1.2: grandes adições.
+2.0- Site do Lucas V1.2: grandes adições.
 1) Foi adicionado a sessão "que dia você nasceu?" na aba de informações na "Página Principal".
 2) Foi adicionado um copyright (© 2025 - Lucas Oliveira de Queiroz) em todas as páginas.
 3) Foi adicionado duas novas imagens no "Site do Lucas!"
@@ -28,19 +29,19 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 2.1- Site do Lucas V1.2.1 / V1.2.2
 1) O arquivo "Avisos Importantes!" sofreu algumas melhoras de design.
 
-3- Site do Lucas V1.3
+3.0- Site do Lucas V1.3
 1) Foi adicionado uma interação com a estrela amarela na "Página Inicial".
 2) Foi adicionado uma interação específica na página "Foto do Lucas!"
 3) Foi inplementado algumas mudanças de qualidade de vida/detalhes.
 ?fatal_error?
 
-4- Site do Lucas V1.4: adição de desenvolvedor.
+4.0- Site do Lucas V1.4: adição de desenvolvedor.
 1) Foi adicionado o Bootstrap V4.1.3.
 2) Junto com o Bootstrap, todos os sites ficaram compatíveis com o Bootstrap.
 3) Algumas mudanças pequenas de design foram adicionadas/alteradas.
 !-try.remove "fatal_error" ... task_failed-!
 
-5- Site do Lucas V1.5: Update nos contatos.
+5.0- Site do Lucas V1.5: Update nos contatos.
 1) A página "Contatos do Lucas" sofreu mudanças severas para melhor.
 2) Alguns menus foram melhorados em detalhes.
 3) Foi adicionado uma interação com as duas estrelas marrom na página "Página Inicial".
@@ -54,12 +55,12 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 4) Na versão 1.5.4, foi adicionado uma imagem que estava faltando, além da edição do README.
 !-try.remove "fatal_error" ... task_failed-!
 
-6- Site do Lucas V1.6: adição GAMER.
+6.0- Site do Lucas V1.6: adição GAMER.
 1) Pizza Tower - Web edition foi adicionado na parte mais baixa da "Página principal".
 2) Pequenas mudanças de qualidade de vida/detalhes.
 !-try.remove "fatal_error" ... task_failed-!
 
-7- Site do Lucas V1.7: atualização GAMER.
+7.0.- Site do Lucas V1.7: atualização GAMER.
 1) Muitos sprites novos (Peppino_wall, Noise_joke, Gerome.webp, etc.) foram adicionados.
 2) Foi adicionado o poder Pepper Pizza, que faz você ficar invencivel por 5 segundos.
 3) Foi adicionado um "topping de HP", que tem 20% de chance de dropar quando o Noise recebe dano.
@@ -73,7 +74,7 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 2) Mudanças pequenas no "jogo.html"
 !-try.remove "fatal_error" ... task_failed-!
 
-8- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas).
+8.0- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas).
 1) Foi adicionado um dicionário no começo do README.
 2) Foi adicionado o modo mobile no PTWE (Pizza Tower Web Edition, vou me referir ao jogo assim de agora em diante). O modo mobile faz o jogo ficar em tela cheia e faz aparecer quatro botões: botão de andar para esquerda e direita, botão de pular e de correr, mas tirando isso, é a mesma coisa (isso é um WIP, ou). 
 3) Foi mudado algumas interações entre as estrelas da "Página Inicial".
@@ -99,7 +100,7 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 2) (Quase) Todos os sprites do The Noise foram atualizados.
 3) Todos os sprites do Gustavo foram atualizados.
 4) Algumas mudanças ocorreram na 'Página Principal'.
-!-try.remove "fatal_error" ... task_failed-!
+!-try.remove "fatal_error" ... task_failed ... updating_system-!
 
 8.4- Site do Lucas V1.8.4: atualização GAMER 5: acesso atualizado (1ª versão e teste para mobile).
 1) A form de acessar o PTWE foi mudado para uma forma mais caracterizada.
@@ -112,3 +113,10 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 
 8.4.1- Site do Lucas V1.8.4.1: teste mobile 1
 1) Novo botão adicionado, pois os players da versão mobile não conseguem acessar a antiga forma de entrar no PTWE (essa interação ocorre quando é clicado emcima do Peppino da "Página Inicial", e ainda existe essa interação). 
+
+9.0- Site do Lucas V1.9: Modo Hard (e ND).
+1) Foi adicionado um modo 'díficil' para o PTWE, que consiste no 'Doise Mode', um modo onde o The Doise está no lugar do The Noise e o The Noise está no lugar do Gustavo.
+2) Algumas mudanças foram feitas, como a diminuição da chance de HP dropado pelo The Noise em comparação ao Gustavo (de 50% para 25%), o tempo (de 60 para 90 segundos), a música, background, sons, etc.
+3) Alguns bugs de sprite e de música ainda existem, que serão consertados no futuro.
+ND: Eu desisti completamente do Modo Mobile, pois o jogo ainda não tem suporte para tantas linhas de código que existia no Modo Mobile (eu fui de 2100+ linhas de código para menos de 1700 linhas), então no momento eu irei desistir do Modo Mobile, mas se no futuro eu transformar isso em um jogo de verdade (.EXE ao invés de HTML), eu foque em adicionar o Modo Mobile.
+!_try.remove subject 'fatal_error'  ...  task failed ... updating_system_!
