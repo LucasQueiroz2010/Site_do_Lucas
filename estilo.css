@@ -33,6 +33,7 @@
 			align-items: center;
 			align-self: center;
 			align-content: center;
+			vertical-align: middle;
 		}
 
 		.listas {
@@ -42,17 +43,26 @@
 		}
 
 
-		.t30px {
-			font-size: 30px;
-		}
+
 
 		.esquerda {
 			text-align: left;
 			background-position: left;
 		}
 
+		.t10px {
+			font-size: 10px;
+		}
+
 		.t20px {
 			font-size: 20px;
+		}
+		.t30px {
+			font-size: 30px;
+		}
+
+		.t32px {
+			font-size: 32px;
 		}
 
 		.t40px {
@@ -121,24 +131,24 @@
 				text-align: center;
 				line-height: 35px;
 				border: 3px solid black;
-				background: url(imagens/menu.png) no-repeat left bottom;
+				background-image: url(imagens/menu.png);
+				top: 1000px;
 			}
-			
+		}
 			.menu1:hover {
-				background-position: right -45px bottom;
+				background-position: right -75px bottom;
 			}
 
 			.menu2:hover {
-				background-position: right 0px bottom;
+				background-position: right -35px bottom;
 			}
 
 			.menu3:hover {
-				background-position: right -5px bottom;
+				background-position: right -45px bottom;
 			}
 			.menu4:hover {
 				background-position: right -90px bottom;
 			}
-		}
 				
 
 		fieldset {
@@ -260,7 +270,8 @@
 
 		.caixa1,
 		.caixa2,
-		.caixa3 {
+		.caixa3,
+		.caixa4 {
 			height: 100%;
 			opacity: 1;
 			background-repeat: no-repeat;
@@ -279,6 +290,10 @@
 
 		.caixa3 {
 			background-image: url(imagens/imagem3.png);
+		}
+
+		.caixa4 {
+			background-image: url(imagens/imagem4.png);
 		}
 
 		.conteudo {
@@ -345,51 +360,6 @@
 			display: inline-block;
 		}
 
-		#transicao1:hover {
-			width: 525px;
-			height: 80px;
-			background: black;
-			color: white;
-			transition: all 1.5s;
-			font-size: 65px;
-		}
-
-		#transicao2{
-			position: relative;
-			top: 0px;
-			bottom: 0px;
-			left: 500px;
-			right: 0px;
-		}
-
-		#transicao2:hover {
-			width: 315px;
-			height: 125px;
-			background: black;
-			color: white;
-			transition: all 1.5s;
-			font-size: 50px;
-			text-align: center;
-		}
-
-		#transicao3{
-		position: relative;
-		top: 0px;
-		bottom: 0px;
-		left: 0px;
-		right: 0px;
-		}
-
-		#transicao3:hover {
-			width: 666px;
-			height: 80px;
-			background: black;
-			color: white;
-			transition: all 1.5s;
-			font-size: 45px;
-			text-align: center;
-		}
-
 		#transicaolink:hover {
 			transition: all 1.5s;
 			font-size: 40px;
@@ -429,23 +399,23 @@ padding: 3px;
 }
 
 		@font-face {
+			font-family: "Index";
+			src: url("fontes/Index.woff");
+		}
+
+		@font-face {
 			font-family: "PzzTwr";
 			src: url("fontes/PzzTwr.woff");
 		}
 
 				@font-face {
-			font-family: "SuperChiby";
-			src: url("fontes/SuperChiby.woff");
+			font-family: "contatos";
+			src: url("fontes/contatos.woff");
 		}
 
 				@font-face {
-			font-family: "Isaac";
-			src: url("fontes/Isaac.woff");
-		}
-
-				@font-face {
-			font-family: "PzzTwr";
-			src: url("fontes/PzzTwr.woff");
+			font-family: "Lucas";
+			src: url("fontes/Lucas.woff");
 		}
 
 .estrela_frente, .estrela_fundo, .estrela1, .estrela2, .estrela3{
@@ -517,8 +487,8 @@ padding: 3px;
 }
 
 .AUTISMO:hover{
-	border: 3px solid #EBB866;
-	color: red;
+	color: #ed9404;
+	background-color: #EBB866;
 	width: 25px;
 	height: 8px;
 	transition: all 1.5s;
@@ -643,3 +613,14 @@ padding: 3px;
 				align-items: center;
 				text-align: center;
 			}
+
+			.text-gray{
+				color: #6f6f6f;
+			}
+
+			.text-bicolor {
+    background-image: linear-gradient(to right, white 47%, black 53%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
