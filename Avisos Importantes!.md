@@ -133,3 +133,8 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 1) No PTWE, foi adicionado uma tela de seleção de modos antes de começar o jogo.
 2) Outros pequenos detalhes foram implementados/atualizados.
 ?!+-try_remove subject:"FATAL_ERROR" ... task_failed+-!?
+
+9.3- Site do 9.3- Site do Lucas V1.9.3: Design fix 3 (e aviso de bugs).
+1) No PTWE, a hitbos do chão, das paredes e da plataforma foram ajustadas para ser como o chão que está no background, dado um senso de realismo maior para o jogo.
+2) Alguns bugs foram consertados.
+3) Alguns bugs foram acidentalmente criados (toppings nascendo fora da área que o Peppino pode andar, The Noise/The Doise não usando o sprite correto ao ser acertado pelo Pepper Peppino, etc.).

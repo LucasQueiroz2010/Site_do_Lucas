@@ -130,7 +130,7 @@ body {
     height: 100%;
     background-color: black;
     background-image: url(imagens_jogo/Stuff/backwoag.png);
-    background-size: cover;
+    background-size: 100% 100%; /* Mudado para 100% 100% para garantir alinhamento das paredes */
     background-repeat: no-repeat;
     position: relative;
     display: none;}
@@ -389,7 +389,6 @@ function goToModeSelection() {
 function selectMode(mode) {
     MODE_SCREEN.style.display = 'none';
     hideStartScreen();
-    
     if (mode === 'normal') {
         startNormalGame();
     } else if (mode === 'doise') {
@@ -512,10 +511,13 @@ const BASE_GUSTAVO_WIDTH = 100;
 const BASE_GUSTAVO_HEIGHT = 110; 
 const BASE_TOPPING_SIZE = 25;
 const BASE_PLATFORM_WIDTH = 400;
-const BASE_PLATFORM_HEIGHT = 20; 
+const BASE_PLATFORM_HEIGHT = 40;
 const BASE_PLATFORM_Y = 180;
 const BASE_PLAYER_START_X = 50;
 const BASE_NOISE_START_X_POS = BASE_GAME_WIDTH - BASE_NOISE_WIDTH - 50;
+const BASE_WALL_MARGIN = 35;
+const BASE_GROUND_HEIGHT = 50;
+const BASE_SPRITE_OFFSET_Y = -15;
 let GAME_SCALE_FACTOR = 1;
 function getScaledValue(baseValue) {
     return baseValue * GAME_SCALE_FACTOR;}
@@ -527,28 +529,34 @@ let NOISE_WIDTH = BASE_NOISE_WIDTH;
 let NOISE_HEIGHT = BASE_NOISE_HEIGHT;
 let TOPPING_SIZE = BASE_TOPPING_SIZE;
 let NOISE_START_X = getScaledValue(BASE_NOISE_START_X_POS);
+let SCALED_WALL_MARGIN = BASE_WALL_MARGIN;
+let SCALED_GROUND_HEIGHT = BASE_GROUND_HEIGHT;
+let SCALED_SPRITE_OFFSET_Y = BASE_SPRITE_OFFSET_Y;
 function updateScaledConstants() {
     GAME_WIDTH = GAME_AREA.clientWidth;
     GAME_HEIGHT = GAME_AREA.clientHeight;
-    GAME_SCALE_FACTOR = GAME_WIDTH / BASE_GAME_WIDTH;
+    GAME_SCALE_FACTOR = GAME_WIDTH / BASE_GAME_WIDTH;    
     PLAYER_WIDTH = getScaledValue(BASE_PLAYER_WIDTH);
     PLAYER_HEIGHT = getScaledValue(BASE_PLAYER_HEIGHT);
     NOISE_WIDTH = getScaledValue(BASE_NOISE_WIDTH);
     NOISE_HEIGHT = getScaledValue(BASE_NOISE_HEIGHT);
     TOPPING_SIZE = getScaledValue(BASE_TOPPING_SIZE);
     NOISE_START_X = getScaledValue(BASE_NOISE_START_X_POS);
+    SCALED_WALL_MARGIN = getScaledValue(BASE_WALL_MARGIN);
+    SCALED_GROUND_HEIGHT = getScaledValue(BASE_GROUND_HEIGHT);
+    SCALED_SPRITE_OFFSET_Y = getScaledValue(BASE_SPRITE_OFFSET_Y);
     PLAYER.style.width = PLAYER_WIDTH + 'px';
     PLAYER.style.height = PLAYER_HEIGHT + 'px';
     NOISE.style.width = NOISE_WIDTH + 'px';
-    NOISE.style.height = NOISE_HEIGHT + 'px';
+    NOISE.style.height = NOISE_HEIGHT + 'px';    
     const GUSTAVO_WIDTH = getScaledValue(BASE_GUSTAVO_WIDTH); 
     const GUSTAVO_HEIGHT = getScaledValue(BASE_GUSTAVO_HEIGHT); 
     const GUSTAVO_X = (GAME_WIDTH / 2) - (GUSTAVO_WIDTH / 2);
-    const GUSTAVO_Y = 0;
+    const GUSTAVO_Y = SCALED_GROUND_HEIGHT;    
     GUSTAVO.style.width = GUSTAVO_WIDTH + 'px';
     GUSTAVO.style.height = GUSTAVO_HEIGHT + 'px';
     GUSTAVO.style.left = GUSTAVO_X + 'px';
-    GUSTAVO.style.bottom = GUSTAVO_Y + 'px';
+    GUSTAVO.style.bottom = (GUSTAVO_Y + SCALED_SPRITE_OFFSET_Y) + 'px';
     GUSTAVO.style.transform = '';
     if (GAME_SCALE_FACTOR !== 0) {
         playerX = getScaledValue(playerX / (GAME_SCALE_FACTOR === 1 ? 1 : GAME_WIDTH / GAME_AREA.clientWidth));
@@ -769,7 +777,7 @@ function setGustavoState(state, duration = GUSTAVO_ANIM_DURATION) {
     }, duration);}
 function updatePeppinoSprite() {
     const onPlatform = checkPlatformCollision();
-    const isGrounded = playerY === 0 || onPlatform;
+    const isGrounded = playerY === SCALED_GROUND_HEIGHT || onPlatform;
     const movingHorizontally = keys['arrowright'] || keys['d'] || keys['arrowleft'] || keys['a'];
     isMoving = movingHorizontally;
     if (isGrounded && isMoving) {
@@ -807,7 +815,7 @@ function updatePeppinoSprite() {
     if (isWallSliding) {
         PLAYER.style.backgroundImage = PLAYER_WALL_SLIDE_SPRITE;
         PLAYER.classList.add('wall-slide-sprite');
-    } else if (playerY > 0 && !isGrounded) {
+    } else if (playerY > SCALED_GROUND_HEIGHT && !isGrounded) {
         PLAYER.style.backgroundImage = PLAYER_JUMP_SPRITE;
     } else if (isGrounded) {
         if (isMoving) {
@@ -856,7 +864,7 @@ function updateNoiseSprite() {
         return;}
     NOISE.classList.remove('is-stunned', 'invincible', 'noise-happy', 'noise-scared', 'noise-jumping', 'noise-double-jump', 'noise-powered-up', 'noise-idle-sprite', 'noise-tired-sprite', 'noise-joke-mode');
     const onPlatform = checkNoisePlatformCollision();
-    const isGrounded = noiseY === 0 || onPlatform;
+    const isGrounded = noiseY === SCALED_GROUND_HEIGHT || onPlatform;
     if (isPowerupInvincible && noiseIsPoweredUp) {
         NOISE.style.backgroundImage = poweredSprite;
     } else if (noiseIsPoweredUp) {
@@ -868,7 +876,7 @@ function updateNoiseSprite() {
         NOISE.style.backgroundImage = happySprite;
         NOISE.classList.add('noise-happy');
     } else {
-        if (noiseY > 0 && !isGrounded) {
+        if (noiseY > SCALED_GROUND_HEIGHT && !isGrounded) {
             if (noiseJumpsUsed === 2) {
                 NOISE.style.backgroundImage = doubleJumpSprite;
                 NOISE.classList.add('noise-double-jump');
@@ -946,15 +954,15 @@ function updatePlayerPosition() {
         let onPlatform = checkPlatformCollision();
         if (!onPlatform) { velocityY -= SCALED_GRAVITY; }
         playerY += velocityY;
-        if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
-        playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+        if (playerY <= SCALED_GROUND_HEIGHT) { playerY = SCALED_GROUND_HEIGHT; velocityY = 0; isJumping = false; }
+        playerX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN, playerX));
         PLAYER.style.left = playerX + 'px';
-        PLAYER.style.bottom = playerY + 'px';
+        PLAYER.style.bottom = (playerY + SCALED_SPRITE_OFFSET_Y) + 'px';
         return;}
     let onPlatform = checkPlatformCollision();
-    let isGrounded = playerY === 0 || onPlatform;
-    const onLeftWall = playerX <= 0;
-    const onRightWall = playerX >= GAME_WIDTH - PLAYER_WIDTH;
+    let isGrounded = playerY === SCALED_GROUND_HEIGHT || onPlatform;
+    const onLeftWall = playerX <= SCALED_WALL_MARGIN;
+    const onRightWall = playerX >= GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN;
     if (!isGrounded && ((onLeftWall && (keys['ArrowLeft'] || keys['a'])) || (onRightWall && (keys['ArrowRight'] || keys['d'])))) {
         isWallSliding = true;
         if (velocityY < -SCALED_WALL_SLIDE_SPEED) { velocityY = -SCALED_WALL_SLIDE_SPEED; }
@@ -965,17 +973,17 @@ function updatePlayerPosition() {
     if (!isWallSliding && !onPlatform) { velocityY -= SCALED_GRAVITY; }
     playerY += velocityY;
     if (playerY >= GAME_HEIGHT - PLAYER_HEIGHT) { playerY = GAME_HEIGHT - PLAYER_HEIGHT; if (velocityY > 0) { velocityY = 0; } }
-    if (playerY <= 0) { playerY = 0; velocityY = 0; isJumping = false; }
-    playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+    if (playerY <= SCALED_GROUND_HEIGHT) { playerY = SCALED_GROUND_HEIGHT; velocityY = 0; isJumping = false; }
+    playerX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN, playerX));
     PLAYER.style.left = playerX + 'px';
-    PLAYER.style.bottom = playerY + 'px';}
+    PLAYER.style.bottom = (playerY + SCALED_SPRITE_OFFSET_Y) + 'px';}
 function playerJump() {
     const SCALED_JUMP_STRENGTH = getScaledValue(JUMP_STRENGTH);
     const SCALED_WALL_JUMP_HORIZONTAL_PUSH = getScaledValue(WALL_JUMP_HORIZONTAL_PUSH);
     if (isGameOver || isPeppinoStunned || isParrying) return;
     WALK_AUDIO.pause();
     WALK_AUDIO.currentTime = 0;
-    if (playerY === 0 || checkPlatformCollision()) {
+    if (playerY === SCALED_GROUND_HEIGHT || checkPlatformCollision()) {
         velocityY = SCALED_JUMP_STRENGTH;
         isJumping = true;
         playSFX(SOUNDS.JumpPeppino);
@@ -984,7 +992,7 @@ function playerJump() {
         isJumping = true;
         isWallSliding = false;
         playSFX(SOUNDS.JumpPeppino);
-        const onLeftWall = playerX <= 0;
+        const onLeftWall = playerX <= SCALED_WALL_MARGIN;
         if (onLeftWall) { playerX += SCALED_WALL_JUMP_HORIZONTAL_PUSH; } else { playerX -= SCALED_WALL_JUMP_HORIZONTAL_PUSH; }}}
 function updateNoisePosition() {
     const SCALED_NOISE_SPEED = getScaledValue(NOISE_SPEED / BASE_GAME_WIDTH * GAME_WIDTH);
@@ -997,7 +1005,7 @@ function updateNoisePosition() {
     let onPlatform = checkNoisePlatformCollision();
     let targetX;
     currentNoiseSpeed = SCALED_NOISE_SPEED;
-    const isGrounded = noiseY === 0 || onPlatform;
+    const isGrounded = noiseY === SCALED_GROUND_HEIGHT || onPlatform;
     const canJump = isGrounded;
     if (isPowerupInvincible && noiseIsPoweredUp) {
         targetX = noiseX + noiseDirection * SCALED_NOISE_SPEED;
@@ -1042,8 +1050,8 @@ function updateNoisePosition() {
         } else if (targetX > noiseX) {
             noiseDirection = 1;}
     } else if (isPowerupInvincible && noiseIsPoweredUp) {
-        if (noiseX <= 0) { noiseDirection = 1; }
-        else if (noiseX >= GAME_WIDTH - NOISE_WIDTH) { noiseDirection = -1; }
+        if (noiseX <= SCALED_WALL_MARGIN) { noiseDirection = 1; }
+        else if (noiseX >= GAME_WIDTH - NOISE_WIDTH - SCALED_WALL_MARGIN) { noiseDirection = -1; }
     } else if (noiseIsPoweredUp) {
         if (noiseX < playerX) {
             noiseDirection = 1;
@@ -1056,22 +1064,22 @@ function updateNoisePosition() {
             noiseDirection = 1;}}
     noiseX += noiseDirection * currentNoiseSpeed;
     if (!noiseIsPoweredUp) {
-        if (noiseX <= 0 || noiseX >= GAME_WIDTH - NOISE_WIDTH) {
+        if (noiseX <= SCALED_WALL_MARGIN || noiseX >= GAME_WIDTH - NOISE_WIDTH - SCALED_WALL_MARGIN) {
             if (!isPowerupInvincible && !activePowerupElement) {
                 noiseDirection *= -1;}
-            noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));}}
+            noiseX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - NOISE_WIDTH - SCALED_WALL_MARGIN, noiseX));}}
     if (noiseIsPoweredUp && isNoiseFacingTarget(targetX)) {
         if (canJump || (noiseJumpsUsed === 1 && Math.random() < 0.5)) {
             jumpNoise();}}
     if (!onPlatform) { noiseVY -= SCALED_GRAVITY; }
     noiseY += noiseVY;
     if (noiseY >= GAME_HEIGHT - NOISE_HEIGHT) { noiseY = GAME_HEIGHT - NOISE_HEIGHT; if (noiseVY > 0) { noiseVY = 0; } }
-    if (noiseY <= 0) {
-        noiseY = 0;
+    if (noiseY <= SCALED_GROUND_HEIGHT) {
+        noiseY = SCALED_GROUND_HEIGHT;
         noiseVY = 0;
         noiseJumpsUsed = 0;}
     NOISE.style.left = noiseX + 'px';
-    NOISE.style.bottom = noiseY + 'px';}
+    NOISE.style.bottom = (noiseY + SCALED_SPRITE_OFFSET_Y) + 'px';}
 function isNoiseFacingTarget(targetX) {
     if (targetX > noiseX) { return noiseDirection === 1; }
     if (targetX < noiseX) { return noiseDirection === -1; }
@@ -1079,7 +1087,7 @@ function isNoiseFacingTarget(targetX) {
 function jumpNoise() {
     const SCALED_NOISE_JUMP_STRENGTH = getScaledValue(NOISE_JUMP_STRENGTH);
     const currentTime = Date.now();
-    const isGrounded = noiseY === 0 || checkNoisePlatformCollision();
+    const isGrounded = noiseY === SCALED_GROUND_HEIGHT || checkNoisePlatformCollision();
     if (isGrounded) {
         noiseVY = SCALED_NOISE_JUMP_STRENGTH;
         noiseJumpsUsed = 1;
@@ -1142,7 +1150,7 @@ function handleNoiseHit(damage = 1) {
     PLAYER.classList.add('invincible', 'peppino-hurt-sprite');
     const pushBack = getScaledValue(70);
     if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
-    playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+    playerX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN, playerX));
     STATUS_DISPLAY.textContent = `Hit! ${health} remaining Hit(s).`;
     setTimeout(() => {
         isInvincible = false;
@@ -1167,7 +1175,7 @@ function handlePepperNoiseHitPeppino() {
     PLAYER.classList.add('invincible', 'peppino-stun-sprite', 'is-stunned');
     const pushBack = getScaledValue(100);
     if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
-    playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
+    playerX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN, playerX));
     STATUS_DISPLAY.textContent = `Peppino was HEATED UP!`;
     noiseIsJoking = true;
     NOISE.classList.add('noise-joke-mode');
@@ -1302,7 +1310,7 @@ function handleNoisePepperHit() {
     NOISE.style.backgroundImage = pepperStunSprite; 
     const pushBack = getScaledValue(100);
     if (playerX < noiseX) { noiseX += pushBack; } else { noiseX -= pushBack; }
-    noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
+    noiseX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - NOISE_WIDTH - SCALED_WALL_MARGIN, noiseX));
     STATUS_DISPLAY.textContent = `The dumbass was HEATED UP!`; 
     if (isDoiseMode) {
           playSFX(SOUNDS.HurtDoise);
@@ -1337,8 +1345,8 @@ function handleNoisePowerupConflict() {
     const pushBack = getScaledValue(50);
     if (playerX < noiseX) { playerX -= pushBack; } else { playerX += pushBack; }
     if (noiseX < playerX) { noiseX -= pushBack; } else { noiseX += pushBack; }
-    playerX = Math.max(0, Math.min(GAME_WIDTH - PLAYER_WIDTH, playerX));
-    noiseX = Math.max(0, Math.min(GAME_WIDTH - NOISE_WIDTH, noiseX));
+    playerX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - PLAYER_WIDTH - SCALED_WALL_MARGIN, playerX));
+    noiseX = Math.max(SCALED_WALL_MARGIN, Math.min(GAME_WIDTH - NOISE_WIDTH - SCALED_WALL_MARGIN, noiseX));
     parryTimer = setTimeout(() => {
         isParrying = false;
         PLAYER.classList.remove('peppino-parry-sprite', 'is-stunned');
@@ -1408,14 +1416,14 @@ function collectPowerup(powerupElement) {
         }, PEPPINO_MILK_STUN_TIME);
     }, POWERUP_INVINCIBILITY_TIME);}
 function getRandomSpawnPosition() {
-    const spawnYPoints = [0];
+    const spawnYPoints = [SCALED_GROUND_HEIGHT];
     document.querySelectorAll('.platform').forEach(p => {
         const pY = parseFloat(p.style.bottom);
         const pH = parseFloat(p.style.height);
         spawnYPoints.push(pY + pH);});
     const selectedY = spawnYPoints[Math.floor(Math.random() * spawnYPoints.length)];
     const scaledToppingSize = TOPPING_SIZE;
-    if (selectedY === 0) {
+    if (selectedY === SCALED_GROUND_HEIGHT) {
         return {
             x: Math.random() * (GAME_WIDTH - scaledToppingSize),
             y: selectedY + getScaledValue(5)};
@@ -1429,7 +1437,7 @@ function getRandomSpawnPosition() {
                 y: selectedY};}
         return {
             x: Math.random() * (GAME_WIDTH - scaledToppingSize),
-            y: 0};}}
+            y: SCALED_GROUND_HEIGHT};}}
 function spawnTopping() {
     if (isGameOver) return;
     if (Math.random() < currentPepperChance && !activePowerupElement) {
@@ -1585,6 +1593,7 @@ function endGame(timeUp = false) {
         NOISE.classList.remove('facing-left');}
     STATUS_DISPLAY.style.display = 'block';
     RESET_BUTTON.style.display = 'block';
+    GUSTAVO.style.bottom = (SCALED_GROUND_HEIGHT + SCALED_SPRITE_OFFSET_Y) + 'px';
     updateGustavoSprite();}
 
 // CONTROLES DO TECLADO
@@ -1675,22 +1684,23 @@ function startGame() {
         playBGM(DOISE_BGM);
         currentNoiseSpeed = NOISE_SPEED * 1.2;
         GAME_AREA.style.backgroundImage = DOISE_BACKGROUND;
-        playerX = getScaledValue(GAME_WIDTH - PLAYER_WIDTH - 50); 
-        noiseX = getScaledValue(50);
+        playerX = getScaledValue(GAME_WIDTH - PLAYER_WIDTH - 50 - SCALED_WALL_MARGIN);
+        noiseX = getScaledValue(50 + SCALED_WALL_MARGIN);
     } else {
         time = 60;
         playBGM(BGM_AUDIO);
         currentNoiseSpeed = NOISE_SPEED;
         GAME_AREA.style.backgroundImage = NORMAL_BACKGROUND;
-        playerX = getScaledValue(BASE_PLAYER_START_X);
-        noiseX = NOISE_START_X;}
+        playerX = getScaledValue(BASE_PLAYER_START_X + BASE_WALL_MARGIN);
+        noiseX = getScaledValue(BASE_NOISE_START_X_POS - BASE_WALL_MARGIN);
+    }
     TIMER_DISPLAY.textContent = `Time: ${time}`;
-    playerY = 0;
-    noiseY = 0;
+    playerY = SCALED_GROUND_HEIGHT;
+    noiseY = SCALED_GROUND_HEIGHT;
     PLAYER.style.left = playerX + 'px';
-    PLAYER.style.bottom = playerY + 'px';
+    PLAYER.style.bottom = (playerY + SCALED_SPRITE_OFFSET_Y) + 'px';
     NOISE.style.left = noiseX + 'px';
-    NOISE.style.bottom = noiseY + 'px';
+    NOISE.style.bottom = (noiseY + SCALED_SPRITE_OFFSET_Y) + 'px';
     createPlatforms();
     startTimer();
     gameLoopInterval = setInterval(gameLoop, 1000 / 60);
