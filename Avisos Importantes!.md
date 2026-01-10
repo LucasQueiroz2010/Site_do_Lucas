@@ -127,9 +127,9 @@ ND: Eu desisti completamente do Modo Mobile, pois o jogo ainda não tem suporte 
 2) A maioria das fontes do site foram atualizadas.
 3) Uma nova sessão foi adicionada na página "Site do Lucas!".
 pobs: O PTWE ainda está com alguns sprites e áudios bugados.
-?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
+?!+-try_remove subject:"FATAL_ERROR" ... task_failed-+!?
 
 9.2- Site do Lucas V1.9.2: Design fix 2.
 1) No PTWE, foi adicionado uma tela de seleção de modos antes de começar o jogo.
 2) Outros pequenos detalhes foram implementados/atualizados.
-?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
+?!+-try_remove subject:"FATAL_ERROR" ... task_failed+-!?
