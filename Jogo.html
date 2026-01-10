@@ -64,6 +64,51 @@ body {
     align-items: center;
     z-index: 20;
     color: white;}
+#mode-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(imagens_jogo/Stuff/Mode\ screen.jpg); 
+    background-color: #2a2a2a;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 25;
+    gap: 20px;}
+.mode-select-btn {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 10px 0;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    border-style: solid;
+    border-width: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    transition: transform 0.1s;
+    font-family: inherit;}
+.mode-select-btn:hover { transform: scale(1.05); }
+.mode-select-btn:active { transform: scale(0.95); }
+#btn-noise-mode {
+    background-color: #f8e080;
+    border-color: #d88818;
+    color: #54260d;}
+#btn-doise-mode {
+    background-color: #2c6ebf;
+    border-color: #d868a0;
+    color: white;}
+#btn-faker-mode {
+    background-color: #b0b0b0;
+    border-color: black;
+    color: black;
+    cursor: not-allowed;
+    opacity: 0.8;}
 #mute-button, #desktop-fullscreen-button, #mode-switch-button {
     position: fixed; 
     top: 20px; 
@@ -131,7 +176,6 @@ body {
 .noise-scared { background-image: url(imagens_jogo/N_sprites/Noise_scaried.gif); }
 .noise-powered-up { background-image: url(imagens_jogo/N_sprites/Pepper_Pizza_Noise.gif); }
 .noise-tired-sprite { background-image: url(imagens_jogo/N_sprites/Noise_milk.gif); }
-
 #gustavo {
     position: absolute;
     width: 60px;
@@ -288,8 +332,12 @@ body {
 </div>
 <div id="main-container">
     <div id="start-screen" class="text-center">
-        <button class="depression" onclick="hideStartScreen(); startNormalGame();">Start Game!</button> 
-        <button class="depression doise-btn" onclick="hideStartScreen(); startDoiseMode();">Doise Mode</button>
+        <button class="depression" onclick="goToModeSelection();">Start Game!</button> 
+    </div>
+    <div id="mode-screen">
+        <button id="btn-noise-mode" class="mode-select-btn" onclick="selectMode('normal')">Noise Mode</button>
+        <button id="btn-doise-mode" class="mode-select-btn" onclick="selectMode('doise')">Doise Overlay</button>
+        <button id="btn-faker-mode" class="mode-select-btn">Faker Attack</button>
     </div>
     <div id="game-area">
         <div id="player"></div> 
@@ -319,6 +367,7 @@ const PEPPER_DOISE_AUDIO = document.getElementById('pepper-doise-audio');
 // LÓGICA DO JOGO
 const MAIN_CONTAINER = document.getElementById('main-container');
 const START_SCREEN = document.getElementById('start-screen');
+const MODE_SCREEN = document.getElementById('mode-screen');
 const GAME_AREA = document.getElementById('game-area');
 const PLAYER = document.getElementById('player');
 const NOISE = document.getElementById('the-noise');
@@ -333,7 +382,18 @@ const RESET_BUTTON = document.getElementById('reset-button');
 const DESKTOP_FULLSCREEN_BUTTON = document.getElementById('desktop-fullscreen-button');
 const MODE_SWITCH_BUTTON = document.getElementById('mode-switch-button');
 
-// TELA CHEIA
+// FUNÇÕES DE NAVEGAÇÃO DE MENU
+function goToModeSelection() {
+    START_SCREEN.style.display = 'none';
+    MODE_SCREEN.style.display = 'flex';}
+function selectMode(mode) {
+    MODE_SCREEN.style.display = 'none';
+    hideStartScreen();
+    
+    if (mode === 'normal') {
+        startNormalGame();
+    } else if (mode === 'doise') {
+        startDoiseMode();}}
 function toggleDesktopFullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
@@ -361,8 +421,6 @@ const UNMUTE_ICON_SPRITE = "imagens_jogo/Stuff/unmute_button";
 const MUTE_ICON_SPRITE = "imagens_jogo/Stuff/mute_button";
 const FULLSCREEN_ENTER_ICON_SPRITE = "imagens_jogo/Stuff/fullscreen_on";
 const FULLSCREEN_EXIT_ICON_SPRITE = "imagens_jogo/Stuff/fullscreen_off";
-
-// TROCA DE MODO
 function toggleGameMode() {
     isGameOver = true;
     if (isDoiseMode) {
@@ -625,6 +683,7 @@ function showStartScreen() {
     if (!isMuted) {
         playBGM(START_BGM_AUDIO);}
     START_SCREEN.style.display = 'flex';
+    MODE_SCREEN.style.display = 'none';
     GAME_AREA.style.display = 'none';
     RESET_BUTTON.style.display = 'none';
     document.getElementById('ui-bar').style.display = 'none';
@@ -1092,6 +1151,9 @@ function handleNoiseHit(damage = 1) {
     }, HIT_INVINCIBILITY_TIME);}
 function handlePepperNoiseHitPeppino() {
     if (isInvincible) return;
+    clearTimeout(noisePowerupTimer);
+    noiseIsPoweredUp = false;
+    NOISE.classList.remove('noise-powered-up');
     health -= 2;
     hitsTaken += 2;
     updateHealthDisplay();
@@ -1143,7 +1205,7 @@ function attemptGustavoDrop(x, y) {
         } else {
              playSFX(SOUNDS.GustavoDrop);}
         setGustavoState('drop', 1000);
-        let name = isDoiseMode ? "Friendly Noise" : "Gustavo";
+        let name = isDoiseMode ? "The Noise" : "Gustavo";
         STATUS_DISPLAY.textContent = `${name} dropped some HP!`;
         setTimeout(() => {
             if (STATUS_DISPLAY.textContent.includes("+1 Hit!")) {
@@ -1172,8 +1234,8 @@ function handleNoiseStomp() {
     WALK_AUDIO.pause();
     WALK_AUDIO.currentTime = 0;
     STATUS_DISPLAY.textContent = isDoiseMode ? "The Doise was stomped!" : "The Noise was stomped!";
-    attemptGustavoDrop(noiseX, noiseY);
-    setGustavoState('noise_hit');
+    if (!attemptGustavoDrop(noiseX, noiseY)) {
+        setGustavoState('noise_hit');    }
     setTimeout(() => {
         if (!wasInvincible && !isPowerupInvincible) {
             isInvincible = false;
@@ -1208,6 +1270,8 @@ function collectNoisePowerup(powerupElement) {
 function endNoisePowerup() {
     clearTimeout(noisePowerupTimer);
     noiseIsPoweredUp = false;
+    noiseIsJoking = false;
+    NOISE.classList.remove('noise-joke-mode');
     NOISE.classList.remove('noise-powered-up');
     noiseIsStunned = true;
     NOISE.classList.add('noise-disabled', 'noise-tired-sprite');
@@ -1244,8 +1308,8 @@ function handleNoisePepperHit() {
           playSFX(SOUNDS.HurtDoise);
     } else {
           playSFX(SOUNDS.HurtNoise);}
-    attemptGustavoDrop(noiseX, noiseY);
-    setGustavoState('noise_hit');
+    if (!attemptGustavoDrop(noiseX, noiseY)) {
+        setGustavoState('noise_hit');    }
     clearTimeout(noiseStunTimer);
     noiseStunTimer = setTimeout(() => {
         noiseIsStunned = false;
@@ -1329,7 +1393,10 @@ function collectPowerup(powerupElement) {
         isPowerupInvincible = false;
         PLAYER.classList.remove('invincible', 'peppino-parry-sprite');
         PLAYER.classList.add('peppino-tired-sprite');
-        playBGM(BGM_AUDIO);
+        if (isDoiseMode) {
+            playBGM(DOISE_BGM);
+        } else {
+            playBGM(BGM_AUDIO);}
         STATUS_DISPLAY.textContent = 'Have some milk!';
         isPeppinoStunned = true;
         PLAYER.classList.add('is-stunned');
@@ -1512,7 +1579,7 @@ function endGame(timeUp = false) {
         RANK_IMAGE_CONTAINER.className = `final-rank-image ${rankData.rankClass}`;
         PLAYER.style.backgroundImage = PEPPINO_WIN_TIME_SPRITE;
         if (isDoiseMode) {
-            NOISE.style.backgroundImage = F_NOISE_LOSE; 
+            NOISE.style.backgroundImage = DOISE_LOSE_SPRITE; 
         } else {
             NOISE.style.backgroundImage = NOISE_LOSE_SPRITE;}
         NOISE.classList.remove('facing-left');}

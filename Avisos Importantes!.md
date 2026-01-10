@@ -122,8 +122,14 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 ND: Eu desisti completamente do Modo Mobile, pois o jogo ainda não tem suporte para tantas linhas de código que existia no Modo Mobile (eu fui de 2100+ linhas de código para menos de 1700 linhas), então no momento eu irei desistir do Modo Mobile, mas se no futuro eu transformar isso em um jogo de verdade (.EXE ao invés de HTML), eu foque em adicionar o Modo Mobile.
 !_try.remove subject 'fatal_error'  ...  task failed ... updating_system_!
 
-9.1- Site do Lucas V1.9.1: design fix 1.
+9.1- Site do Lucas V1.9.1: Design fix 1.
 1) Na página "Site do Lucas!" grandes mudanças aconteceram, como a mudança das imagens da parallax para ser os bosses do jogo Pizza Tower.
 2) A maioria das fontes do site foram atualizadas.
 3) Uma nova sessão foi adicionada na página "Site do Lucas!".
 pobs: O PTWE ainda está com alguns sprites e áudios bugados.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
+
+9.2- Site do Lucas V1.9.2: Design fix 2.
+1) No PTWE, foi adicionado uma tela de seleção de modos antes de começar o jogo.
+2) Outros pequenos detalhes foram implementados/atualizados.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
