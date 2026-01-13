@@ -616,7 +616,7 @@ padding: 3px;
 			}
 
 			.text-bicolor {
-    background-image: linear-gradient(to right, white 47%, black 53%);
+    background-image: linear-gradient(to right, black 46%, white 54%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

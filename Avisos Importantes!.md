@@ -142,3 +142,8 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 9.4- Site do Lucas V1.9.4: Design update.
 1) Foi adicionado três caixas de texto ao entrar no site, e depedendo do seu nome, idade e gênero, mensagens diferentes podem aparecer.
 2) alguns Easter Eggs foram adicionados.
+
+9.4.1- Site do Lucas V1.9.4.1: Design fix pequeno.
+1) No 'Site do Lucas!', na parte que fala sobre o PTWE, o texto de duas cores foi atualizado.
+2) Foi mudado algumas coisa no JavaScript 'script_index'.
+3) Foi adicionado o JavaScript 'script_contatos'.
