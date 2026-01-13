@@ -138,3 +138,7 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 1) No PTWE, a hitbos do chão, das paredes e da plataforma foram ajustadas para ser como o chão que está no background, dado um senso de realismo maior para o jogo.
 2) Alguns bugs foram consertados.
 3) Alguns bugs foram acidentalmente criados (toppings nascendo fora da área que o Peppino pode andar, The Noise/The Doise não usando o sprite correto ao ser acertado pelo Pepper Peppino, etc.).
+
+9.4- Site do Lucas V1.9.4: Design update.
+1) Foi adicionado três caixas de texto ao entrar no site, e depedendo do seu nome, idade e gênero, mensagens diferentes podem aparecer.
+2) alguns Easter Eggs foram adicionados.
