@@ -1,12 +1,17 @@
 Dicionário:
-WIP: Work In Progress, ou seja, trabalho em progresso. Algo quenão está 100% pronto e pode sofrer atualizações.
-PTWE: Pizza Tower Web Edition. 
-ND: Nota do desenvolvedor.
-pobs: Pequena observação.
+WIP = Work In Progress, ou seja, trabalho em progresso. Algo quenão está 100% pronto e pode sofrer atualizações.
+UB = Update besta, ou seja, um update que aconteceu somente porque eu esqueci de adicionar/atualizar um ponto pequeno/específico.
+QL = Qualidade de vida, ou seja, um update que aconteceu somente porque eu quis adicionar/atualizar um ponto pequeno/específico do site para deixa-lo um pouco melhor.
+PTWE = Pizza Tower Web Edition. 
+ND = Nota do desenvolvedor.
+README = 'Avisos importantes!'.
+pobs = Pequena observação.
+JS = Javascript.
 Atualizações abaixo:
 
 1- Site do Lucas V1.0: o começo de tudo.
-O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o público. Então obrigado por visitá-lo!  (Só para avisar, esse site ainda está imcompleto, ou seja, espere por mais atualizações!). Eu gostaria de agradecer meu irmão Davi por ter falado com meus pais (os donos da empresa) para que eu possa trabalhar com 15 anos. Agradeço também o meu pai Icaro e minha mãe Taynan por me deixarem trabalhar na FIT Gestão empresarial (a empresa dos dois). Agradeço também ao Renan e ao Felipe (duas pessoas que trabalham na minha área) por serem tão legais comigo, mesmo eu sendo um novato. Agradeçimentos especiais ao Bruno, que me ajudou a publicar o site no GitHub.
+ND: O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o público. Então obrigado por visitá-lo!  (Só para avisar, esse site ainda está imcompleto, ou seja, espere por mais atualizações!). Eu gostaria de agradecer meu irmão Davi por ter falado com meus pais (os donos da empresa) para que eu possa trabalhar com 15 anos. Agradeço também o meu pai Icaro e minha mãe Taynan por me deixarem trabalhar na FIT Gestão empresarial (a empresa dos dois). Agradeço também ao Renan e ao Felipe (duas pessoas que trabalham na minha área) por serem tão legais comigo, mesmo eu sendo um novato. Agradeçimentos especiais ao Bruno, que me ajudou a publicar o site no GitHub.
+1) Foi criado o 'Site do Lucas!'.
 
 1.1- Site do Lucas V1.1: Pequenas adições.
 1) Foi adicionado: uma nova fonte personalizada.
@@ -27,10 +32,10 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 11) Pequenas mudanças de colocamento de texto/código adicionados para melhorar a qualidade de vida.
 12) Conserto de erros/bugs.
 
-2.1- Site do Lucas V1.2.1 / V1.2.2
+2.1- Site do Lucas V1.2.1 / V1.2.2: UB 1 e 2.
 1) O arquivo "Avisos Importantes!" sofreu algumas melhoras de design.
 
-3.0- Site do Lucas V1.3
+3.0- Site do Lucas V1.3; interação estelar/ QL.
 1) Foi adicionado uma interação com a estrela amarela na "Página Inicial".
 2) Foi adicionado uma interação específica na página "Foto do Lucas!"
 3) Foi inplementado algumas mudanças de qualidade de vida/detalhes.
@@ -49,15 +54,15 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 4) Foi removida a interação que ante existia na página "Foto do Lucas!".
 !-try.remove "fatal_error" ... task_failed-!
 
-5.1- Site do Lucas V1.5.1 / 1.5.2 / 1.5.3 / 1.5.4
+5.1- Site do Lucas V1.5.1 / 1.5.2 / 1.5.3 / 1.5.4: UB 3, 4, 5 e 6.
 1) A versão 1.5.1 foi uma versão sem atualizações, sendo exatamente igual a versão 1.4. Essa versão foi enviada por acidente.
 2) Acidentalmente, na versão 1.5.2, foi enviado nada, além do arquivo de fotos, oque já foi corrigido.
 3) A versão 1.5.3 é a versão onde tudo da versão 1.5 foi implementado, além da mudança do README.
 4) Na versão 1.5.4, foi adicionado uma imagem que estava faltando, além da edição do README.
 !-try.remove "fatal_error" ... task_failed-!
 
-6.0- Site do Lucas V1.6: adição GAMER.
-1) Pizza Tower - Web edition foi adicionado na parte mais baixa da "Página principal".
+6.0- Site do Lucas V1.6: adição GAMER/QL.
+1) Pizza Tower - Web edition (ou PTWE) foi adicionado na parte mais baixa da "Página principal".
 2) Pequenas mudanças de qualidade de vida/detalhes.
 !-try.remove "fatal_error" ... task_failed-!
 
@@ -70,21 +75,21 @@ O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-o p�
 6) Foi adicionado um botão de mute/unmute.  
 !-try.remove "fatal_error" ... task_failed-!
 
-7.1- Site do Lucas V1.7.1.
+7.1- Site do Lucas V1.7.1: UB 7.
 1) Mudanças no README.
 2) Mudanças pequenas no "jogo.html"
 !-try.remove "fatal_error" ... task_failed-!
 
 8.0- Site do Lucas V1.8: adição/atualização GAMER mobile (e outras coisas).
 1) Foi adicionado um dicionário no começo do README.
-2) Foi adicionado o modo mobile no PTWE (Pizza Tower Web Edition, vou me referir ao jogo assim de agora em diante). O modo mobile faz o jogo ficar em tela cheia e faz aparecer quatro botões: botão de andar para esquerda e direita, botão de pular e de correr, mas tirando isso, é a mesma coisa (isso é um WIP, ou). 
+2) Foi adicionado o modo mobile no PTWE (Pizza Tower Web Edition, vou me referir ao jogo assim de agora em diante). O modo mobile faz o jogo ficar em tela cheia e faz aparecer quatro botões: botão de andar para esquerda e direita, botão de pular e de correr, mas tirando isso, é a mesma coisa (isso é um WIP). 
 3) Foi mudado algumas interações entre as estrelas da "Página Inicial".
 4) Foi mudado um botão da sessão "Sua Opinião!" na "Página Inicial".
 5) Foi adicionado backgrounds variados dependendo do tamanho da sua tela na "Página Inicial", dando certo suporte para mobile e telas maiores.
 !-try.remove "fatal_error" ... task_failed-!
 
 8.1- Site do Lucas V1.8.1: atualização GAMER 2.
-1) Foi adicionado uma funcionalidade caso o Player (Peppino) e o inimigo (The Noise) estejam com o poder da Pepper Pizza.
+1) Foi adicionado uma interação caso o Player (Peppino) e o inimigo (The Noise) estejam com o poder da Pepper Pizza.
 2) Outros pequenos bugs/erros foram consertados
 3) Essa atualização tem o proposito de testar o modo mobile do jogo.
 !-try.remove "fatal_error" ... task_failed-!
@@ -147,3 +152,8 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 1) No 'Site do Lucas!', na parte que fala sobre o PTWE, o texto de duas cores foi atualizado.
 2) Foi mudado algumas coisa no JavaScript 'script_index'.
 3) Foi adicionado o JavaScript 'script_contatos'.
+
+9.4.2- Site do Lucas V1.9.4.2: UB 8 e README.
+1) Foi mudado o indicador de versões na página inicial.
+2) O README sofreu certos upgrades/mudanças.
+3) Foi adicionado algumas palavras novas ao dicionário.
