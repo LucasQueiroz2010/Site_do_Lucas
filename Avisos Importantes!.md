@@ -169,3 +169,8 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 3) Foi atualizado a parte mais de cima de todas da página 'Site do Lucas!' para que combine com a cor do site.
 4) Foi adicionado uma caixa de texto preta no começo da página 'Site Principal' para melhor leitura da mensagem de boas vindas.
 ?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
+
+9.4.4- Site do Lucas V9.4.4: UB 9.
+1) Foi mudado o README.
+2) Foi mudado o contator de versão.
+ND: Eu sou burro.
