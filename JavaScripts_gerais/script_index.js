@@ -5,13 +5,11 @@ var nomepessoal = prompt ('Me diga o seu nome com letra maiúscula no começo (c
 var idadepessoal = prompt ('Me diga a sua idade (clique em cancelar para não informar):')
 var genero = prompt ('Me diga o seu gênero (Masculino/Feminino) e escreva com letra maiúscula no começo (clique em cancelar para não informar):')
 
-//FOOTER
-document.write('<footer class="branco">&copy; <time>2025</time> - '+nomecompleto+' </footer>')
-document.getElementById("saudações").innerText = `Seja bem-vindo ao Site do Lucas ${nomepessoal}!`
 
 //NOME
 if (nomepessoal == null) {
     document.getElementById("saudações").innerText = `Seja bem-vindo ao Site do Lucas, pessoa genérica sem nome!`}
+    document.getElementById("saudações").innerText = `Seja bem-vindo ao Site do Lucas ${nomepessoal}!`
 
 //IDADE
 if (idadepessoal <= 12) {
@@ -23,9 +21,8 @@ else if (idadepessoal >= 13 && idadepessoal <= 17) {
 else if (idadepessoal > 17) {
     document.getElementById("Idade").innerText = `Que legal, ${nomepessoal}! Você já é um adulto, já tem ${idadepessoal} anos!`
     document.getElementById("saudações2").innerText = `Fique a vontade!`}
-if (idadepessoal == null) {
-    document.getElementById("Idade").innerText = `Você não tem personalidade ao não querer me dizer sua idade...`
-    document.getElementById("saudações2").innerText = `Não fiquese achando.`}
+if (idadepessoal == undefined || idadepessoal == null) {
+    document.getElementById("Idade").innerText = `Você não tem personalidade ao não querer me dizer sua idade...`}
 
 //GÊNERO
 if (genero == 'Masculino') {
@@ -57,6 +54,10 @@ if (nomepessoal == 'Icaro') {
     document.getElementById("saudações").innerText = `Oi, pai! Bem-vindo ao meu site, nego doce!`
     document.getElementById("Idade").innerText = `O nego doce tem ${idadepessoal} anos, tá véio, ein?`
     document.getElementById("saudações2").innerText = `Fique a vontade, pai!`}
+if (nomepessoal == 'Josefina' && idadepessoal == 65 && genero == 'Feminino') {
+    document.getElementById("saudações").innerText = `Oi, Vó Nega! Bem-vinda ao meu site!`
+    document.getElementById("Idade").innerText = `${idadepessoal} anos? Ainda está no ápice da juventude!`
+    document.getElementById("saudações2").innerText = `Fuqie a vontade, Vó Nega!`}
 if (nomepessoal == null && idadepessoal == null && genero == null) {
     document.getElementById("saudações").innerText = `Olhem! Um anônimo!`
     document.getElementById("Idade").innerText = `Sem idade? Sem gênero? Que pessoa sem personalidade...`

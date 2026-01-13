@@ -1,7 +1,7 @@
 Dicionário:
 WIP = Work In Progress, ou seja, trabalho em progresso. Algo quenão está 100% pronto e pode sofrer atualizações.
 UB = Update besta, ou seja, um update que aconteceu somente porque eu esqueci de adicionar/atualizar um ponto pequeno/específico.
-QL = Qualidade de vida, ou seja, um update que aconteceu somente porque eu quis adicionar/atualizar um ponto pequeno/específico do site para deixa-lo um pouco melhor.
+MQL = Mudança de Qualidade de vida, ou seja, um update que aconteceu somente porque eu quis adicionar/atualizar um ponto pequeno/específico do site para deixa-lo um pouco melhor.
 PTWE = Pizza Tower Web Edition. 
 ND = Nota do desenvolvedor.
 README = 'Avisos importantes!'.
@@ -35,7 +35,7 @@ ND: O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-
 2.1- Site do Lucas V1.2.1 / V1.2.2: UB 1 e 2.
 1) O arquivo "Avisos Importantes!" sofreu algumas melhoras de design.
 
-3.0- Site do Lucas V1.3; interação estelar/ QL.
+3.0- Site do Lucas V1.3; interação estelar/ MQL.
 1) Foi adicionado uma interação com a estrela amarela na "Página Inicial".
 2) Foi adicionado uma interação específica na página "Foto do Lucas!"
 3) Foi inplementado algumas mudanças de qualidade de vida/detalhes.
@@ -61,7 +61,7 @@ ND: O primeiro site que eu fiz em toda a minha vida, e eu estou agora, deixando-
 4) Na versão 1.5.4, foi adicionado uma imagem que estava faltando, além da edição do README.
 !-try.remove "fatal_error" ... task_failed-!
 
-6.0- Site do Lucas V1.6: adição GAMER/QL.
+6.0- Site do Lucas V1.6: adição GAMER/MQL.
 1) Pizza Tower - Web edition (ou PTWE) foi adicionado na parte mais baixa da "Página principal".
 2) Pequenas mudanças de qualidade de vida/detalhes.
 !-try.remove "fatal_error" ... task_failed-!
@@ -132,28 +132,38 @@ ND: Eu desisti completamente do Modo Mobile, pois o jogo ainda não tem suporte 
 2) A maioria das fontes do site foram atualizadas.
 3) Uma nova sessão foi adicionada na página "Site do Lucas!".
 pobs: O PTWE ainda está com alguns sprites e áudios bugados.
-?!+-try_remove subject:"FATAL_ERROR" ... task_failed-+!?
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
 9.2- Site do Lucas V1.9.2: Design fix 2.
 1) No PTWE, foi adicionado uma tela de seleção de modos antes de começar o jogo.
 2) Outros pequenos detalhes foram implementados/atualizados.
-?!+-try_remove subject:"FATAL_ERROR" ... task_failed+-!?
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
 9.3- Site do 9.3- Site do Lucas V1.9.3: Design fix 3 (e aviso de bugs).
 1) No PTWE, a hitbos do chão, das paredes e da plataforma foram ajustadas para ser como o chão que está no background, dado um senso de realismo maior para o jogo.
 2) Alguns bugs foram consertados.
 3) Alguns bugs foram acidentalmente criados (toppings nascendo fora da área que o Peppino pode andar, The Noise/The Doise não usando o sprite correto ao ser acertado pelo Pepper Peppino, etc.).
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
 9.4- Site do Lucas V1.9.4: Design update.
 1) Foi adicionado três caixas de texto ao entrar no site, e depedendo do seu nome, idade e gênero, mensagens diferentes podem aparecer.
 2) alguns Easter Eggs foram adicionados.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
 9.4.1- Site do Lucas V1.9.4.1: Design fix pequeno.
 1) No 'Site do Lucas!', na parte que fala sobre o PTWE, o texto de duas cores foi atualizado.
 2) Foi mudado algumas coisa no JavaScript 'script_index'.
 3) Foi adicionado o JavaScript 'script_contatos'.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
-9.4.2- Site do Lucas V1.9.4.2: UB 8 e README.
+9.4.2- Site do Lucas V1.9.4.2: UB 8 e update do README.
 1) Foi mudado o indicador de versões na página inicial.
 2) O README sofreu certos upgrades/mudanças.
 3) Foi adicionado algumas palavras novas ao dicionário.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
+
+9.4.3- Site do Lucas V1.9.4.3: Design fix pequeno 2 e MQL.
+1) Foi adicionado o JavaScript 'script_foto'.
+2) Foi adicionado o JavaScript 'script_geral'.
+3) Foi atualizado a parte mais de cima de todas do 'Site do Lucas!' para que conbine com a cor do site.
+?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
