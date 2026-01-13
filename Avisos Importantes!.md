@@ -147,6 +147,7 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 
 9.4- Site do Lucas V1.9.4: Design update.
 1) Foi adicionado três caixas de texto ao entrar no site, e depedendo do seu nome, idade e gênero, mensagens diferentes podem aparecer.
+1.1) Essa mensagem é personalizada.
 2) alguns Easter Eggs foram adicionados.
 ?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
 
@@ -165,5 +166,6 @@ pobs: O PTWE ainda está com alguns sprites e áudios bugados.
 9.4.3- Site do Lucas V1.9.4.3: Design fix pequeno 2 e MQL.
 1) Foi adicionado o JavaScript 'script_foto'.
 2) Foi adicionado o JavaScript 'script_geral'.
-3) Foi atualizado a parte mais de cima de todas do 'Site do Lucas!' para que conbine com a cor do site.
+3) Foi atualizado a parte mais de cima de todas da página 'Site do Lucas!' para que combine com a cor do site.
+4) Foi adicionado uma caixa de texto preta no começo da página 'Site Principal' para melhor leitura da mensagem de boas vindas.
 ?!+try_remove subject:"FATAL_ERROR" ... task_failed+!?
